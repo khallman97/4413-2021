@@ -14,14 +14,14 @@ public class DBConnection {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection(url,user,password);
+			this.con = DriverManager.getConnection(url,user,password);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public Connection returnCon() {
-		return con;
+		return this.con;
 	}
 	
 	

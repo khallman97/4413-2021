@@ -1,6 +1,10 @@
 package ctrl;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -9,11 +13,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.BookBean;
+import model.BookModel;
+
 
 /**
  * Servlet implementation class bookstore
  */
-@WebServlet("/bookstore")
+@WebServlet("/")
 public class bookstore extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,12 +36,12 @@ public class bookstore extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException{
 		super.init(config);
 		
-//		try {
-//			getServletContext().setAttribute("bookstoreModel", bookstoreModel.getInstance());
-//		} catch (ClassNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			getServletContext().setAttribute("BookModel", BookModel.getInstance());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
     
 	/**
@@ -43,14 +50,44 @@ public class bookstore extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		String target = "/SisApp.html";
-		
+		String target = "/basicResult.html";
+		//request.getRequestDispatcher(target).forward(request, response);
+
 		String category = "";
 		if (request.getParameter("category") != null && request.getParameter("category") != "") {
 			category = request.getParameter("category");
 		}
 		
-		request.getRequestDispatcher(target).forward(request, response);
+		String bid = "";
+		if (request.getParameter("bid") != null && request.getParameter("bid") != "") {
+			category = request.getParameter("bid");
+		}
+		
+		String title = "";
+		if (request.getParameter("title") != null && request.getParameter("title") != "") {
+			category = request.getParameter("title");
+		}
+		
+		String author = "";
+		if (request.getParameter("author") != null && request.getParameter("author") != "") {
+			category = request.getParameter("author");
+		}
+		
+		BookModel model = (BookModel)getServletContext().getAttribute("BookModel");
+		
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			out.printf(bookAsHTML(model,category));
+			out.flush();
+		
+		
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
+		
 
 	}
 
@@ -60,6 +97,35 @@ public class bookstore extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	public String bookAsHTML(BookModel model, String category){
+		String html ="";
+		List<BookBean> list = null;
+		try {
+			list = model.retrieveBookByCategory(category);
+		} catch (Exception e){
+			System.out.println(e);
+		}
+				
+		html = "<div class=\"books\">";
+		
+		for (BookBean bb : list){
+			html+="<div class=\"card\">" +
+					"<img src=\"" + bb.getPicture_link() + "\">" +
+					"<div class=\"container\">" +
+					"<h4><b>" + bb.getTitle() + "</b></h4>" +
+					"<h4><b>" + bb.getAuthor() + "</b></h4>" +
+					"<h4><b>" + bb.getPrice() + "</b></h4>" +
+					"<h4><b>" + bb.getCategory() + "</b></h4>" +
+					"</div>" + 
+					"</div>";
+
+		}
+
+		html += "</div>";
+		System.out.println(html);
+		return html;
 	}
 
 }

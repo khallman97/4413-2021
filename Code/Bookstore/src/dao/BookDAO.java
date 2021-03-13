@@ -18,14 +18,14 @@ public class BookDAO {
 	
 	public BookDAO () {
 		DBConnection dbc = new DBConnection();
-		con = dbc.returnCon();
+		this.con = dbc.returnCon();
 
 	}
 	
 	//Return all books
 	public List<BookBean> returnAllBooks() throws SQLException{
-		String query = "select * from Book";
-		PreparedStatement p = con.prepareStatement(query);
+		String query = "select * from BookStore2021.Book";
+		PreparedStatement p = this.con.prepareStatement(query);
 		List<BookBean> rv = new ArrayList<BookBean>();
 		ResultSet r = p.executeQuery();
 		while (r.next()){
@@ -36,6 +36,7 @@ public class BookDAO {
 			String author = r.getString("author");
 			String picture_link = r.getString("picture_link");
 			rv.add( new BookBean(bid, title, price, category, author, picture_link));
+
 		}
 		
 		return rv;
@@ -43,8 +44,8 @@ public class BookDAO {
 	
 	//Retrun list of books where category is input
 	public List<BookBean> returnCategoryBooks(String categorySearch) throws SQLException{
-		String query = "select * from Book where category like %" +categorySearch +"%";
-		PreparedStatement p = con.prepareStatement(query);
+		String query = "select * from BookStore2021.Book where category like %" +categorySearch +"%";
+		PreparedStatement p = this.con.prepareStatement(query);
 		List<BookBean> rv = new ArrayList<BookBean>();
 		ResultSet r = p.executeQuery();
 		while (r.next()){
@@ -61,7 +62,7 @@ public class BookDAO {
 	
 	//return a book by its Id
 	public BookBean returnBooksByBid(String bidSearch) throws SQLException{
-		String query = "select * from Book where bid = " +bidSearch;
+		String query = "select * from BookStore2021.Book where bid = " +bidSearch;
 		PreparedStatement p = con.prepareStatement(query);
 		BookBean bookbean = null; 
 		ResultSet r = p.executeQuery();
@@ -79,7 +80,7 @@ public class BookDAO {
 	
 	//return book where title is like input value
 	public List<BookBean> returnBooksByNamesLike(String titleLike) throws SQLException{
-		String query = "select * from Book where title like %" +titleLike + "%";
+		String query = "select * from BookStore2021.Book where title like %" +titleLike + "%";
 		PreparedStatement p = con.prepareStatement(query);
 		List<BookBean> rv = new ArrayList<BookBean>();
 		ResultSet r = p.executeQuery();
@@ -98,7 +99,7 @@ public class BookDAO {
 	
 	//Insert book into db
 	public int insert(String bid, String title, double price, String category, String  author, String picture_link) throws SQLException, NamingException {
-		String preparedStatement ="insert into Book values(?,?,?,?,?,?)";
+		String preparedStatement ="insert into BookStore2021.Book values(?,?,?,?,?,?)";
 		PreparedStatement stmt = con.prepareStatement(preparedStatement);
 		stmt.setString(1, bid);
 		stmt.setString(2, title);
@@ -112,7 +113,7 @@ public class BookDAO {
 	
 	//Delete a book
 	public int delete(String bid) throws SQLException, NamingException {
-		 String preparedStatement ="delete from Book where bid=?";
+		 String preparedStatement ="delete from BookStore2021.Book where bid=?";
 		 PreparedStatement stmt = con.prepareStatement(preparedStatement);
 		 stmt.setString(1, bid);
 		 return stmt.executeUpdate();
