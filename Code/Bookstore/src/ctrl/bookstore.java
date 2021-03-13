@@ -43,7 +43,7 @@ public class bookstore extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		String target = "/SisApp.html";
+		String target = "/basicResult.html";
 		
 		String category = "";
 		if (request.getParameter("category") != null && request.getParameter("category") != "") {
