@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +27,8 @@ public class BookDAO {
 	public List<BookBean> returnAllBooks() throws SQLException{
 		String query = "select * from BookStore2021.Book";
 		PreparedStatement p = this.con.prepareStatement(query);
+		ResultSet r = p.executeQuery(query);
 		List<BookBean> rv = new ArrayList<BookBean>();
-		ResultSet r = p.executeQuery();
 		while (r.next()){
 			String bid = r.getString("bid");
 			String title = r.getString("title");
@@ -44,10 +45,10 @@ public class BookDAO {
 	
 	//Retrun list of books where category is input
 	public List<BookBean> returnCategoryBooks(String categorySearch) throws SQLException{
-		String query = "select * from BookStore2021.Book where category like %" +categorySearch +"%";
-		PreparedStatement p = this.con.prepareStatement(query);
+		String query = "select * from BookStore2021.Book where category like '%" +categorySearch +"%'";
+		Statement p = con.createStatement();
+		ResultSet r = p.executeQuery(query);
 		List<BookBean> rv = new ArrayList<BookBean>();
-		ResultSet r = p.executeQuery();
 		while (r.next()){
 			String bid = r.getString("bid");
 			String title = r.getString("title");
@@ -62,11 +63,12 @@ public class BookDAO {
 	
 	//return a book by its Id
 	public BookBean returnBooksByBid(String bidSearch) throws SQLException{
-		String query = "select * from BookStore2021.Book where bid = " +bidSearch;
-		PreparedStatement p = con.prepareStatement(query);
+		String query = "select * from BookStore2021.Book where bid = '" +bidSearch+"'";
+		Statement p = con.createStatement();
+		ResultSet r = p.executeQuery(query);
 		BookBean bookbean = null; 
-		ResultSet r = p.executeQuery();
 		while (r.next()){
+			
 			String bid = r.getString("bid");
 			String title = r.getString("title");
 			double price = r.getDouble("price");
@@ -81,9 +83,9 @@ public class BookDAO {
 	//return book where title is like input value
 	public List<BookBean> returnBooksByNamesLike(String titleLike) throws SQLException{
 		String query = "select * from BookStore2021.Book where title like %" +titleLike + "%";
-		PreparedStatement p = con.prepareStatement(query);
+		Statement p = con.createStatement();
+		ResultSet r = p.executeQuery(query);
 		List<BookBean> rv = new ArrayList<BookBean>();
-		ResultSet r = p.executeQuery();
 		while (r.next()){
 			String bid = r.getString("bid");
 			String title = r.getString("title");

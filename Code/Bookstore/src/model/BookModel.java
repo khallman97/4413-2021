@@ -5,27 +5,32 @@ import java.util.Map;
 
 import bean.BookBean;
 import dao.BookDAO;
-
+import dao.DBConnection;
 
 public class BookModel {
 
+	private DBConnection db_dao;
 	private static BookModel instance;
 	private BookDAO book;
+
 	
-	private BookModel() throws ClassNotFoundException {
-		// TODO Auto-generated constructor stub
-		this.book = new BookDAO();
-	}
-	
-	// will return ONE instance of the pattern with the DAO objects initialized
 	public static BookModel getInstance() throws ClassNotFoundException{
-		if (instance==null){
-			instance = new BookModel();
+		if (instance==null) {
+			instance =new BookModel();
+			instance.db_dao= new DBConnection();
 			instance.book = new BookDAO();
 		}
 		return instance;
+		
 	}
+
 	
+	
+	private BookModel() throws ClassNotFoundException {
+		db_dao = new DBConnection();
+		
+	}
+
 	public List<BookBean> retrieveBookByCategory(String category) throws Exception {
 		if (category.equals("")){
 			return this.book.returnAllBooks();
@@ -34,14 +39,14 @@ public class BookModel {
 		}
 			
 	}
-	
+
 	public Map<String, BookBean> retrieveBook(String bid, String title) throws Exception {
 		return null;
 			
 	}
 	
 	public String bookAdd(String bid, String title, int price, String category, String author, String picture_link) {
-		return null;
+		return "hello";
 		
 	}
 	
