@@ -3,12 +3,12 @@ package bean;
 public class BookBean {
 	private String bid;
 	private String title;
-	private int price;
+	private double price;
 	private String category;
 	private String Author;
 	private String picture_link;
 
-	public BookBean(String bid, String title, int price, String category, String author, String picture_link) {
+	public BookBean(String bid, String title, double price, String category, String author, String picture_link) {
 		super();
 		this.bid = bid;
 		this.title = title;
@@ -34,7 +34,7 @@ public class BookBean {
 		this.title = title;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
