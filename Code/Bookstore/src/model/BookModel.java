@@ -17,6 +17,6 @@ public class BookModel {
 	}
 	
 	public String bookDelete (String bid) {
-		return null;
+		return "hello";
 	}
 }
