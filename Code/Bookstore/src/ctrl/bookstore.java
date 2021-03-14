@@ -20,7 +20,7 @@ import model.BookModel;
 /**
  * Servlet implementation class bookstore
  */
-@WebServlet("/")
+@WebServlet("/main")
 public class bookstore extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -51,42 +51,44 @@ public class bookstore extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String target = "/basicResult.html";
-		//request.getRequestDispatcher(target).forward(request, response);
-
-		String category = "";
-		if (request.getParameter("category") != null && request.getParameter("category") != "") {
-			category = request.getParameter("category");
+		if (request.getParameter("category") == null){
+			request.getRequestDispatcher(target).forward(request, response);
 		}
-		
-		String bid = "";
-		if (request.getParameter("bid") != null && request.getParameter("bid") != "") {
-			category = request.getParameter("bid");
+		else{
+			String category = "";
+			if (request.getParameter("category") != null && request.getParameter("category") != "") {
+				category = request.getParameter("category");
+			}
+			
+			String bid = "";
+			if (request.getParameter("bid") != null && request.getParameter("bid") != "") {
+				category = request.getParameter("bid");
+			}
+			
+			String title = "";
+			if (request.getParameter("title") != null && request.getParameter("title") != "") {
+				category = request.getParameter("title");
+			}
+			
+			String author = "";
+			if (request.getParameter("author") != null && request.getParameter("author") != "") {
+				category = request.getParameter("author");
+			}
+			
+			BookModel model = (BookModel)getServletContext().getAttribute("BookModel");
+			
+			try {
+				response.setContentType("application/json");
+				PrintWriter out = response.getWriter();
+				out.printf(bookAsHTML(model,category));
+				out.flush();
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		String title = "";
-		if (request.getParameter("title") != null && request.getParameter("title") != "") {
-			category = request.getParameter("title");
 		}
-		
-		String author = "";
-		if (request.getParameter("author") != null && request.getParameter("author") != "") {
-			category = request.getParameter("author");
-		}
-		
-		BookModel model = (BookModel)getServletContext().getAttribute("BookModel");
-		
-		try {
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			out.printf(bookAsHTML(model,category));
-			out.flush();
-		
-		
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-
 		
 
 	}

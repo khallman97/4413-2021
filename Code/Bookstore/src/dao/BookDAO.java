@@ -46,7 +46,7 @@ public class BookDAO {
 	//Retrun list of books where category is input
 	public List<BookBean> returnCategoryBooks(String categorySearch) throws SQLException{
 		String query = "select * from BookStore2021.Book where category like '%" +categorySearch +"%'";
-		Statement p = con.createStatement();
+		Statement p = this.con.createStatement();
 		ResultSet r = p.executeQuery(query);
 		List<BookBean> rv = new ArrayList<BookBean>();
 		while (r.next()){
