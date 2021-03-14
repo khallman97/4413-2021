@@ -5,7 +5,7 @@ public class BookBean {
 	private String title;
 	private double price;
 	private String category;
-	private String Author;
+	private String author;
 	private String picture_link;
 
 	public BookBean(String bid, String title, double price, String category, String author, String picture_link) {
@@ -14,10 +14,15 @@ public class BookBean {
 		this.title = title;
 		this.price = price;
 		this.category = category;
-		Author = author;
+		this.author = author;
 		this.picture_link = picture_link;
 	}
 
+	//returns bid, title, price, category and author of the book in a string.
+	public String getInfo() { 
+		String info = bid + ", " + title + ", $" + price + ", " + category + ", " + author;
+		return info;
+	}
 	public String getBid() {
 		return bid;
 	}
@@ -51,11 +56,11 @@ public class BookBean {
 	}
 
 	public String getAuthor() {
-		return Author;
+		return author;
 	}
 
 	public void setAuthor(String author) {
-		Author = author;
+		this.author = author;
 	}
 
 	public String getPicture_link() {

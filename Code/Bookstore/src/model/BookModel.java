@@ -40,12 +40,11 @@ public class BookModel {
 			
 	}
 
-	public Map<String, BookBean> retrieveBook(String bid, String title) throws Exception {
-		return null;
-			
+	public BookBean retrieveBook(String bid) throws Exception {
+		return this.book.returnBooksByBid(bid);
 	}
 	
-	public String bookAdd(String bid, String title, int price, String category, String author, String picture_link) {
+	public String bookAdd(String bid, String title, double price, String category, String author, String picture_link) {
 		return "hello";
 		
 	}
