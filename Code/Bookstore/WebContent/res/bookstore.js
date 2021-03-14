@@ -1,4 +1,12 @@
+var category = document.getElementsByName("category");
+console.log(category.length);
+for (var i = 0; i < category.length; i++) {
+	category[i].addEventListener('change', ()=> {
+        displayBooks();
+    });
+}
 displayBooks()
+
 
 function displayBooks() {
 		
@@ -26,6 +34,7 @@ function handler(request){
 		var target = document.getElementById("result");
 		target.innerHTML = request.responseText;
 	}
+	addClickEvent();
 }
 
 function getCategory(){
@@ -36,4 +45,16 @@ function getCategory(){
         }
     }
     return null;
+}
+
+function addClickEvent(){
+	var books = document.getElementsByClassName("card");
+	for (var i = 0; i < books.length; i++) {
+		books[i].addEventListener("click", (e)=> {
+			//console.log(e.target.parentNode);
+			var bid = e.target.parentNode.querySelector('span').innerHTML;
+			console.log("clicked " + bid);
+			window.location.href = "/Bookstore/Book/" + bid;
+		})
+	}
 }

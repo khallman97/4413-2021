@@ -50,7 +50,7 @@ public class bookstore extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		String target = "/basicResult.html";
+		String target = "/main.jspx";
 		if (request.getParameter("category") == null){
 			request.getRequestDispatcher(target).forward(request, response);
 		}
@@ -62,17 +62,17 @@ public class bookstore extends HttpServlet {
 			
 			String bid = "";
 			if (request.getParameter("bid") != null && request.getParameter("bid") != "") {
-				category = request.getParameter("bid");
+				bid = request.getParameter("bid");
 			}
 			
 			String title = "";
 			if (request.getParameter("title") != null && request.getParameter("title") != "") {
-				category = request.getParameter("title");
+				title = request.getParameter("title");
 			}
 			
 			String author = "";
 			if (request.getParameter("author") != null && request.getParameter("author") != "") {
-				category = request.getParameter("author");
+				author = request.getParameter("author");
 			}
 			
 			BookModel model = (BookModel)getServletContext().getAttribute("BookModel");
@@ -115,6 +115,7 @@ public class bookstore extends HttpServlet {
 		for (BookBean bb : list){
 			html+="<div class=\"card\">" +
 					"<img src=\"" + bb.getPicture_link() + "\">" +
+					"<span id=\"bid\" style=\"display:none;\">" + bb.getBid() + "</span>" +
 					"<div class=\"container\">" +
 					"<h4><b>" + bb.getTitle() + "</b></h4>" +
 					"<h4><b>" + bb.getAuthor() + "</b></h4>" +
@@ -126,7 +127,6 @@ public class bookstore extends HttpServlet {
 		}
 
 		html += "</div>";
-		System.out.println(html);
 		return html;
 	}
 
