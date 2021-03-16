@@ -2,9 +2,9 @@ package ctrl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.BookBean;
+import bean.POItemBean;
 import model.BookModel;
 
 
@@ -51,7 +52,31 @@ public class bookstore extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String target = "/main.jspx";
-		if (request.getParameter("category") == null){
+		
+		Map<String, POItemBean> cart = new HashMap<String, POItemBean>();
+		if (request.getSession().getAttribute("cart") != null){
+			cart = (Map<String, POItemBean>) request.getSession().getAttribute("cart");
+		} else {
+			request.getSession().setAttribute("cart", cart);
+			request.getSession().setAttribute("cartSize", cart.size());
+		}
+		
+		if (request.getParameter("addToCart") != null){
+			String bid = "";
+			if (request.getParameter("bid") != null) {
+				bid = request.getParameter("bid");
+			}
+			double price = 0.0;
+			if (request.getParameter("price") != null){
+				price = Double.parseDouble(request.getParameter("price").toString());
+			}
+			POItemBean ib = new POItemBean(cart.size() + 1,bid,price);
+			cart.put(bid, ib);
+			request.getSession().setAttribute("cart", cart);
+			request.getSession().setAttribute("cartSize", cart.size());
+			
+		}
+		else if (request.getParameter("category") == null){
 			request.getRequestDispatcher(target).forward(request, response);
 		}
 		else{
@@ -115,12 +140,13 @@ public class bookstore extends HttpServlet {
 		for (BookBean bb : list){
 			html+="<div class=\"card\">" +
 					"<img src=\"" + bb.getPicture_link() + "\">" +
-					"<span id=\"bid\" style=\"display:none;\">" + bb.getBid() + "</span>" +
+					"<span class=\"bid\" style=\"display:none;\">" + bb.getBid() + "</span>" +
 					"<div class=\"container\">" +
 					"<h4><b>" + bb.getTitle() + "</b></h4>" +
 					"<h4><b>" + bb.getAuthor() + "</b></h4>" +
-					"<h4><b>" + bb.getPrice() + "</b></h4>" +
+					"<h4><b class=\"price\">" + bb.getPrice() + "</b></h4>" +
 					"<h4><b>" + bb.getCategory() + "</b></h4>" +
+					 "<button class=\"addToCart\" type=\"button\">Add To Shopping Cart</button>" +
 					"</div>" + 
 					"</div>";
 

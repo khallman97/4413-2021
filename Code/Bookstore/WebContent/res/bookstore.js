@@ -35,6 +35,7 @@ function handler(request){
 		target.innerHTML = request.responseText;
 	}
 	addClickEvent();
+	addToCart();
 }
 
 function getCategory(){
@@ -55,6 +56,26 @@ function addClickEvent(){
 			var bid = e.target.parentNode.querySelector('span').innerHTML;
 			console.log("clicked " + bid);
 			window.location.href = "/Bookstore/Book/" + bid;
+		})
+	}
+}
+
+function addToCart(){
+	var addBtn = document.getElementsByClassName("addToCart");
+	for (var i = 0; i < addBtn.length; i++) {
+		addBtn[i].addEventListener("click", (e)=> {
+			var bid = e.target.parentNode.parentNode.querySelector("span").innerHTML;
+			var price = e.target.parentNode.getElementsByClassName("price")[0].innerHTML;
+			
+			var request = new XMLHttpRequest();
+			var data ="addToCart=true&bid=" + bid + "price=" + price;
+			
+			request.open("GET", ("main" + "?" + data), true);
+			request.onreadystatechange = () => {
+				console.log("Item Added to Cart");
+			};
+			request.send();
+			
 		})
 	}
 }
