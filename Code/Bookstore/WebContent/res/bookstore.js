@@ -7,7 +7,6 @@ for (var i = 0; i < category.length; i++) {
 }
 displayBooks()
 
-
 function displayBooks() {
 		
 		var request = new XMLHttpRequest();
@@ -27,6 +26,7 @@ function displayBooks() {
 		};
 		request.send();
 }
+
 
 function handler(request){
 	console.log(request);
@@ -68,14 +68,17 @@ function addToCart(){
 			var price = e.target.parentNode.getElementsByClassName("price")[0].innerHTML;
 			
 			var request = new XMLHttpRequest();
-			var data ="addToCart=true&bid=" + bid + "price=" + price;
+			var data ="bid=" + bid;
 			
-			request.open("GET", ("main" + "?" + data), true);
+			request.open("GET", ("rest/cart/add" + "?" + data), true);
 			request.onreadystatechange = () => {
 				console.log("Item Added to Cart");
+				console.log(request.responseText);
 			};
 			request.send();
+			//need to refresh cart counter
 			
 		})
 	}
 }
+

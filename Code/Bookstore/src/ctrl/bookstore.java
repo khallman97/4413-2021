@@ -50,7 +50,12 @@ public class bookstore extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		try {
+			request.getSession().setAttribute("cartSize", BookModel.getInstance().returnCartCount());
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String target = "/main.jspx";
 		
 		Map<String, POItemBean> cart = new HashMap<String, POItemBean>();
@@ -58,7 +63,7 @@ public class bookstore extends HttpServlet {
 			cart = (Map<String, POItemBean>) request.getSession().getAttribute("cart");
 		} else {
 			request.getSession().setAttribute("cart", cart);
-			request.getSession().setAttribute("cartSize", cart.size());
+			//request.getSession().setAttribute("cartSize", cart.size());
 		}
 		
 		if (request.getParameter("addToCart") != null){

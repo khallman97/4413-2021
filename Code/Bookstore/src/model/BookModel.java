@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import bean.BookBean;
+import bean.ShoppingCartBean;
 import dao.BookDAO;
 import dao.DBConnection;
 
@@ -12,6 +13,7 @@ public class BookModel {
 	private DBConnection db_dao;
 	private static BookModel instance;
 	private BookDAO book;
+	private ShoppingCartBean SCB;
 
 	
 	public static BookModel getInstance() throws ClassNotFoundException{
@@ -19,6 +21,7 @@ public class BookModel {
 			instance =new BookModel();
 			instance.db_dao= new DBConnection();
 			instance.book = new BookDAO();
+			instance.SCB = new ShoppingCartBean();
 		}
 		return instance;
 		
@@ -51,5 +54,21 @@ public class BookModel {
 	
 	public String bookDelete (String bid) {
 		return "hello";
+	}
+	
+	public void addToCart(String bid) {
+		this.SCB.addBid(bid);
+	}
+	
+	public String returnCartToString() {
+		return SCB.returnString();
+	}
+	
+	public List<String> returnCart() {
+		return SCB.getBid();
+	}
+	
+	public int returnCartCount() {
+		return SCB.returnCount();
 	}
 }
