@@ -1,3 +1,4 @@
+drop table if exists BookStore2021.Review;
 DROP TABLE if exists BookStore2021.Book;
 CREATE TABLE BookStore2021.Book (
     bid VARCHAR(20) NOT NULL,
@@ -9,7 +10,7 @@ CREATE TABLE BookStore2021.Book (
     PRIMARY KEY(bid)
 );
 
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b001', 'A Promised Land', 29.99, 'Biography');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('b001', 'A Promised Land', 29.99, 'Biography', 'Barack Obama', 'https://images-na.ssl-images-amazon.com/images/I/41L5qgUW2fL._SX327_BO1,204,203,200_.jpg');
 INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b002','The Answer is... Reflections on My Life', 27.71, 'Biography');
 INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b003','Building a Web Site For Dummies' ,28.22,'Textbook');
 INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b004','A Game of Thrones: A Song of Ice and Fire' ,13.37,'Fantasy');
@@ -39,7 +40,7 @@ INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b027','WE 
 INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b028','DOG MAN: MOTHERING HEIGHTS: FROM THE CREATOR OF CAPTAIN' ,12,'Children');
 INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b029','THE BEAUTY OF LIVING TWICE' ,25,'Biography');
 
-drop table if exists BookStore2021.Review;
+
 create table BookStore2021.Review(
 	reviewID int not null auto_increment,
 	bid varchar(20) not null, 
