@@ -1,7 +1,13 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
 
 import bean.BookBean;
 import bean.ShoppingCartBean;
@@ -78,5 +84,31 @@ public class BookModel {
 
 	public int removeFromCart(String bid) {
 		return SCB.removeFromCart(bid);
+	}
+	
+	public String exportJSON(String field, String value) throws Exception
+	{
+		JsonArrayBuilder doc = Json.createArrayBuilder();
+		
+		List<BookBean> books = new ArrayList<BookBean>();
+		if (field.equals("category")){
+			books =  retrieveBookByCategory(value);
+		} else if (field.equals("title")){
+			books = retrieveBookByTitle(value);
+		} 
+		
+		for (BookBean bb : books)
+		{
+			doc.add(Json.createObjectBuilder().add("bid", bb.getBid())
+				.add("title",bb.getTitle())
+				.add("price",bb.getPrice())
+				.add("category",bb.getCategory())
+				.add("author",bb.getAuthor())
+				.add("picture_link",bb.getPicture_link()));
+		}
+				
+		String serializedJson = doc.build().toString();
+		
+		return serializedJson;
 	}
 }

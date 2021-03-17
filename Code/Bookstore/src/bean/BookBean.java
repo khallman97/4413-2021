@@ -56,7 +56,10 @@ public class BookBean {
 	}
 
 	public String getAuthor() {
-		return author;
+		if (author == null)
+			return "";
+		else
+			return author;
 	}
 
 	public void setAuthor(String author) {
@@ -64,7 +67,10 @@ public class BookBean {
 	}
 
 	public String getPicture_link() {
-		return picture_link;
+		if (picture_link == null)
+			return "";
+		else
+			return picture_link;
 	}
 
 	public void setPicture_link(String picture_link) {

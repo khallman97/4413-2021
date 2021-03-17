@@ -6,12 +6,19 @@ import javax.ws.rs.*;
 
 @Path("book")
 public class Book {
+//	@GET
+//	@Path("/read/")
+//	@Produces("text/plain")
+//	public String getProductInfo(@QueryParam("bid") String bid) throws Exception {
+//		System.out.println(BookModel.getInstance().retrieveBook(bid).getInfo());
+//		return BookModel.getInstance().retrieveBook(bid).getInfo();
+//	}
+	
 	@GET
 	@Path("/read/")
 	@Produces("text/plain")
-	public String getProductInfo(@QueryParam("bid") String bid) throws Exception {
-		System.out.println(BookModel.getInstance().retrieveBook(bid).getInfo());
-		return BookModel.getInstance().retrieveBook(bid).getInfo();
+	public String getProductInfo(@QueryParam("field") String field, @QueryParam("value") String value) throws Exception {
+		return BookModel.getInstance().exportJSON(field, value);
 	}
 
 //	@GET

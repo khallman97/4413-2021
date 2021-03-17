@@ -81,47 +81,11 @@ public class bookstore extends HttpServlet {
 //			request.getSession().setAttribute("cartSize", cart.size());
 			
 		}
-		else if (request.getParameter("category") == null){
 			request.getRequestDispatcher(target).forward(request, response);
-		}
-		else{
-			String category = "";
-			if (request.getParameter("category") != null && request.getParameter("category") != "") {
-				category = request.getParameter("category");
-			}
-			
-			String bid = "";
-			if (request.getParameter("bid") != null && request.getParameter("bid") != "") {
-				bid = request.getParameter("bid");
-			}
-			
-			String title = "";
-			if (request.getParameter("title") != null && request.getParameter("title") != "") {
-				title = request.getParameter("title");
-			}
-			
-			String author = "";
-			if (request.getParameter("author") != null && request.getParameter("author") != "") {
-				author = request.getParameter("author");
-			}
-			
-			BookModel model = (BookModel)getServletContext().getAttribute("BookModel");
-			
-			try {
-				response.setContentType("application/json");
-				PrintWriter out = response.getWriter();
-				out.printf(bookAsHTML(model,category));
-				out.flush();
-			
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		}
 		
 
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -130,35 +94,7 @@ public class bookstore extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 	
-	public String bookAsHTML(BookModel model, String category){
-		String html ="";
-		List<BookBean> list = null;
-		try {
-			list = model.retrieveBookByCategory(category);
-		} catch (Exception e){
-			System.out.println(e);
-		}
-				
-		html = "<div class=\"books\">";
-		
-		for (BookBean bb : list){
-			html+="<div class=\"card\">" +
-					"<img src=\"" + bb.getPicture_link() + "\">" +
-					"<span class=\"bid\" style=\"display:none;\">" + bb.getBid() + "</span>" +
-					"<div class=\"container\">" +
-					"<h4><b>" + bb.getTitle() + "</b></h4>" +
-					"<h4><b>" + bb.getAuthor() + "</b></h4>" +
-					"<h4><b class=\"price\">" + bb.getPrice() + "</b></h4>" +
-					"<h4><b>" + bb.getCategory() + "</b></h4>" +
-					 "<button class=\"addToCart\" type=\"button\">Add To Shopping Cart</button>" +
-					"</div>" + 
-					"</div>";
-
-		}
-
-		html += "</div>";
-		return html;
-	}
 
 }

@@ -10,17 +10,17 @@ displayBooks()
 function displayBooks() {
 		
 		var request = new XMLHttpRequest();
-		var data ='';
+		var data ='field=category&';
 		var category = getCategory();
 		
 		// create the query string
 		if (category == null){
-			data += "category=";
+			data += "value=";
 		} else {
-			data += "category=" + category;
+			data += "value=" + category;
 		}
 		
-		request.open("GET", ("main" + "?" + data), true);
+		request.open("GET", ("rest/book/read" + "?" + data), true);
 		request.onreadystatechange = () => {
 			handler(request);
 		};
@@ -30,16 +30,16 @@ function displayBooks() {
 function displaySearchResults() {
 
 		var request = new XMLHttpRequest();
-		var data = '';
+		var data ='field=title&';
 		var search = document.getElementById("search").value;
 		// create the query string
 		if (search == null) {
-			data += "category=";
+			data += "value=";
 		} else {
-			data += "category=" + search;
+			data += "value=" + search;
 		}
 	
-		request.open("GET", ("main" + "?" + data), true);
+		request.open("GET", ("rest/book/read" + "?" + data), true);
 		request.onreadystatechange = () => {
 			handler(request);
 		};
@@ -50,7 +50,29 @@ function handler(request){
 	console.log(request);
 	if ((request.readyState == 4) && (request.status == 200)){
 		var target = document.getElementById("result");
-		target.innerHTML = request.responseText;
+		console.log(request.responseText);
+		var books = JSON.parse(request.responseText);
+		var html = "<div class=\"books\">";
+		
+		for (var i = 0; i < books.length; i++){
+			console.log(books[i]);
+			html+="<div class=\"card\">" +
+			"<img class=\"card-img-top\" src=\"" + books[i].picture_link + "\">" +
+			"<span class=\"bid\" style=\"display:none;\">" + books[i].bid + "</span>" +
+			"<div class=\"card-body\">" +
+			"<h5 class=\"card-title\">" + books[i].title + "</h5>" +
+			"<h5 class\"card-text\">" + books[i].author + "</h5>" +
+			"<h5 class=\"price card-text\">" + books[i].price + "</h5>" +
+			"<h5 class=\"card-text\">" + books[i].category + "</h5>" +
+			 "<button class=\"btn btn-primary addToCart\" type=\"button\">Add To Shopping Cart</button>" +
+			"</div>" + 
+			"</div>";
+
+		}
+
+		html += "</div>";
+		
+		target.innerHTML = html;
 	}
 	addClickEvent();
 	addToCart();

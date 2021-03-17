@@ -12,6 +12,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/res/bookstore.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/> 
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/bookstore.js" defer='defer'>;</script>
 <title>Bookstore</title>
 </head>

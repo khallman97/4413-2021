@@ -82,8 +82,8 @@ public class BookDAO {
 	
 	//return book where title is like input value
 	public List<BookBean> returnBooksByNamesLike(String titleLike) throws SQLException{
-		String query = "select * from BookStore2021.Book where title like %" +titleLike + "%";
-		Statement p = con.createStatement();
+		String query = "select * from BookStore2021.Book where title like '%" + titleLike + "%'";
+		Statement p = this.con.createStatement();
 		ResultSet r = p.executeQuery(query);
 		List<BookBean> rv = new ArrayList<BookBean>();
 		while (r.next()){
