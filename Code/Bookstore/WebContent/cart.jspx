@@ -12,11 +12,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/res/bookstore.css" />
-<script type="text/javascript">;</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/cart.js" >;</script>
 <title>Bookstore</title>
 </head>
 <body>
-<header><h1>Bookstore System</h1></header>
+<header><h1>Cart</h1></header>
 <c:forEach items="${cart}" var="cart">
 	<div class="card">
 			<div class="container">
@@ -24,10 +24,13 @@
 				<h4><b>${cart.author}</b></h4>
 				<h4><b class="price">${cart.price}</b></h4>
 				<h4><b>${cart.category}</b></h4>
+				<Button onClick="removeFromCart('${cart.bid}');">Remove from cart</Button>
 			</div>
 	</div>
 </c:forEach>
 <h4><b> Total: ${total}</b></h4>
+
+<Button>Purchase</Button>
 <div id="result"> </div>
  </body>
 </html>

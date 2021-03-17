@@ -58,13 +58,13 @@ public class bookstore extends HttpServlet {
 		}
 		String target = "/main.jspx";
 		
-		Map<String, POItemBean> cart = new HashMap<String, POItemBean>();
-		if (request.getSession().getAttribute("cart") != null){
-			cart = (Map<String, POItemBean>) request.getSession().getAttribute("cart");
-		} else {
-			request.getSession().setAttribute("cart", cart);
-			//request.getSession().setAttribute("cartSize", cart.size());
-		}
+//		Map<String, POItemBean> cart = new HashMap<String, POItemBean>();
+//		if (request.getSession().getAttribute("cart") != null){
+//			cart = (Map<String, POItemBean>) request.getSession().getAttribute("cart");
+//		} else {
+//			request.getSession().setAttribute("cart", cart);
+//			//request.getSession().setAttribute("cartSize", cart.size());
+//		}
 		
 		if (request.getParameter("addToCart") != null){
 			String bid = "";
@@ -75,10 +75,10 @@ public class bookstore extends HttpServlet {
 			if (request.getParameter("price") != null){
 				price = Double.parseDouble(request.getParameter("price").toString());
 			}
-			POItemBean ib = new POItemBean(cart.size() + 1,bid,price);
-			cart.put(bid, ib);
-			request.getSession().setAttribute("cart", cart);
-			request.getSession().setAttribute("cartSize", cart.size());
+//			POItemBean ib = new POItemBean(cart.size() + 1,bid,price);
+//			cart.put(bid, ib);
+//			request.getSession().setAttribute("cart", cart);
+//			request.getSession().setAttribute("cartSize", cart.size());
 			
 		}
 		else if (request.getParameter("category") == null){

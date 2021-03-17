@@ -71,4 +71,8 @@ public class BookModel {
 	public int returnCartCount() {
 		return SCB.returnCount();
 	}
+	
+	public int removeFromCart(String bid) {
+		return SCB.removeFromCart(bid);
+	}
 }

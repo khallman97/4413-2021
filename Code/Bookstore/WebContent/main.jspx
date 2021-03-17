@@ -12,12 +12,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/res/bookstore.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/res/bookstore.js" defer="defer">;</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/bookstore.js" >;</script>
 <title>Bookstore</title>
 </head>
 <body>
 <header><h1>Bookstore System</h1></header>
 <h5>Items in cart ${sessionScope.cartSize}</h5>
+<Button onClick="window.location.href = '/Bookstore/cart';">Cart</Button>
 <fieldset>
   <legend>Categorys</legend>
   <label for="All">Display All</label>

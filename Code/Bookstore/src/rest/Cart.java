@@ -29,4 +29,14 @@ public class Cart {
 		 
 	}
 	
+	@GET
+	@Path("/remove/")
+	@Produces("text/plain")
+	public int removeCartItem(@QueryParam("bid") String bid) throws Exception {
+		System.out.println("removing bid from cart " + bid);
+		
+		return BookModel.getInstance().removeFromCart(bid);
+		 
+	}
+	
 }
