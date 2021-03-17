@@ -38,3 +38,14 @@ INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b026','A C
 INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b027','WE BEGIN AT THE END' ,15,'Biography');
 INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b028','DOG MAN: MOTHERING HEIGHTS: FROM THE CREATOR OF CAPTAIN' ,12,'Children');
 INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b029','THE BEAUTY OF LIVING TWICE' ,25,'Biography');
+
+drop table if exists BookStore2021.Review;
+create table BookStore2021.Review(
+	reviewID int not null auto_increment,
+	bid varchar(20) not null, 
+    review varchar(150),
+    rating int not null,
+    primary key(reviewID),
+    foreign key(bid) references BookStore2021.Book(bid)
+);
+insert into BookStore2021.Review(bid, review, rating) values('b001', 'Hello World', 5); 
