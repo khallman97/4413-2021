@@ -70,15 +70,16 @@ function addToCart(){
 			var price = e.target.parentNode.getElementsByClassName("price")[0].innerHTML;
 			data ="bid=" + bid;
 			//need to refresh cart counter
+			request.open("GET", ("rest/cart/add" + "?" + data), true);
+			request.onreadystatechange = () => {
+				console.log("added to cart");
+				console.log(request.responseText);
+			};
+			request.send();
 		});
 	};
-	request.open("GET", ("rest/cart/add" + "?" + data), true);
-	request.onreadystatechange = () => {
-		console.log("Added to cart");
-		console.log(request.responseText);
-	};
-	request.send();
-	displayBooks();
+	
+	
 }
 
 
