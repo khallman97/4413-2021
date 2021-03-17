@@ -27,6 +27,24 @@ function displayBooks() {
 		request.send();
 }
 
+function displaySearchResults() {
+
+		var request = new XMLHttpRequest();
+		var data = '';
+		var search = document.getElementById("search").value;
+		// create the query string
+		if (search == null) {
+			data += "category=";
+		} else {
+			data += "category=" + search;
+		}
+	
+		request.open("GET", ("main" + "?" + data), true);
+		request.onreadystatechange = () => {
+			handler(request);
+		};
+		request.send();
+}	
 
 function handler(request){
 	console.log(request);
@@ -78,7 +96,8 @@ function addToCart(){
 			request.send();
 		});
 	};
-	
+
+
 	
 }
 

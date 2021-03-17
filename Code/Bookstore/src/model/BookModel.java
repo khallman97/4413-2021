@@ -15,63 +15,67 @@ public class BookModel {
 	private BookDAO book;
 	private ShoppingCartBean SCB;
 
-	
-	public static BookModel getInstance() throws ClassNotFoundException{
-		if (instance==null) {
-			instance =new BookModel();
-			instance.db_dao= new DBConnection();
+	public static BookModel getInstance() throws ClassNotFoundException {
+		if (instance == null) {
+			instance = new BookModel();
+			instance.db_dao = new DBConnection();
 			instance.book = new BookDAO();
 			instance.SCB = new ShoppingCartBean();
 		}
 		return instance;
-		
+
 	}
 
-	
-	
 	private BookModel() throws ClassNotFoundException {
 		db_dao = new DBConnection();
-		
+
 	}
 
 	public List<BookBean> retrieveBookByCategory(String category) throws Exception {
-		if (category.equals("")){
+		if (category.equals("")) {
 			return this.book.returnAllBooks();
-		} else{
+		} else {
 			return this.book.returnCategoryBooks(category);
 		}
-			
+	}
+
+	public List<BookBean> retrieveBookByTitle(String title) throws Exception {
+		if (title.equals("")){
+			return this.book.returnAllBooks();
+		} else{
+			return this.book.returnBooksByNamesLike(title);
+		}
 	}
 
 	public BookBean retrieveBook(String bid) throws Exception {
 		return this.book.returnBooksByBid(bid);
 	}
-	
+
 	public String bookAdd(String bid, String title, double price, String category, String author, String picture_link) {
 		return "hello";
-		
+
 	}
-	
-	public String bookDelete (String bid) {
+
+	public String bookDelete(String bid) {
 		return "hello";
 	}
-	
+
 	public void addToCart(String bid) {
 		this.SCB.addBid(bid);
 	}
-	
+
 	public String returnCartToString() {
 		return SCB.returnString();
 	}
-	
+
 	public List<String> returnCart() {
 		return SCB.getBid();
 	}
-	
+
 	public int returnCartCount() {
 		return SCB.returnCount();
 	}
-	
+
 	public int removeFromCart(String bid) {
 		return SCB.removeFromCart(bid);
 	}
