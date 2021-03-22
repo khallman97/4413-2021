@@ -30,7 +30,7 @@
 </c:forEach>
 <h4><b> Total: ${total}</b></h4>
 
-<Button>Purchase</Button>
+<Button onClick="window.location.href = '/Bookstore/login';">Purchase</Button>
 <div id="result"> </div>
  </body>
 </html>
