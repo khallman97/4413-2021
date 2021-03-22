@@ -50,3 +50,13 @@ create table BookStore2021.Review(
     foreign key(bid) references BookStore2021.Book(bid)
 );
 insert into BookStore2021.Review(bid, review, rating) values('b001', 'Hello World', 5); 
+
+create table BookStore2021.Users(
+    user_name varchar(20) not null ,
+    name varchar(20) not null, 
+    addr varchar(150),
+    password int not null,
+    primary key(user_name)
+);
+
+insert into BookStore2021.Users(user_name, name, addr, password) values('admin','admin','123 Something Street', '123456');
