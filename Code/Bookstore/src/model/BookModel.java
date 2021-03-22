@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import bean.BookBean;
 import bean.ShoppingCartBean;
 import dao.BookDAO;
 import dao.DBConnection;
+import dao.UserDAO;
 
 public class BookModel {
 
@@ -20,6 +22,7 @@ public class BookModel {
 	private static BookModel instance;
 	private BookDAO book;
 	private ShoppingCartBean SCB;
+	private UserDAO userDao;
 
 	public static BookModel getInstance() throws ClassNotFoundException {
 		if (instance == null) {
@@ -27,6 +30,7 @@ public class BookModel {
 			instance.db_dao = new DBConnection();
 			instance.book = new BookDAO();
 			instance.SCB = new ShoppingCartBean();
+			instance.userDao = new UserDAO();
 		}
 		return instance;
 
@@ -85,6 +89,15 @@ public class BookModel {
 	public int removeFromCart(String bid) {
 		return SCB.removeFromCart(bid);
 	}
+	
+	public int addUser(String username, String name, String addr, String password) throws SQLException {
+		return userDao.addUser(username, name, addr, password);
+	}
+
+	public int loginUser(String username, String password) throws SQLException {
+		return userDao.passwordCheck(username, password);
+	}
+	
 	
 	public String exportJSON(String field, String value) throws Exception
 	{
