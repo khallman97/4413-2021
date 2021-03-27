@@ -133,4 +133,10 @@ public class BookModel {
 		
 		return serializedJson;
 	}
+
+	//Model function to add admin
+	public int addAdmin(String username, String name, String addr, String pass) throws SQLException {
+		// TODO Auto-generated method stub
+		return userDao.addAdmin(username, name, addr, pass);
+	}
 }

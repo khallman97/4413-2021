@@ -24,7 +24,8 @@ public class UserDAO {
 	}
 	
 	
-	//add a user return 1 if added, 0 if user name exisits already
+	/* add a user return 1 if added, 0 if user name exisits already */
+	/* this method does not create admin or partner users just dafault creation of regular user */
 	public int addUser(String userName, String name, String addr, String password) throws SQLException {
 		String query = "insert into BookStore2021.Users(user_name, name, addr, password) values(?,?,?,?);";
 		PreparedStatement stmt = con.prepareStatement(query);
@@ -32,6 +33,21 @@ public class UserDAO {
 		stmt.setString(2, name);
 		stmt.setString(3, addr);
 		stmt.setString(4, password);
+		
+		return stmt.executeUpdate();
+		
+	}
+	
+	/* add a user return 1 if added, 0 if user name exisits already */
+	/* this method is used to create an admin  */
+	public int addAdmin(String userName, String name, String addr, String password) throws SQLException {
+		String query = "insert into BookStore2021.Users(user_name, name, addr, type, password) values(?,?,?,?,?);";
+		PreparedStatement stmt = con.prepareStatement(query);
+		stmt.setString(1, userName);
+		stmt.setString(2, name);
+		stmt.setString(3, addr);
+		stmt.setString(4, "admin");
+		stmt.setString(5, password);
 		
 		return stmt.executeUpdate();
 		
@@ -45,7 +61,7 @@ public class UserDAO {
 		UserBean user = null;
 		while (r.next()){
 			
-			user = new UserBean(r.getString("user_name"),r.getString("name"), r.getString("addr"), r.getString("password") );
+			user = new UserBean(r.getString("user_name"),r.getString("name"), r.getString("addr"), r.getString("type"), r.getString("password") );
 		}
 		
 		return user;

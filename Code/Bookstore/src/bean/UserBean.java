@@ -6,8 +6,9 @@ public class UserBean {
 	private String user_name;
 	private String addr;
 	private String password;
+	private String type;
 	
-	public UserBean(String name, String user_name, String addr, String password) {
+	public UserBean(String name, String user_name, String addr, String type,String password) {
 		super();
 		this.name = name;
 		this.user_name = user_name;
@@ -38,6 +39,12 @@ public class UserBean {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }
