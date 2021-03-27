@@ -9,11 +9,13 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
+import javax.naming.NamingException;
 
 import bean.BookBean;
 import bean.ShoppingCartBean;
 import dao.BookDAO;
 import dao.DBConnection;
+import dao.ReviewDAO;
 import dao.UserDAO;
 
 public class BookModel {
@@ -23,6 +25,7 @@ public class BookModel {
 	private BookDAO book;
 	private ShoppingCartBean SCB;
 	private UserDAO userDao;
+	private ReviewDAO revDao;
 
 	public static BookModel getInstance() throws ClassNotFoundException {
 		if (instance == null) {
@@ -31,6 +34,8 @@ public class BookModel {
 			instance.book = new BookDAO();
 			instance.SCB = new ShoppingCartBean();
 			instance.userDao = new UserDAO();
+			instance.revDao = new ReviewDAO();
+			
 		}
 		return instance;
 
@@ -88,6 +93,10 @@ public class BookModel {
 
 	public int removeFromCart(String bid) {
 		return SCB.removeFromCart(bid);
+	}
+	
+	public int addReview(String bid, String review, int rating) throws SQLException, NamingException {
+		return revDao.insert(bid, review, rating);
 	}
 	
 	public int addUser(String username, String name, String addr, String password) throws SQLException {
