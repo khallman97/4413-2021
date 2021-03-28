@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=ISO-8859-1" 
+		pageEncoding="ISO-8859-1" session="false"/>
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Analytic</title>
+
+</head>
+<body>
+<h1>Analytics</h1>
+
+<div>
+<FIELDSET>
+<legend>Books Sold Each Month</legend>
+<select placeholder="Month">
+  <option name="" value="" style="display:none;">Month</option>
+  <option name="January" value="Jan">January</option>
+  <option name="February" value="Feb">February</option>
+  <option name="March" value="Mar">March</option>
+  <option name="April" value="Apr">April</option>
+	<option name="May" value="May">May</option>
+  <option name="June" value="Jun">June</option>
+  <option name="July" value="Jul">July</option>
+  <option name="August" value="Aug">August</option>
+	<option name="September" value="Sep">September</option>
+  <option name="October" value="Oct">October</option>
+  <option name="November" value="Nov">November</option>
+  <option name="December" value="Dec">December</option>
+</select>
+<table class="table table-striped" id="soldMonth">
+	<tr>
+		<th>Bid</th>
+		<th>Title</th>
+		<th>Total Sold</th>
+	</tr>
+</table>
+<button>Generate</button>
+</FIELDSET>
+</div>
+<div>
+<FIELDSET>
+<legend>Top 10 Viewed Books</legend>
+<table class="table table-striped" id="topViewed">
+	<tr>
+		<th>Bid</th>
+		<th>Title</th>
+		<th>Total View</th>
+	</tr>
+</table>
+</FIELDSET>
+</div>
+
+<div>
+<FIELDSET>
+<legend>Top 10 Sold Books</legend>
+<table class="table table-striped" id="topViewed">
+	<tr>
+		<th>Bid</th>
+		<th>Title</th>
+		<th>Total Sold</th>
+	</tr>
+</table>
+</FIELDSET>
+</div>
+
+<div>
+<FIELDSET>
+<legend>Top 10 Most Reviewed Books</legend>
+<table class="table table-striped" id="topViewed">
+	<tr>
+		<th>Bid</th>
+		<th>Title</th>
+		<th>Total Reviewed</th>
+	</tr>
+</table>
+</FIELDSET>
+</div>
+
+</body>
+</html>
+</jsp:root>
