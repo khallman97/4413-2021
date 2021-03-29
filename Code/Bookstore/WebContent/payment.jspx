@@ -8,7 +8,10 @@
 		omit-xml-declaration="true" />
 	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<script type="text/javascript" src="${pageContext.request.contextPath}/res/payment.js" defer='defer'>;</script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/res/payment.js" defer='defer'>
+	;
+</script>
 <title>Log in or Register</title>
 </head>
 <body>
@@ -16,24 +19,33 @@
 		<div id="mainDisplay">
 			<section>
 				<h4>Billing Info</h4>
-				<h5>Name:</h5>
-				<h5>Card Number:</h5>
-				<h5>Address:</h5>
-				<h5>Province:</h5>
-				<h5>Country:</h5>
-				<h5>Zip/Postal Code:</h5>
+				<p>Name:</p>
+				<p>Address:</p>
+				<p>Province:</p>
+				<p>Country:</p>
+				<p>Zip/Postal Code:</p>
 
 			</section>
 			<section>
 				<h4>Shipping Info</h4>
-				<h5>Name:</h5>
-				<h5>Phone Number:</h5>
-				<h5>Address:</h5>
-				<h5>Province:</h5>
-				<h5>Country:</h5>
-				<h5>Zip/Postal Code:</h5>
+				<p>Name:</p>
+				<p>Phone Number:</p>
+				<p>Address:</p>
+				<p>Province:</p>
+				<p>Country:</p>
+				<p>Zip/Postal Code:</p>
+
+				<h4>Billing Info</h4>
+				<form method="POST">
+				<label for = "cardNum">Card Number:</label>
+				<input type="text" name="cardNum" id="cardNum" maxlength = "16"></input><br />
+				<label for = "CVV">CVV:</label>
+				<input type="text" name="CVV" id="CVV" maxlength = "4"></input><br />
+				<label for = "expiration">Expiration Date:</label>
+				<input type="month" name="expiration" id="expiration"></input><br />
+				</form> 
 			</section>
-			<button onClick="confirmOrder()" >Confirm Order</button>
+			<button onClick="confirmOrder()">Confirm Order</button>
 			<button>Change Info</button>
 		</div>
 	</main>
