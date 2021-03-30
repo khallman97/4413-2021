@@ -1,5 +1,9 @@
 drop table if exists BookStore2021.Review;
+drop table if exists BookStore2021.Event;
+drop table if exists BookStore2021.Users;
 DROP TABLE if exists BookStore2021.Book;
+DROP TABLE if exists BookStore2021.Orders;
+DROP TABLE if exists BookStore2021.Address;
 CREATE TABLE BookStore2021.Book (
     bid VARCHAR(20) NOT NULL,
     title VARCHAR(60) NOT NULL,
@@ -60,3 +64,39 @@ create table BookStore2021.Users(
 );
 
 insert into BookStore2021.Users(user_name, name, addr, password) values('admin','admin','123 Something Street', '123456');
+
+
+CREATE TABLE BookStore2021.Address (
+id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+street VARCHAR(100) NOT NULL,
+province VARCHAR(20) NOT NULL,
+country VARCHAR(20) NOT NULL,
+zip VARCHAR(20) NOT NULL,
+PRIMARY KEY(id)
+);
+
+INSERT INTO BookStore2021.Address (street, province, country, zip) VALUES ('123 Yonge St', 'ON',
+'Canada', 'K1E 6T5' );
+
+CREATE TABLE BookStore2021.Orders (
+id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+firstName VARCHAR(100) NOT NULL,
+lastName VARCHAR(20) NOT NULL,
+status ENUM('ORDERED','PROCESSED','DENIED') NOT NULL,
+addressId INT UNSIGNED NOT NULL,
+PRIMARY KEY(id),
+INDEX (addressId),
+FOREIGN KEY (addressId) REFERENCES BookStore2021.Address (id) ON DELETE CASCADE
+);
+
+INSERT INTO BookStore2021.Orders (firstName, lastName, status, addressId) VALUES ('John', 'White', 'PROCESSED', '1');
+
+CREATE TABLE BookStore2021.Event (
+day varchar(8) NOT NULL,
+bid varchar(20) not null,
+eventtype varchar(20) NOT NULL,
+FOREIGN KEY(bid) REFERENCES BookStore2021.Book(bid)
+);
+
+INSERT INTO BookStore2021.Event (day, bid, eventtype) VALUES ('12202015', 'b001', 'VIEW');
+
