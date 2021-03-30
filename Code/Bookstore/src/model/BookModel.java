@@ -13,8 +13,10 @@ import javax.naming.NamingException;
 
 import bean.BookBean;
 import bean.ShoppingCartBean;
+import bean.UserBean;
 import dao.BookDAO;
 import dao.DBConnection;
+import dao.OrderDAO;
 import dao.ReviewDAO;
 import dao.UserDAO;
 
@@ -26,6 +28,7 @@ public class BookModel {
 	private ShoppingCartBean SCB;
 	private UserDAO userDao;
 	private ReviewDAO revDao;
+	private OrderDAO orderDao; 
 
 	public static BookModel getInstance() throws ClassNotFoundException {
 		if (instance == null) {
@@ -35,6 +38,7 @@ public class BookModel {
 			instance.SCB = new ShoppingCartBean();
 			instance.userDao = new UserDAO();
 			instance.revDao = new ReviewDAO();
+			instance.orderDao = new OrderDAO();
 			
 		}
 		return instance;
@@ -105,6 +109,14 @@ public class BookModel {
 
 	public int loginUser(String username, String password) throws SQLException {
 		return userDao.passwordCheck(username, password);
+	}
+	
+	public UserBean getUser(String username) throws SQLException {
+		return userDao.getUser(username);
+	}
+	
+	public int addToOrder(String fname, String lname, String status, int addrId) throws SQLException {
+		return orderDao.addOrder(fname, lname, status, addrId);
 	}
 	
 	
