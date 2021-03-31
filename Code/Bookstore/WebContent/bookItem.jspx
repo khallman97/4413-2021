@@ -18,14 +18,11 @@
 <body>
 	<div id="result"></div>
 	<form>
-
 		<FIELDSET>
 			<legend>Reviews</legend>
 			<div id="reviews">
-				<textarea rows="4" cols="50">Enter Review...</textarea>
+				<textarea rows="4" cols="50" name="reviewarea">Enter Review...</textarea>
 				<button action="submit" name="redirect" value="Submit">Submit</button>
-
-
 			</div>
 		</FIELDSET>
 	</form>

@@ -12,6 +12,7 @@ import javax.json.JsonObjectBuilder;
 import javax.naming.NamingException;
 
 import bean.BookBean;
+import bean.ReviewBean;
 import bean.ShoppingCartBean;
 import bean.UserBean;
 import dao.BookDAO;
@@ -69,6 +70,10 @@ public class BookModel {
 	public BookBean retrieveBook(String bid) throws Exception {
 		return this.book.returnBooksByBid(bid);
 	}
+	
+	public Map<String, ReviewBean> retrieveReview(String bid) throws Exception{
+		return this.revDao.retrieveReviews(bid);
+	}
 
 	public String bookAdd(String bid, String title, double price, String category, String author, String picture_link) {
 		return "hello";
@@ -118,6 +123,32 @@ public class BookModel {
 	public int addToOrder(String fname, String lname, String status, int addrId) throws SQLException {
 		return orderDao.addOrder(fname, lname, status, addrId);
 	}
+	
+//	public String exportJSONRev(String bid, String review, int rating) throws Exception
+//	{
+//		JsonArrayBuilder doc = Json.createArrayBuilder();
+//		
+//		List<BookBean> books = new ArrayList<BookBean>();
+//		if (field.equals("category")){
+//			books =  retrieveBookByCategory(value);
+//		} else if (field.equals("title")){
+//			books = retrieveBookByTitle(value);
+//		} 
+//		
+//		for (BookBean bb : books)
+//		{
+//			doc.add(Json.createObjectBuilder().add("bid", bb.getBid())
+//				.add("title",bb.getTitle())
+//				.add("price",bb.getPrice())
+//				.add("category",bb.getCategory())
+//				.add("author",bb.getAuthor())
+//				.add("picture_link",bb.getPicture_link()));
+//		}
+//				
+//		String serializedJson = doc.build().toString();
+//		
+//		return serializedJson;
+//	}
 	
 	
 	public String exportJSON(String field, String value) throws Exception

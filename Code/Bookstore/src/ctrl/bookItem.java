@@ -2,7 +2,9 @@ package ctrl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.BookBean;
+import bean.ReviewBean;
 import model.BookModel;
 
 /**
@@ -61,7 +64,7 @@ public class bookItem extends HttpServlet {
 		try {
 			response.setContentType("application/json");
 			PrintWriter out = response.getWriter();
-			out.printf(bookAsHTML(model,bid));
+			out.printf(reviewAsHTML(model,bid));
 			out.flush();
 		
 		
@@ -81,28 +84,25 @@ public class bookItem extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	public String bookAsHTML(BookModel model, String bid){
-		String html ="";
-		BookBean bb = null;
-		try {
-			bb = model.retrieveBook(bid);
-		} catch (Exception e){
-			System.out.println(e);
+	public String reviewAsHTML(BookModel model, String bid) {
+		 String html ="";
+		 Map<String, ReviewBean> hmap=null;
+		 try {
+			 hmap=model.retrieveReview(bid);
+		 }catch (Exception ex){
+			 System.out.print(ex);
+		 } 
+		html="<table border=\"1\"> <thead> <td>Review </td> <td>Rating </td> </thead>";
+		Iterator iterator = hmap.entrySet().iterator();
+		while (iterator.hasNext()) {
+			  Map.Entry me = (Map.Entry) iterator.next();
+			  ReviewBean sb=(ReviewBean)me.getValue();			  
+			  html+="<tr>"+
+					  "<td>"+sb.getReview()+"</td>"+
+					  "<td>"+sb.getRating()+"</td>"+ 
+					  "</tr>";
 		}
-				
-		
-			html+="<div class=\"card\">" +
-					"<img src=\"" + bb.getPicture_link() + "\">" +
-					"<div id=\"span\" style=\"display:none;\">" + bb.getBid() + "</span>" +
-					"<div class=\"container\">" +
-					"<h4><b>" + bb.getTitle() + "</b></h4>" +
-					"<h4><b>" + bb.getAuthor() + "</b></h4>" +
-					"<h4><b>" + bb.getPrice() + "</b></h4>" +
-					"<h4><b>" + bb.getCategory() + "</b></h4>" +
-					"</div>" + 
-					"</div>";
-
-
+		html+="</thead></table>";
 		return html;
 	}
 
