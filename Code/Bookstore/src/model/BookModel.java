@@ -18,6 +18,7 @@ import bean.UserBean;
 import dao.BookDAO;
 import dao.DBConnection;
 import dao.OrderDAO;
+import dao.POItemDAO;
 import dao.ReviewDAO;
 import dao.UserDAO;
 
@@ -30,6 +31,7 @@ public class BookModel {
 	private UserDAO userDao;
 	private ReviewDAO revDao;
 	private OrderDAO orderDao; 
+	private POItemDAO poItemDAO;
 
 	public static BookModel getInstance() throws ClassNotFoundException {
 		if (instance == null) {
@@ -40,6 +42,7 @@ public class BookModel {
 			instance.userDao = new UserDAO();
 			instance.revDao = new ReviewDAO();
 			instance.orderDao = new OrderDAO();
+			instance.poItemDAO = new POItemDAO();
 			
 		}
 		return instance;
@@ -124,6 +127,20 @@ public class BookModel {
 		return orderDao.addOrder(fname, lname, status, addrId);
 	}
 	
+	public void addToPOItem() throws SQLException {
+		List<String> cartList = this.returnCart();
+		for (String bid: cartList){
+			BookBean b;
+			try {
+				b = this.retrieveBook(bid);
+				poItemDAO.addPOItem(bid, (int) b.getPrice(), 1);
+				this.removeFromCart(bid);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 //	public String exportJSONRev(String bid, String review, int rating) throws Exception
 //	{
 //		JsonArrayBuilder doc = Json.createArrayBuilder();
@@ -160,7 +177,9 @@ public class BookModel {
 			books =  retrieveBookByCategory(value);
 		} else if (field.equals("title")){
 			books = retrieveBookByTitle(value);
-		} 
+		} else if (field.equals("bid")){
+			books.add(retrieveBook(value));
+		}
 		
 		for (BookBean bb : books)
 		{

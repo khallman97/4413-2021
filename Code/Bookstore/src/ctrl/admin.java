@@ -27,9 +27,9 @@ public class admin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String target = "/admin.jspx";
 
+		// Display admin login page
+		String target = "/admin.jspx";
 		request.getRequestDispatcher(target).forward(request, response);
 
 	}
@@ -38,10 +38,10 @@ public class admin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		//doGet(request, response);
+		
+		// Display analytics page when admin login
 		String target = "/analytic.jspx";
-
 		request.getRequestDispatcher(target).forward(request, response);
 	}
 

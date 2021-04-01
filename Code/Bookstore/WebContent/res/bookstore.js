@@ -1,5 +1,7 @@
-var category = document.getElementsByName("category");
+var category = document.getElementsByName("category"); // get all radio buttons with the name category
 console.log(category.length);
+
+// add an change event listener to each radio button
 for (var i = 0; i < category.length; i++) {
 	category[i].addEventListener('change', ()=> {
         displayBooks();
@@ -7,6 +9,7 @@ for (var i = 0; i < category.length; i++) {
 }
 displayBooks()
 
+// GET the books with the specific category
 function displayBooks() {
 		
 		var request = new XMLHttpRequest();
@@ -27,6 +30,7 @@ function displayBooks() {
 		request.send();
 }
 
+// GET the books that match the title name
 function displaySearchResults() {
 
 		var request = new XMLHttpRequest();
@@ -46,6 +50,7 @@ function displaySearchResults() {
 		request.send();
 }	
 
+// Update the DOM to display the books
 function handler(request){
 	console.log(request);
 	if ((request.readyState == 4) && (request.status == 200)){
@@ -78,6 +83,7 @@ function handler(request){
 	addToCart();
 }
 
+// get the category from the radio button that was checked
 function getCategory(){
 	var category = document.getElementsByName("category");
     for( i = 0; i < category.length; i++ ) {
@@ -88,6 +94,7 @@ function getCategory(){
     return null;
 }
 
+// add click event to each book card, sends the user to the page of the book item
 function addClickEvent(){
 	var books = document.getElementsByClassName("card");
 	for (var i = 0; i < books.length; i++) {
@@ -100,8 +107,10 @@ function addClickEvent(){
 	}
 }
 
+// add the book to the cart if button pressed
 function addToCart(){
 	var addBtn = document.getElementsByClassName("addToCart");
+	var counter = document.getElementById("counter");
 	var request = new XMLHttpRequest();
 	var data;
 	for (var i = 0; i < addBtn.length; i++) {
@@ -112,8 +121,11 @@ function addToCart(){
 			//need to refresh cart counter
 			request.open("GET", ("rest/cart/add" + "?" + data), true);
 			request.onreadystatechange = () => {
-				console.log("added to cart");
-				console.log(request.responseText);
+				if ((request.readyState == 4) && (request.status == 200)){
+					console.log("added to cart");
+					counter.innerHTML = parseInt(counter.innerHTML) + 1;
+					console.log(request.responseText);
+				}
 			};
 			request.send();
 		});

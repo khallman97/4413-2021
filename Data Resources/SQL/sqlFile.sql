@@ -4,6 +4,7 @@ drop table if exists BookStore2021.Users;
 DROP TABLE if exists BookStore2021.Book;
 DROP TABLE if exists BookStore2021.Orders;
 DROP TABLE if exists BookStore2021.Address;
+DROP TABLE if exists POItem;
 CREATE TABLE BookStore2021.Book (
     bid VARCHAR(20) NOT NULL,
     title VARCHAR(60) NOT NULL,
@@ -100,3 +101,15 @@ FOREIGN KEY(bid) REFERENCES BookStore2021.Book(bid)
 
 INSERT INTO BookStore2021.Event (day, bid, eventtype) VALUES ('12202015', 'b001', 'VIEW');
 
+CREATE TABLE POItem (
+id       INT NOT NULL AUTO_INCREMENT,
+bid      VARCHAR(20) NOT NULL,
+price    INT NOT NULL,
+quantity INT NOT NULL,
+PRIMARY KEY(id,bid),
+INDEX (id),
+FOREIGN KEY(id) REFERENCES Orders(id) ON DELETE CASCADE,
+INDEX (bid),FOREIGN KEY(bid) REFERENCES Book(bid) ON DELETE CASCADE
+);
+
+INSERT INTO POItem (bid, price, quantity) VALUES ('b001',  '20', '1')

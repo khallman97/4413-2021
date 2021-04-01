@@ -1,13 +1,15 @@
-var registerBtn = document.getElementById("register");
-var error = document.getElementById("error");
-error.style.display = "none";
+var registerBtn = document.getElementById("register"); // get the register button element
+var error = document.getElementById("error"); // get the error message element
+error.style.display = "none"; // do not show error message
 
+//add click event to register button
 registerBtn.addEventListener("click", ()=>{
 	if (validate()){
 		register();
 	}
 });
 
+// check if any field is blank or password and confirmation password match. Throw relevant error message
 function validate() {	
 	error.style.display = "none";
 	var name = document.getElementById("name").value;
@@ -35,6 +37,7 @@ function validate() {
 	}
 }
 
+// Create the user account
 function register() {
 	var name = document.getElementById("name").value;
 	var username = document.getElementById("username").value;

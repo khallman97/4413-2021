@@ -20,7 +20,7 @@
 <input type= "text" name="search" id="search" placeholder="search"></input>
 <input type= "submit" name="searchSubmit" id="searchSubmit" value="?"  onclick="displaySearchResults()"></input>
 <header><h1>Bookstore System</h1></header>
-<h5>Items in cart ${sessionScope.cartSize}</h5>
+<h5>Items in cart <span id="counter">${sessionScope.cartSize}</span></h5>
 <Button onClick="window.location.href = '/Bookstore/cart';">Cart</Button>
 <fieldset>
   <legend>Categorys</legend>

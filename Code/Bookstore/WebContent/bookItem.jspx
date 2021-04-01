@@ -13,10 +13,17 @@
 <head>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/res/bookstore.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/res/bookItem.js" defer='defer'>;</script>
 <title>Book</title>
 </head>
 <body>
+
+	<div>
 	<div id="result"></div>
+	</div>
+	<br></br>
+	<hr></hr>
 	<form>
 		<FIELDSET>
 			<legend>Reviews</legend>
@@ -24,9 +31,9 @@
 				<textarea rows="4" cols="50" name="reviewarea">Enter Review...</textarea>
 				<button action="submit" name="redirect" value="Submit">Submit</button>
 			</div>
+			<div id="reviews"></div>
 		</FIELDSET>
 	</form>
-
 </body>
 	</html>
 </jsp:root>
