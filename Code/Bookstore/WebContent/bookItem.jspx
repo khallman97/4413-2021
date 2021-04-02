@@ -28,8 +28,9 @@
 		<FIELDSET>
 			<legend>Reviews</legend>
 			<div id="reviews">
-				<textarea rows="4" cols="50" name="reviewarea">Enter Review...</textarea>
-				<button action="submit" name="redirect" value="Submit">Submit</button>
+				<textarea rows="4" cols="50" id="reviewarea">Enter Review...</textarea>
+				<input id="ratingarea"></input>
+				<button action="submitReview('{book.bid}');">Submit</button>
 			</div>
 			<div id="reviews"></div>
 		</FIELDSET>

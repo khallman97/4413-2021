@@ -61,6 +61,7 @@ public class BookModel {
 			return this.book.returnCategoryBooks(category);
 		}
 	}
+	
 
 	public List<BookBean> retrieveBookByTitle(String title) throws Exception {
 		if (title.equals("")){
@@ -74,7 +75,11 @@ public class BookModel {
 		return this.book.returnBooksByBid(bid);
 	}
 	
-	public Map<String, ReviewBean> retrieveReview(String bid) throws Exception{
+	public List<ReviewBean> exportReview(String bid) throws Exception{
+		return this.revDao.exportReviews(bid);
+	}
+	
+	public Map<String, ReviewBean> retrieveReviews(String bid) throws Exception{
 		return this.revDao.retrieveReviews(bid);
 	}
 
@@ -141,31 +146,24 @@ public class BookModel {
 			}
 		}
 	}
-//	public String exportJSONRev(String bid, String review, int rating) throws Exception
-//	{
-//		JsonArrayBuilder doc = Json.createArrayBuilder();
-//		
-//		List<BookBean> books = new ArrayList<BookBean>();
-//		if (field.equals("category")){
-//			books =  retrieveBookByCategory(value);
-//		} else if (field.equals("title")){
-//			books = retrieveBookByTitle(value);
-//		} 
-//		
-//		for (BookBean bb : books)
-//		{
-//			doc.add(Json.createObjectBuilder().add("bid", bb.getBid())
-//				.add("title",bb.getTitle())
-//				.add("price",bb.getPrice())
-//				.add("category",bb.getCategory())
-//				.add("author",bb.getAuthor())
-//				.add("picture_link",bb.getPicture_link()));
-//		}
-//				
-//		String serializedJson = doc.build().toString();
-//		
-//		return serializedJson;
-//	}
+	public String exportJSONRev(String bid) throws Exception
+	{
+		JsonArrayBuilder doc = Json.createArrayBuilder();
+		
+		List<ReviewBean> reviews = new ArrayList<ReviewBean>();
+		reviews = exportReview(bid);
+		
+		for (ReviewBean rr : reviews)
+		{
+			doc.add(Json.createObjectBuilder().add("bid", rr.getBid())
+				.add("review",rr.getReview())
+				.add("rating",rr.getRating()));
+		}
+				
+		String serializedJson = doc.build().toString();
+		
+		return serializedJson;
+	}
 	
 	
 	public String exportJSON(String field, String value) throws Exception

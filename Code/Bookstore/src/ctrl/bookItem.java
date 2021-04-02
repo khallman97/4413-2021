@@ -92,7 +92,7 @@ public class bookItem extends HttpServlet {
 		 String html ="";
 		 Map<String, ReviewBean> hmap=null;
 		 try {
-			 hmap=model.retrieveReview(bid);
+			 hmap=model.retrieveReviews(bid);
 		 }catch (Exception ex){
 			 System.out.print(ex);
 		 } 
