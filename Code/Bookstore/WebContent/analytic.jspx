@@ -81,6 +81,24 @@
 </FIELDSET>
 </div>
 
+<div>
+<fieldset>
+<legend>User data</legend>
+<table class="table table-striped" id="topViewed">
+	<tr>
+		<th>User</th>
+		<th>Total($)</th>
+		<th>ZIP</th>
+		<th>Quantity</th>
+		<th>Visited</th>
+	</tr>
+</table>
+<table>
+
+</table>
+</fieldset>
+</div>
+
 </body>
 </html>
 </jsp:root>
