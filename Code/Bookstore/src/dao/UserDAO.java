@@ -85,7 +85,7 @@ public class UserDAO {
 		UserBean user = null;
 		while (r.next()){
 			
-			user = new UserBean(r.getString("user_name"),r.getString("name"), r.getString("addr"), r.getString("type"), r.getString("password") );
+			user = new UserBean(r.getString("user_name"),r.getString("name"), r.getInt("addrId"), r.getString("type"), r.getString("password") );
 		}
 		
 		return user;

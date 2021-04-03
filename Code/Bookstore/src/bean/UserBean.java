@@ -4,11 +4,11 @@ public class UserBean {
 	
 	private String name;
 	private String user_name;
-	private String addr;
+	private int addr;
 	private String password;
 	private String type;
 	
-	public UserBean(String name, String user_name, String addr, String type,String password) {
+	public UserBean(String name, String user_name, int addr, String type,String password) {
 		super();
 		this.name = name;
 		this.user_name = user_name;
@@ -28,10 +28,10 @@ public class UserBean {
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
-	public String getAddr() {
+	public int getAddr() {
 		return addr;
 	}
-	public void setAddr(String addr) {
+	public void setAddr(int addr) {
 		this.addr = addr;
 	}
 	public String getPassword() {
