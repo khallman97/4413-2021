@@ -1,10 +1,10 @@
 drop table if exists BookStore2021.Review;
 drop table if exists BookStore2021.Event;
-drop table if exists BookStore2021.Users;
+DROP TABLE if exists BookStore2021.POItem;
 DROP TABLE if exists BookStore2021.Book;
 DROP TABLE if exists BookStore2021.Orders;
 DROP TABLE if exists BookStore2021.Address;
-DROP TABLE if exists POItem;
+drop table if exists BookStore2021.Users;
 CREATE TABLE BookStore2021.Book (
     bid VARCHAR(20) NOT NULL,
     title VARCHAR(60) NOT NULL,
@@ -56,16 +56,6 @@ create table BookStore2021.Review(
 );
 insert into BookStore2021.Review(bid, review, rating) values('b001', 'Hello World', 5); 
 
-create table BookStore2021.Users(
-    user_name varchar(20) not null ,
-    name varchar(20) not null, 
-    addr varchar(150),
-    password int not null,
-    primary key(user_name)
-);
-
-insert into BookStore2021.Users(user_name, name, addr, password) values('admin','admin','123 Something Street', '123456');
-
 
 CREATE TABLE BookStore2021.Address (
 id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -79,18 +69,19 @@ PRIMARY KEY(id)
 INSERT INTO BookStore2021.Address (street, province, country, zip) VALUES ('123 Yonge St', 'ON',
 'Canada', 'K1E 6T5' );
 
-CREATE TABLE BookStore2021.Orders (
-id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-firstName VARCHAR(100) NOT NULL,
-lastName VARCHAR(20) NOT NULL,
-status ENUM('ORDERED','PROCESSED','DENIED') NOT NULL,
-addressId INT UNSIGNED NOT NULL,
-PRIMARY KEY(id),
-INDEX (addressId),
-FOREIGN KEY (addressId) REFERENCES BookStore2021.Address (id) ON DELETE CASCADE
+create table BookStore2021.Users(
+    user_name varchar(20) not null ,
+    name varchar(20) not null, 
+    addrId int NOT NULL,
+    password int not null,
+    type varchar(20),
+    primary key(user_name)
 );
 
-INSERT INTO BookStore2021.Orders (firstName, lastName, status, addressId) VALUES ('John', 'White', 'PROCESSED', '1');
+insert into BookStore2021.Users(user_name, name, addrId, password, type) values('admin','admin',1, '123456', 'admin');
+
+
+
 
 CREATE TABLE BookStore2021.Event (
 day varchar(8) NOT NULL,
@@ -101,15 +92,31 @@ FOREIGN KEY(bid) REFERENCES BookStore2021.Book(bid)
 
 INSERT INTO BookStore2021.Event (day, bid, eventtype) VALUES ('12202015', 'b001', 'VIEW');
 
-CREATE TABLE POItem (
-id       INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE BookStore2021.Orders (
+id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+user_name varchar(20) not null,
+status ENUM('ORDERED','PROCESSED','DENIED') NOT NULL,
+addressId INT UNSIGNED NOT NULL,
+poItems int, /* number of items in cart */
+orderTotalCost double,
+PRIMARY KEY(id),
+INDEX (addressId),
+FOREIGN KEY (user_name) REFERENCES BookStore2021.Users (user_name) ON DELETE CASCADE,
+FOREIGN KEY (addressId) REFERENCES BookStore2021.Address (id) ON DELETE CASCADE
+);
+
+INSERT INTO BookStore2021.Orders (user_name, status, addressId, poItems, orderTotalCost) VALUES ('admin', 'PROCESSED', 1, 2 , 40.00);
+
+CREATE TABLE BookStore2021.POItem (
+orderId       INT UNSIGNED NOT NULL,
 bid      VARCHAR(20) NOT NULL,
 price    INT NOT NULL,
 quantity INT NOT NULL,
-PRIMARY KEY(id,bid),
-INDEX (id),
-FOREIGN KEY(id) REFERENCES Orders(id) ON DELETE CASCADE,
+PRIMARY KEY(orderId,bid),
+INDEX (orderId),
+FOREIGN KEY(orderId) REFERENCES Orders(id) ON DELETE CASCADE,
 INDEX (bid),FOREIGN KEY(bid) REFERENCES Book(bid) ON DELETE CASCADE
 );
 
-INSERT INTO POItem (bid, price, quantity) VALUES ('b001',  '20', '1')
+INSERT INTO BookStore2021.POItem (orderId, bid, price, quantity) VALUES (1,'b001',  '20', '1');
+INSERT INTO BookStore2021.POItem (orderId, bid, price, quantity) VALUES (1,'b002',  '20', '1');
