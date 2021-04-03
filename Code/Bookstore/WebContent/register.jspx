@@ -13,19 +13,23 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous" />
-	<script type="text/javascript" src="${pageContext.request.contextPath}/res/register.js" defer='defer'>;</script>
-	
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/res/register.js" defer='defer'>
+	;
+</script>
+
 </head>
 <body>
 	<main>
 	<section>
 		<div class="card shadow-lg border-0 rounded-lg mt-5">
 			<div class="card-header">
-				<h3 class="text-center font-weight-light my-4">Create Account To Continue With Purchase</h3>
+				<h3 class="text-center font-weight-light my-4">Create Account
+					To Continue With Purchase</h3>
 			</div>
 			<div class="card-body">
 				<form>
-				<div class="form-group">
+					<div class="form-group">
 						<label class="small mb-1" id="error">Error</label>
 					</div>
 					<div class="form-row">
@@ -56,23 +60,49 @@
 							<div class="form-group">
 								<label class="small mb-1" for="confirmPassword">Confirm
 									Password</label> <input class="form-control py-4" id="confirmPassword"
-									type="password" placeholder="Confirm password" required="required"></input>
+									type="password" placeholder="Confirm password"
+									required="required"></input>
 							</div>
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="col-md-12">
+						<div class="col-md-6">
 							<div class="form-group">
-								<label class="small mb-1" for="address">Address</label> <input
-									class="form-control py-4" id="address" type="text"
-									placeholder="Enter address" required="required"></input>
+								<label class="small mb-1" for="street">Street</label> <input
+									class="form-control py-4" id="street" type="text"
+									placeholder="Enter Street" required="required"></input>
 							</div>
 						</div>
-
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="small mb-1" for="province">Province</label> <input
+									class="form-control py-4" id="province" type="text"
+									placeholder="Enter Province" required="required"></input>
+							</div>
+						</div>
 					</div>
+
+					<div class="form-row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="small mb-1" for="country">Country</label> <input
+									class="form-control py-4" id="country" type="text"
+									placeholder="Enter Country" required="required"></input>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="small mb-1" for="zip">ZIP</label> <input
+									class="form-control py-4" id="zip" type="text"
+									placeholder="Enter ZIP" required="required"></input>
+							</div>
+						</div>
+					</div>
+
+
 					<div class="form-group mt-4 mb-0">
-						<button  type='button' id="register" class="btn btn-primary btn-block">Create
-							Account</button>
+						<button type='button' id="register"
+							class="btn btn-primary btn-block">Create Account</button>
 					</div>
 				</form>
 			</div>

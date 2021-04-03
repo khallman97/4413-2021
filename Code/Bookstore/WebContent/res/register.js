@@ -16,10 +16,14 @@ function validate() {
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
 	var confirmPassword = document.getElementById("confirmPassword").value;
-	var address = document.getElementById("address").value;
+	var street = document.getElementById("street").value;
+	var province = document.getElementById("province").value;
+	var country = document.getElementById("country").value;
+	var zip = document.getElementById("zip").value;
+
 	console.log(username);
 
-	if (username == "" || password == "" || name == "" || confirmPassword == "" || address == "") {
+	if (username == "" || password == "" || name == "" || confirmPassword == "" || street == "" || province == "" || country == "" || zip == "") {
 		error.style.display = "inline";
 		error.style.color = "red";
 		error.innerHTML = "One or more field is missing";
@@ -42,7 +46,11 @@ function register() {
 	var name = document.getElementById("name").value;
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
-	var address = document.getElementById("address").value;
+	var street = document.getElementById("street").value;
+	var province = document.getElementById("province").value;
+	var country = document.getElementById("country").value;
+	var zip = document.getElementById("zip").value;
+
 	var request = new XMLHttpRequest();
 	var data ='';
 	
@@ -50,16 +58,19 @@ function register() {
 	data += "name=" + name +
 			"&username=" + username + 
 			"&password=" + password +
-			"&addr=" + address;
-	
+			"&street=" + street +
+			"&province=" + province +
+			"&country=" + country +
+			"&zip=" + zip;
+			
 	request.open("GET", ("rest/user/add" + "?" + data), true);
 	request.onreadystatechange = () => {
 		if ((request.readyState == 4) && (request.status == 200)){
 			console.log("Account Created");
+			window.location.href = "/Bookstore/payment?username=" + username;
 		}
 		
 	};
 	request.send();
-	window.location.href = "/Bookstore/payment?username=" + username;
 
 }
