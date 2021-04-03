@@ -23,15 +23,39 @@ public class UserDAO {
 		this.con = dbc.returnCon();
 	}
 	
+	/* Address stuff */
+	
+	//Return addrID of added adress
+	public int createAddr(String street, String province, String country, String zip ) throws SQLException {
+		String query = "insert into BookStore2021.Address (street, province, country, zip) values(?,?,?,?);";
+		PreparedStatement stmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		stmt.setString(1, street);
+		stmt.setString(2, province);
+		stmt.setString(3, country);
+		stmt.setString(4, zip);
+		stmt.executeUpdate();
+		ResultSet result = stmt.getGeneratedKeys();
+		
+		if(result.next() && result != null) {
+			return result.getInt(1);
+		} else {
+			return 0;
+		}
+		//return stmt.getGeneratedKeys().getInt(1);
+		
+		
+	}
+	
 	
 	/* add a user return 1 if added, 0 if user name exisits already */
 	/* this method does not create admin or partner users just dafault creation of regular user */
-	public int addUser(String userName, String name, String addr, String password) throws SQLException {
-		String query = "insert into BookStore2021.Users(user_name, name, addr, password) values(?,?,?,?);";
+	public int addUser(String username, String name, String password, String street, String province, String country, String zip) throws SQLException {
+		int addrId = createAddr(street, province,  country, zip);
+		String query = "insert into BookStore2021.Users(user_name, name, addrId, password) values(?,?,?,?);";
 		PreparedStatement stmt = con.prepareStatement(query);
-		stmt.setString(1, userName);
+		stmt.setString(1, username);
 		stmt.setString(2, name);
-		stmt.setString(3, addr);
+		stmt.setInt(3, addrId);
 		stmt.setString(4, password);
 		
 		return stmt.executeUpdate();

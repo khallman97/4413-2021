@@ -120,8 +120,8 @@ public class BookModel {
 		return revDao.insert(bid, review, rating);
 	}
 	
-	public int addUser(String username, String name, String addr, String password) throws SQLException {
-		return userDao.addUser(username, name, addr, password);
+	public int addUser(String username, String name, String password, String street, String province, String country, String zip) throws SQLException {
+		return userDao.addUser(username, name, password, street, province, country, zip);
 	}
 
 	public int loginUser(String username, String password) throws SQLException {
