@@ -12,11 +12,13 @@ import javax.json.JsonObjectBuilder;
 import javax.naming.NamingException;
 
 import bean.BookBean;
+import bean.EventBean;
 import bean.ReviewBean;
 import bean.ShoppingCartBean;
 import bean.UserBean;
 import dao.BookDAO;
 import dao.DBConnection;
+import dao.EventDAO;
 import dao.OrderDAO;
 import dao.POItemDAO;
 import dao.ReviewDAO;
@@ -32,6 +34,7 @@ public class BookModel {
 	private ReviewDAO revDao;
 	private OrderDAO orderDao; 
 	private POItemDAO poItemDAO;
+	private EventDAO eventDAO;
 
 	public static BookModel getInstance() throws ClassNotFoundException {
 		if (instance == null) {
@@ -43,6 +46,7 @@ public class BookModel {
 			instance.revDao = new ReviewDAO();
 			instance.orderDao = new OrderDAO();
 			instance.poItemDAO = new POItemDAO();
+			instance.eventDAO = new EventDAO();
 			
 		}
 		return instance;
@@ -146,6 +150,24 @@ public class BookModel {
 			}
 		}
 	}
+	
+	public int addToEvent(String bid, String eventType) throws SQLException{
+		return eventDAO.addEvent(bid, eventType);
+	}
+	
+	public List<EventBean> getEvent() throws SQLException{
+		return eventDAO.getEvents();
+	}
+	
+	public List<EventBean> getEventsByBid(String bid) throws SQLException{
+		return eventDAO.getEventsByBid(bid);
+	}
+	
+	public List<EventBean> getEventsByDay(String month, String year) throws SQLException{
+		return eventDAO.getEventsByDay(month, year);
+	}
+	
+	
 	public String exportJSONRev(String bid) throws Exception
 	{
 		JsonArrayBuilder doc = Json.createArrayBuilder();
