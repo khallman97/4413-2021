@@ -55,6 +55,15 @@ create table BookStore2021.Review(
     foreign key(bid) references BookStore2021.Book(bid)
 );
 insert into BookStore2021.Review(bid, review, rating) values('b001', 'Hello World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('b002', 'Hello World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('b003', 'Hello World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('b004', 'Hello World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('b005', 'Hello World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('b001', 'bye World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('b001', 'hi World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('b001', 'hai World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('b005', 'help World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('b005', 'hi World', 5); 
 
 
 CREATE TABLE BookStore2021.Address (
