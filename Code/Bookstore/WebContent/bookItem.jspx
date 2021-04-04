@@ -30,9 +30,17 @@
 			<div id="reviews">
 				<textarea rows="4" cols="50" id="reviewarea">Enter Review...</textarea>
 				<input id="ratingarea"></input>
-				<button action="submitReview('{book.bid}');">Submit</button>
+				<button action="submitReview'${book.bid}');">Submit</button>
 			</div>
-			<div id="reviews"></div>
+			<label>Previous Reviews Section</label>
+			<c:forEach items="${reviewList}" var="reviewList">
+				<div class="card">
+					<div class="container">
+						<h4>Review: <b>${reviewList.review}</b></h4>
+						<h4>Rating: <b>${reviewList.rating}</b> Stars</h4>
+					</div>
+				</div>
+			</c:forEach>
 		</FIELDSET>
 	</form>
 </body>

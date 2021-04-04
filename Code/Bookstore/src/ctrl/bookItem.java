@@ -2,6 +2,7 @@ package ctrl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,7 @@ public class bookItem extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
+	
 	public bookItem() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -51,7 +53,7 @@ public class bookItem extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		String target = "/bookItem.jspx";
 
@@ -61,19 +63,49 @@ public class bookItem extends HttpServlet {
 			bid = request.getParameter("bid");
 		}
 		
-		BookModel model = (BookModel)getServletContext().getAttribute("BookModel");
+		String newBID = request.getPathInfo().toString();
+		String refinedBID = "";
+		for (int i = 0; i <= newBID.length()-1; i++) {
+			if (newBID.charAt(i) == '/') {
+				//
+			}
+			else {
+				refinedBID = refinedBID + newBID.charAt(i);
+			}
+		}
 		
+		List<ReviewBean> revList  = null;
 		try {
-			response.setContentType("application/json");
-			PrintWriter out = response.getWriter();
-			out.printf(reviewAsHTML(model,bid));
-			out.flush();
+			revList = BookModel.getInstance().retrieveReviewbyList(refinedBID);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		request.getSession().setAttribute("reviewList", revList);
+//		Enumeration<String> inputs = request.getAttributeNames();
 		
 		
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+		
+		
+//		BookModel model = (BookModel)getServletContext().getAttribute("BookModel");
+		
+//		try {
+//			response.setContentType("application/json");
+//			PrintWriter out = response.getWriter();
+//			out.printf(reviewAsHTML(BookModel.getInstance(),bid));
+//			out.flush();
+//		
+//		
+//	} catch (Exception e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+		
+		
+//	}
 		request.getRequestDispatcher(target).forward(request, response);
 
 	}
@@ -93,9 +125,11 @@ public class bookItem extends HttpServlet {
 		 Map<String, ReviewBean> hmap=null;
 		 try {
 			 hmap=model.retrieveReviews(bid);
+			 
 		 }catch (Exception ex){
 			 System.out.print(ex);
 		 } 
+		 System.out.print(hmap.toString());
 		html="<table border=\"1\"> <thead> <td>Review </td> <td>Rating </td> </thead>";
 		Iterator iterator = hmap.entrySet().iterator();
 		while (iterator.hasNext()) {

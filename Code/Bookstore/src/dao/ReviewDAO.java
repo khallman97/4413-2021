@@ -27,20 +27,22 @@ public class ReviewDAO {
 	//select review by bid
 	
 	public Map<String, ReviewBean> retrieveReviews(String bidSearch) throws SQLException{
+		System.out.println("Going to Info...");
 		String query = "select * from BookStore2021.Review where bid = '" +bidSearch+"'";
-		Map<String, ReviewBean> rv = new HashMap<String, ReviewBean>();
-		Statement p = con.createStatement();
+		PreparedStatement p = this.con.prepareStatement(query);
 		ResultSet r = p.executeQuery(query);
-		ReviewBean reviewbean = null; 
+		Map<String, ReviewBean> rv = new HashMap<String, ReviewBean>();
 		while (r.next()){
-			
 			String bid = r.getString("bid");
 			String review = r.getString("review");
 			int rating = r.getInt("rating");
-			reviewbean = new ReviewBean(bid, review, rating);
+			rv.put(bid, new ReviewBean(bid, review, rating));
+
 		}
 		r.close();
 		p.close();
+		con.close();
+		System.out.println(rv.toString());
 		return rv;
 	}
 	
@@ -68,8 +70,6 @@ public class ReviewDAO {
 		stmt.setString(1, bid);
 		stmt.setString(2, review);
 		stmt.setInt(3, rating);
-		
-		System.out.println(stmt.toString());
 
 		return stmt.executeUpdate();
 	}
