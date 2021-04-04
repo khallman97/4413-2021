@@ -48,7 +48,7 @@ public class MonthlyPurchase extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		System.out.println(eventlist.get(0).getDay());
+//		System.out.println(eventlist.get(0).getDay());
 		
 		request.getSession().setAttribute("event", eventlist);
 		

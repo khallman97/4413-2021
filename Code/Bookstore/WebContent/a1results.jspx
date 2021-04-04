@@ -25,6 +25,7 @@
 			</div>
 	</div>
 </c:forEach>
+<button onClick="window.location.href = '/Bookstore/admin">Back</button>
  </body>
 </html>
 </jsp:root>

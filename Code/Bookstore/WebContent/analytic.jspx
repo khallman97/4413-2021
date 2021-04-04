@@ -40,7 +40,7 @@
 		<th>Total Sold</th>
 	</tr>
 </table>
-<button onclick="window.location.href = '/Bookstore/MonthlyPurchase?month=' + '${monthlyList.value}';">Generate</button>
+<button onclick="window.location.href = '/Bookstore/MonthlyPurchase?month=' + document.getElementById('monthlyList').value;">Generate</button>
 </FIELDSET>
 </div>
 <div>
