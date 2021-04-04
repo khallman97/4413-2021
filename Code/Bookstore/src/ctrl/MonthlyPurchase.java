@@ -34,9 +34,12 @@ public class MonthlyPurchase extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String month = request.getParameter("month");
+//		String creditAcquired = request.getParameter("year");
+		
 		List<EventBean> eventlist = null;
 		try {
-			eventlist = BookModel.getInstance().getEventsByDay("12", "2015");
+			eventlist = BookModel.getInstance().getEventsByDay(month, "2021");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
