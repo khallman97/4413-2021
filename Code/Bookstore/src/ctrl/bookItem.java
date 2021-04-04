@@ -76,7 +76,7 @@ public class bookItem extends HttpServlet {
 		
 		List<ReviewBean> revList  = null;
 		try {
-			revList = BookModel.getInstance().retrieveReviewbyList(refinedBID);
+			revList = BookModel.getInstance().exportReview(refinedBID);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

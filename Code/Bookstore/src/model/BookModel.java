@@ -120,6 +120,11 @@ public class BookModel {
 		return revDao.insert(bid, review, rating);
 	}
 	
+	public List<ReviewBean> exportReviews(String bid) throws SQLException, NamingException {
+		return revDao.exportReviews(bid);
+	}
+	
+	
 	public int addUser(String username, String name, String password, String street, String province, String country, String zip) throws SQLException {
 		return userDao.addUser(username, name, password, street, province, country, zip);
 	}
@@ -132,23 +137,45 @@ public class BookModel {
 		return userDao.getUser(username);
 	}
 	
-	public int addToOrder(String fname, String lname, String status, int addrId) throws SQLException {
-		return orderDao.addOrder(fname, lname, status, addrId);
-	}
-	
-	public void addToPOItem() throws SQLException {
+	//Creates order and adds po items to order
+	public int addToOrder(String username, String status, int addrId) throws SQLException {
 		List<String> cartList = this.returnCart();
-		for (String bid: cartList){
+		int cartCount = this.returnCartCount();
+		int cost = 0;
+		//int total = this.ret
+		for (int i=0; i < cartList.size(); i++){
 			BookBean b;
 			try {
-				b = this.retrieveBook(bid);
-				poItemDAO.addPOItem(bid, (int) b.getPrice(), 1);
-				this.removeFromCart(bid);
+				b = this.retrieveBook(cartList.get(i));
+				cost = (int) (cost + b.getPrice());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				return 0;
+				//e.printStackTrace();
+			}
+			
+			
+		}
+		int orderid = orderDao.addOrder(username, status, addrId, cartCount, cost);
+		
+		for (int i=0; i < cartList.size(); i++){
+			BookBean b;
+			try {
+				b = this.retrieveBook(cartList.get(i));
+				poItemDAO.addPOItem( orderid , cartList.get(i), (int) b.getPrice(), 1);
+				this.removeFromCart(cartList.get(i));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return 0;
 			}
 		}
+		
+		return 1;
+	}
+	
+	public void addToPOItem() throws SQLException {
+		
 	}
 	
 	public int addToEvent(String bid, String eventType) throws SQLException{
