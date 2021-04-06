@@ -10,7 +10,8 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
-import bean.TopBean;
+import bean.AnalyticsBean;
+
 
 
 
@@ -25,7 +26,7 @@ public class TopDAO {
 	}
 	
 	//Return all books
-	public List<TopBean> getTopSold() throws SQLException{
+	public List<AnalyticsBean> getTopSold() throws SQLException{
 		String query = "SELECT Book.bid, title, COUNT(title) as count"
 				+ "FROM BookStore2021.Book"
 				+ "INNER JOIN BookStore2021.POItem ON BookStore2021.Book.bid=BookStore2021.POItem.bid"
@@ -34,12 +35,12 @@ public class TopDAO {
 				+ "LIMIT 10";
 		Statement p = this.con.createStatement();
 		ResultSet r = p.executeQuery(query);
-		List<TopBean> rv = new ArrayList<TopBean>();
+		List<AnalyticsBean> rv = new ArrayList<AnalyticsBean>();
 		while (r.next()){
 			String bid = r.getString("bid");
 			String title = r.getString("title");
 			int count = r.getInt("count");
-			rv.add( new TopBean(bid, title, count));
+			rv.add( new AnalyticsBean("SOLD",count, bid,title ));
 
 		}
 		
