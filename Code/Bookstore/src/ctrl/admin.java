@@ -52,6 +52,9 @@ public class admin extends HttpServlet {
 		List<AnalyticsBean> reviewList = null;
 		List<EventBean> visitedList = null;
 		List<AdminBean> userInfoList = null;
+		List<AdminBean> userPurchases = null;
+		List<AdminBean> userAvgCost = null;
+		List<AdminBean> userAvgPurchaseCount = null;
 
 		try {
 			reviewList = BookModel.getInstance().getMostReviewed();
@@ -76,11 +79,37 @@ public class admin extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		double avg = 0;
+		double items = 0;
+		
+		
+		
+		try {
+			avg = BookModel.getInstance().getAvgOverallSpent();
+			//System.out.print("avg: " +avg);
+			items = BookModel.getInstance().getAvgItems();
+			//System.out.print("items: " +items);
+			userPurchases = BookModel.getInstance().getUserPurchases();
+			userAvgCost = BookModel.getInstance().getAvgPurchaseCustomer();
+			userAvgPurchaseCount = BookModel.getInstance().getAvgCustomerPuchaseCount();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 		//System.out.print("reviewlist size" + reviewList.size());
 		request.getSession().setAttribute("reviewed", reviewList);
 		request.getSession().setAttribute("mostVisited", visitedList);
 		request.getSession().setAttribute("userInfo", userInfoList);
+		
+		request.getSession().setAttribute("avgOverCost", avg);
+		request.getSession().setAttribute("avgItems", items);
+		request.getSession().setAttribute("userPurchases", userPurchases);
+		request.getSession().setAttribute("userAvgCost", userAvgCost);
+		request.getSession().setAttribute("userAvgPurchaseCount", userAvgPurchaseCount);
 
 		
 		String target = "/analytic.jspx";

@@ -31,11 +31,14 @@ public class OrderDAO {
 		
 		ResultSet result = stmt.getGeneratedKeys();
 		
+		
+		
 		if(result.next() && result != null) {
 			return result.getInt(1);
 		} else {
 			return 0;
 		}
+		
 		
 		
 	}

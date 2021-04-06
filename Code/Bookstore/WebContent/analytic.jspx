@@ -112,22 +112,72 @@
 	<div>
 		<fieldset>
 			<legend>User data</legend>
+			<h5>Avg : ${avgOverCost}</h5>
+			<h5>Avg cart size : ${avgItems}</h5>
 			<table class="table table-striped" id="topViewed">
 				<tr>
 					<th>User</th>
 					<th>Total($)</th>
 					<th>ZIP</th>
 					<th>Quantity</th>
-					<th>Visited</th>
+					
 				</tr>
 				<c:forEach items="${userInfo}" var="user">
 					<tr>
-						<td>${userInfo}</td>
+						<td>****</td>
+						<td>${user.totalSpent}</td>
+						<td>${user.zip}</td>
+						<td>${user.quantity}</td>
 					</tr>
 				</c:forEach>
-				
 			</table>
-			<table>
+		
+			<table class="table table-striped" id="userPurchase">
+				<tr>
+					<th>User</th>
+					<th>Order Id</th>	
+					<th>Total($)</th>		
+					
+				</tr>
+				<c:forEach items="${userPurchases}" var="userP">
+					<tr>
+						<td>****</td>
+						<td>${userP.quantity}</td>
+						<td>${userP.totalSpent}</td>
+						
+					</tr>
+				</c:forEach>
+
+			</table>
+			<table class="table table-striped" id="userAvgCost">
+				<tr>
+					<th>User</th>
+					<th>Avg Spent($)</th>
+		
+					
+				</tr>
+				<c:forEach items="${userAvgCost}" var="userAvgCost">
+					<tr>
+						<td>****</td>
+						<td>${userAvgCost.totalSpent}</td>
+						
+						
+					</tr>
+				</c:forEach>
+
+			</table>
+			<table class="table table-striped" id="userAvgCost">
+				<tr>
+					<th>User</th>
+					<th>Avg Order Quantity</th>			
+					
+				</tr>
+				<c:forEach items="${userAvgPurchaseCount}" var="userAvgPurchaseCount">
+					<tr>
+						<td>****</td>
+						<td>${userAvgPurchaseCount.totalSpent}</td>
+					</tr>
+				</c:forEach>
 
 			</table>
 		</fieldset>

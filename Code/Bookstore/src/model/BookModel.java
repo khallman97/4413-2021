@@ -260,4 +260,25 @@ public class BookModel {
 	public List<AdminBean> getUserInfo() throws SQLException {
 		return adminDAO.returnUserStats();
 	}
+	
+	
+	public List<AdminBean> getUserPurchases() throws SQLException {
+		return adminDAO.returnUserPurchases();
+	}
+	
+	public List<AdminBean> getAvgPurchaseCustomer() throws SQLException {
+		return adminDAO.returnAvgPurchaseCustomer();
+	}
+	
+	public double getAvgOverallSpent() throws SQLException {
+		return adminDAO.returnAvgOverallSpent();
+	}
+	
+	public List<AdminBean> getAvgCustomerPuchaseCount() throws SQLException {
+		return adminDAO.returnAvgCustomerPuchaseCount();
+	}
+	
+	public double getAvgItems() throws SQLException {
+		return adminDAO.returnAvgItems();
+	}
 }
