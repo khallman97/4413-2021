@@ -54,6 +54,10 @@ public class ShoppingCartBean {
 		
 	}
 	
+	public void clearCart() {
+		this.bid = new ArrayList<String>();
+	}
+	
 	
 	
 }

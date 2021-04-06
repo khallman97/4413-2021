@@ -1,11 +1,17 @@
 package ctrl;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import bean.AnalyticsBean;
+import model.BookModel;
 
 /**
  * Servlet implementation class admin
@@ -41,6 +47,20 @@ public class admin extends HttpServlet {
 		//doGet(request, response);
 		
 		// Display analytics page when admin login
+		List<AnalyticsBean> reviewList = null;
+		try {
+			reviewList = BookModel.getInstance().getMostReviewed();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//System.out.print("reviewlist size" + reviewList.size());
+		request.getSession().setAttribute("reviewed", reviewList);
+		
 		String target = "/analytic.jspx";
 		request.getRequestDispatcher(target).forward(request, response);
 	}

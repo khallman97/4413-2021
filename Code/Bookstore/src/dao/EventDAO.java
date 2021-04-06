@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import bean.BookBean;
@@ -40,16 +43,20 @@ public class EventDAO {
 	
 	
 	//getallevents
-	public List<EventBean> getEvents() throws SQLException {
+	public List<EventBean> getEvents() throws SQLException, ParseException {
 		String query = "select * from BookStore2021.Event";
 		PreparedStatement p = this.con.prepareStatement(query);
 		ResultSet r = p.executeQuery(query);
 		List<EventBean> rv = new ArrayList<EventBean>();
 		while (r.next()){
+			
 			String day = r.getString("day");
+			Date date1=new SimpleDateFormat("MMddyyyy").parse(day);  
+			SimpleDateFormat DateFor = new SimpleDateFormat("dd/MM/yyyy");  
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			String bid = r.getString("bid");
 			String eventtype = r.getString("eventtype");
-			rv.add( new EventBean(day, bid, eventtype));
+			rv.add( new EventBean(DateFor.format(date1), bid, eventtype));
 		}
 		return rv;
 		

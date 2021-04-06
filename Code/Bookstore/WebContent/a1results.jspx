@@ -15,16 +15,27 @@
 <title>Bookstore</title>
 </head>
 <body>
-<header><h1>Cart</h1></header>
-<c:forEach items="${event}" var="event">
-	<div class="card">
-			<div class="container">
-				<h4><b> ${event.day} </b></h4>
-				<h4><b>${event.bid}</b></h4>
-				<h4><b>${event.eventType}</b></h4>
-			</div>
-	</div>
-</c:forEach>
+
+<div>
+<FIELDSET>
+<legend>Purchases</legend>
+<table class="table table-striped" id="topViewed">
+	<tr>
+	    <th>Date</th>
+	    <th>Bid</th> 
+  	</tr>
+	<c:forEach items="${event}" var="event">
+		<tr>
+			
+			<td>${event.day}</td>
+			<td>${event.bid}</td>
+			
+		</tr>
+	</c:forEach>
+</table>
+</FIELDSET>
+</div>
+
 <button onClick="window.location.href = '/Bookstore/admin'">Back</button>
  </body>
 </html>

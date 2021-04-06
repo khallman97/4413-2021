@@ -12,6 +12,7 @@ import java.util.Map;
 
 import javax.naming.NamingException;
 
+import bean.AnalyticsBean;
 import bean.ReviewBean;
 
 public class ReviewDAO {
@@ -81,4 +82,29 @@ public class ReviewDAO {
 		 stmt.setString(1, bid);
 		 return stmt.executeUpdate();
 	}
+	
+	public List<AnalyticsBean> getMostReviewed() throws SQLException {
+		String query = "SELECT COUNT(BookStore2021.Review.bid) as NumberOfReviews, BookStore2021.Review.bid,  BookStore2021.Book.title\n" + 
+				"FROM BookStore2021.Review\n" + 
+				"INNER JOIN  BookStore2021.Book\n" + 
+				"ON BookStore2021.Book.bid = BookStore2021.Review.bid\n" + 
+				"GROUP BY BookStore2021.Review.bid\n" + 
+				"ORDER BY COUNT(BookStore2021.Review.bid) DESC\n" + 
+				"LIMIT 10;";
+		PreparedStatement p = this.con.prepareStatement(query);
+		ResultSet r = p.executeQuery(query);
+		List<AnalyticsBean> rv = new ArrayList<AnalyticsBean>();
+		while (r.next()){
+			String bid = r.getString("bid");
+			int count = r.getInt("NumberOfReviews");
+			String title = r.getString("title");
+			rv.add( new AnalyticsBean("Review", count, bid, title));
+			
+
+		}
+		
+		return rv;
+		
+	}
+	
 }

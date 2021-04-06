@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import javax.naming.NamingException;
 
+import bean.AnalyticsBean;
 import bean.BookBean;
 import bean.EventBean;
 import bean.ReviewBean;
@@ -124,6 +126,9 @@ public class BookModel {
 		return revDao.exportReviews(bid);
 	}
 	
+	public List<AnalyticsBean> getMostReviewed() throws SQLException {
+		return revDao.getMostReviewed();
+	}
 	
 	public int addUser(String username, String name, String password, String street, String province, String country, String zip) throws SQLException {
 		return userDao.addUser(username, name, password, street, province, country, zip);
@@ -141,6 +146,8 @@ public class BookModel {
 	public int addToOrder(String username, String status, int addrId) throws SQLException {
 		List<String> cartList = this.returnCart();
 		int cartCount = this.returnCartCount();
+	
+		
 		int cost = 0;
 		//int total = this.ret
 		for (int i=0; i < cartList.size(); i++){
@@ -158,19 +165,21 @@ public class BookModel {
 		}
 		int orderid = orderDao.addOrder(username, status, addrId, cartCount, cost);
 		
-		for (int i=0; i < cartList.size(); i++){
+		for (int i=0; i < cartCount; i++){
 			BookBean b;
+			
 			try {
 				b = this.retrieveBook(cartList.get(i));
-				poItemDAO.addPOItem( orderid , cartList.get(i), (int) b.getPrice(), 1);
-				this.removeFromCart(cartList.get(i));
+				poItemDAO.addPOItem( orderid , b.getBid(), (int) b.getPrice(), 1);
+				
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return 0;
 			}
 		}
-		
+		this.SCB.clearCart(); //Clear cart after purchase
 		return 1;
 	}
 	
@@ -182,7 +191,7 @@ public class BookModel {
 		return eventDAO.addEvent(bid, eventType);
 	}
 	
-	public List<EventBean> getEvent() throws SQLException{
+	public List<EventBean> getEvent() throws SQLException, ParseException{
 		return eventDAO.getEvents();
 	}
 	

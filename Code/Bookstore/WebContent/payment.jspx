@@ -47,7 +47,7 @@
 				<label for = "cardNum">Card Number:</label>
 				<input type="text" name="cardNum" id="cardNum" maxlength = "16"></input><br />
 				<label for = "CVV">CVV:</label>
-				<input type="text" name="CVV" id="CVV" maxlength = "4"></input><br />
+				<input type="text" name="CVV" id="CVV" maxlength = "3"></input><br />
 				<label for = "expiration">Expiration Date:</label>
 				<input type="month" name="expiration" id="expiration"></input><br />
 				</form> 
