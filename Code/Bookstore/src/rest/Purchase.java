@@ -10,11 +10,11 @@ public class Purchase {
 	@GET
 	@Path("/addOrder/")
 	@Produces("text/plain")
-	public int loginUser(@QueryParam("fname") String fname, @QueryParam("lname") String lname, @QueryParam("status") String status, @QueryParam("addrId") String addrId) throws Exception {
+	public int loginUser(@QueryParam("username") String username, @QueryParam("status") String status, @QueryParam("addrId") String addrId) throws Exception {
 		//Take in string addr for now, will need to change to int once the the addr tables are set up
 		
-		BookModel.getInstance().addToPOItem();
-		return BookModel.getInstance().addToOrder(fname, lname, status, 1);
+		//BookModel.getInstance().addToPOItem();
+		return BookModel.getInstance().addToOrder(username, status, 1);
 		
 	}
 	

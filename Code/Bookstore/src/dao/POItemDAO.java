@@ -17,12 +17,13 @@ public class POItemDAO {
 		this.con = dbc.returnCon();
 	}
 	
-	public int addPOItem(String bid, int price, int quantity) throws SQLException {
-		String preparedStatement ="insert into BookStore2021.POItem (bid, price, quantity) values(?,?,?)";
+	public int addPOItem(int orderId , String bid, int price, int quantity) throws SQLException {
+		String preparedStatement ="insert into BookStore2021.POItem (orderId, bid, price, quantity) values(?,?,?,?)";
 		PreparedStatement stmt = con.prepareStatement(preparedStatement);
-		stmt.setString(1, bid);
-		stmt.setInt(2, price);
-		stmt.setInt(3, quantity);
+		stmt.setInt(1,orderId);
+		stmt.setString(2, bid);
+		stmt.setInt(3, price);
+		stmt.setInt(4, quantity);
 		return stmt.executeUpdate();
 	}
 	

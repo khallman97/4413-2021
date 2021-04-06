@@ -52,7 +52,7 @@
 				<input type="month" name="expiration" id="expiration"></input><br />
 				</form> 
 			</section>
-			<button onClick="confirmOrder('${user.addr}');">Confirm Order</button>
+			<button onClick="confirmOrder('${user.addr}','${user.user_name}');">Confirm Order</button>
 			<button>Change Info</button>
 		</div>
 	</main>

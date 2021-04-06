@@ -1,7 +1,8 @@
 var counter = 0;
 
-function confirmOrder(addr) {
+function confirmOrder(addr, username) {
 	console.log(addr);
+	console.log(username);
 	var request = new XMLHttpRequest();
 	var data ='';
 	var fname = document.getElementById("fname").value;
@@ -29,8 +30,7 @@ function confirmOrder(addr) {
 		display.innerHTML = "<p>Order Successfully Completed.</p>";
 	}
 	
-	data += "fname=" + fname +
-			"&lname=" + lname + 
+	data += "username=" + username +
 			"&status=" + "ORDERED" +
 			"&addr=" + addr;
 	console.log(data);

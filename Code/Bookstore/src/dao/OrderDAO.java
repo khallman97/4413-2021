@@ -19,14 +19,25 @@ public class OrderDAO {
 		this.con = dbc.returnCon();
 	}
 	
-	public int addOrder(String fname, String lname, String status, int addrId) throws SQLException {
-		String preparedStatement ="insert into BookStore2021.Orders (lname, fname, status, addressId) values(?,?,?,?)";
-		PreparedStatement stmt = con.prepareStatement(preparedStatement);
-		stmt.setString(1, lname);
-		stmt.setString(2, fname);
-		stmt.setString(3, status);
-		stmt.setInt(4, addrId);
-		return stmt.executeUpdate();
+	public int addOrder(String username, String status, int addrId, int POItems, int orderTotalCost) throws SQLException {
+		String preparedStatement ="insert into BookStore2021.Orders  (user_name, status, addressId, poItems, orderTotalCost) values(?,?,?,?,?)";
+		PreparedStatement stmt = con.prepareStatement(preparedStatement, Statement.RETURN_GENERATED_KEYS);
+		stmt.setString(1, username);
+		stmt.setString(2, status);
+		stmt.setInt(3, addrId);
+		stmt.setInt(4, POItems);
+		stmt.setInt(5, orderTotalCost);
+		stmt.executeUpdate();
+		
+		ResultSet result = stmt.getGeneratedKeys();
+		
+		if(result.next() && result != null) {
+			return result.getInt(1);
+		} else {
+			return 0;
+		}
+		
+		
 	}
 	
 	public int updateOrder(int id, String status) throws SQLException {
