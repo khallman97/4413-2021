@@ -12,12 +12,14 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import javax.naming.NamingException;
 
+import bean.AdminBean;
 import bean.AnalyticsBean;
 import bean.BookBean;
 import bean.EventBean;
 import bean.ReviewBean;
 import bean.ShoppingCartBean;
 import bean.UserBean;
+import dao.AdminDAO;
 import dao.BookDAO;
 import dao.DBConnection;
 import dao.EventDAO;
@@ -35,9 +37,10 @@ public class BookModel {
 	private ShoppingCartBean SCB;
 	private UserDAO userDao;
 	private ReviewDAO revDao;
-	private OrderDAO orderDao; 
+	private OrderDAO orderDao;
 	private POItemDAO poItemDAO;
 	private EventDAO eventDAO;
+	private AdminDAO adminDAO;
 
 	public static BookModel getInstance() throws ClassNotFoundException {
 		if (instance == null) {
@@ -50,6 +53,7 @@ public class BookModel {
 			instance.orderDao = new OrderDAO();
 			instance.poItemDAO = new POItemDAO();
 			instance.eventDAO = new EventDAO();
+			instance.adminDAO = new AdminDAO();
 		}
 		return instance;
 
@@ -67,12 +71,11 @@ public class BookModel {
 			return this.book.returnCategoryBooks(category);
 		}
 	}
-	
 
 	public List<BookBean> retrieveBookByTitle(String title) throws Exception {
-		if (title.equals("")){
+		if (title.equals("")) {
 			return this.book.returnAllBooks();
-		} else{
+		} else {
 			return this.book.returnBooksByNamesLike(title);
 		}
 	}
@@ -80,12 +83,12 @@ public class BookModel {
 	public BookBean retrieveBook(String bid) throws Exception {
 		return this.book.returnBooksByBid(bid);
 	}
-	
-	public List<ReviewBean> exportReview(String bid) throws Exception{
+
+	public List<ReviewBean> exportReview(String bid) throws Exception {
 		return this.revDao.exportReviews(bid);
 	}
-	
-	public Map<String, ReviewBean> retrieveReviews(String bid) throws Exception{
+
+	public Map<String, ReviewBean> retrieveReviews(String bid) throws Exception {
 		return this.revDao.retrieveReviews(bid);
 	}
 
@@ -117,40 +120,40 @@ public class BookModel {
 	public int removeFromCart(String bid) {
 		return SCB.removeFromCart(bid);
 	}
-	
+
 	public int addReview(String bid, String review, int rating) throws SQLException, NamingException {
 		return revDao.insert(bid, review, rating);
 	}
-	
+
 	public List<ReviewBean> exportReviews(String bid) throws SQLException, NamingException {
 		return revDao.exportReviews(bid);
 	}
-	
+
 	public List<AnalyticsBean> getMostReviewed() throws SQLException {
 		return revDao.getMostReviewed();
 	}
-	
-	public int addUser(String username, String name, String password, String street, String province, String country, String zip) throws SQLException {
+
+	public int addUser(String username, String name, String password, String street, String province, String country,
+			String zip) throws SQLException {
 		return userDao.addUser(username, name, password, street, province, country, zip);
 	}
 
 	public int loginUser(String username, String password) throws SQLException {
 		return userDao.passwordCheck(username, password);
 	}
-	
+
 	public UserBean getUser(String username) throws SQLException {
 		return userDao.getUser(username);
 	}
-	
-	//Creates order and adds po items to order
+
+	// Creates order and adds po items to order
 	public int addToOrder(String username, String status, int addrId) throws SQLException {
 		List<String> cartList = this.returnCart();
 		int cartCount = this.returnCartCount();
-	
-		
+
 		int cost = 0;
-		//int total = this.ret
-		for (int i=0; i < cartList.size(); i++){
+		// int total = this.ret
+		for (int i = 0; i < cartList.size(); i++) {
 			BookBean b;
 			try {
 				b = this.retrieveBook(cartList.get(i));
@@ -158,107 +161,103 @@ public class BookModel {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				return 0;
-				//e.printStackTrace();
+				// e.printStackTrace();
 			}
-			
-			
+
 		}
 		int orderid = orderDao.addOrder(username, status, addrId, cartCount, cost);
-		
-		for (int i=0; i < cartCount; i++){
+
+		for (int i = 0; i < cartCount; i++) {
 			BookBean b;
-			
+
 			try {
 				b = this.retrieveBook(cartList.get(i));
-				poItemDAO.addPOItem( orderid , b.getBid(), (int) b.getPrice(), 1);
-				
-				
+				poItemDAO.addPOItem(orderid, b.getBid(), (int) b.getPrice(), 1);
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return 0;
 			}
 		}
-		this.SCB.clearCart(); //Clear cart after purchase
+		this.SCB.clearCart(); // Clear cart after purchase
 		return 1;
 	}
-	
+
 	public void addToPOItem() throws SQLException {
-		
+
 	}
-	
-	public int addToEvent(String bid, String eventType) throws SQLException{
+
+	public int addToEvent(String bid, String eventType) throws SQLException {
 		return eventDAO.addEvent(bid, eventType);
 	}
-	
-	public List<EventBean> getEvent() throws SQLException, ParseException{
+
+	public List<EventBean> getEvent() throws SQLException, ParseException {
 		return eventDAO.getEvents();
 	}
-	
-	public List<EventBean> getEventsByBid(String bid) throws SQLException{
+
+	public List<EventBean> getEventsByBid(String bid) throws SQLException {
 		return eventDAO.getEventsByBid(bid);
 	}
-	
-	public List<EventBean> getEventsByDay(String month, String year) throws SQLException{
+
+	public List<EventBean> getEventsByDay(String month, String year) throws SQLException {
 		return eventDAO.getEventsByDay(month, year);
 	}
-	
-	
-	public String exportJSONRev(String bid) throws Exception
-	{
+
+	public String exportJSONRev(String bid) throws Exception {
 		JsonArrayBuilder doc = Json.createArrayBuilder();
-		
+
 		List<ReviewBean> reviews = new ArrayList<ReviewBean>();
 		reviews = exportReview(bid);
-		
-		for (ReviewBean rr : reviews)
-		{
-			doc.add(Json.createObjectBuilder().add("bid", rr.getBid())
-				.add("review",rr.getReview())
-				.add("rating",rr.getRating()));
+
+		for (ReviewBean rr : reviews) {
+			doc.add(Json.createObjectBuilder().add("bid", rr.getBid()).add("review", rr.getReview()).add("rating",
+					rr.getRating()));
 		}
-				
+
 		String serializedJson = doc.build().toString();
-		
-		return serializedJson;
-	}
-	
-	
-	public String exportJSON(String field, String value) throws Exception
-	{
-		JsonArrayBuilder doc = Json.createArrayBuilder();
-		
-		List<BookBean> books = new ArrayList<BookBean>();
-		if (field.equals("category")){
-			books =  retrieveBookByCategory(value);
-		} else if (field.equals("title")){
-			books = retrieveBookByTitle(value);
-		} else if (field.equals("bid")){
-			books.add(retrieveBook(value));
-		}
-		
-		for (BookBean bb : books)
-		{
-			doc.add(Json.createObjectBuilder().add("bid", bb.getBid())
-				.add("title",bb.getTitle())
-				.add("price",bb.getPrice())
-				.add("category",bb.getCategory())
-				.add("author",bb.getAuthor())
-				.add("picture_link",bb.getPicture_link()));
-		}
-				
-		String serializedJson = doc.build().toString();
-		
+
 		return serializedJson;
 	}
 
-	//Model function to add admin
+	public String exportJSON(String field, String value) throws Exception {
+		JsonArrayBuilder doc = Json.createArrayBuilder();
+
+		List<BookBean> books = new ArrayList<BookBean>();
+		if (field.equals("category")) {
+			books = retrieveBookByCategory(value);
+		} else if (field.equals("title")) {
+			books = retrieveBookByTitle(value);
+		} else if (field.equals("bid")) {
+			books.add(retrieveBook(value));
+		}
+
+		for (BookBean bb : books) {
+			doc.add(Json.createObjectBuilder().add("bid", bb.getBid()).add("title", bb.getTitle())
+					.add("price", bb.getPrice()).add("category", bb.getCategory()).add("author", bb.getAuthor())
+					.add("picture_link", bb.getPicture_link()));
+		}
+
+		String serializedJson = doc.build().toString();
+
+		return serializedJson;
+	}
+
+	// Model function to add admin
 	public int addAdmin(String username, String name, String addr, String pass) throws SQLException {
 		// TODO Auto-generated method stub
 		return userDao.addAdmin(username, name, addr, pass);
 	}
-	
+
 	public List<AnalyticsBean> getTopSold() throws SQLException {
 		return poItemDAO.getTopSold();
+	}
+
+	public List<EventBean> get10MostVisited() throws SQLException {
+		return eventDAO.getTop10EventsByType("VIEW");
+	}
+
+	public List<AdminBean> getUserInfo() throws SQLException {
+		return adminDAO.returnUserStats();
 	}
 }

@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.AdminBean;
 import bean.AnalyticsBean;
+import bean.EventBean;
 import model.BookModel;
 
 /**
@@ -48,6 +50,9 @@ public class admin extends HttpServlet {
 		
 		// Display analytics page when admin login
 		List<AnalyticsBean> reviewList = null;
+		List<EventBean> visitedList = null;
+		List<AdminBean> userInfoList = null;
+
 		try {
 			reviewList = BookModel.getInstance().getMostReviewed();
 		} catch (ClassNotFoundException e) {
@@ -58,8 +63,25 @@ public class admin extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		try {
+			visitedList = BookModel.getInstance().get10MostVisited();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			userInfoList = BookModel.getInstance().getUserInfo();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		//System.out.print("reviewlist size" + reviewList.size());
 		request.getSession().setAttribute("reviewed", reviewList);
+		request.getSession().setAttribute("mostVisited", visitedList);
+		request.getSession().setAttribute("userInfo", userInfoList);
+
 		
 		String target = "/analytic.jspx";
 		request.getRequestDispatcher(target).forward(request, response);

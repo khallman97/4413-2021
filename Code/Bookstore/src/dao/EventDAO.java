@@ -97,4 +97,38 @@ public class EventDAO {
 		return rv;
 		
 	}
+	
+	public List<EventBean> getEventsByType(String type) throws SQLException{
+		String query = "select * from BookStore2021.Event where eventtype like '" + type + "'";
+		PreparedStatement p = this.con.prepareStatement(query);
+		ResultSet r = p.executeQuery(query);
+		List<EventBean> rv = new ArrayList<EventBean>();
+		while (r.next()){
+			String day = r.getString("day");
+			String nbid = r.getString("bid");
+			String eventtype = r.getString("eventtype");
+			rv.add( new EventBean(day, nbid, eventtype));
+		}
+		return rv;
+	}
+	
+	public List<EventBean> getTop10EventsByType(String type) throws SQLException{
+		String query = "SELECT *\r\n"
+				+ "FROM BookStore2021.Event\n"
+				+ "WHERE eventtype Like '" + type + "'\n"
+				+ "GROUP BY bid\r\n"
+				+ "ORDER BY COUNT(BookStore2021.Event.bid) DESC \n"
+				+ "limit 10;\n";
+		PreparedStatement p = this.con.prepareStatement(query);
+		ResultSet r = p.executeQuery(query);
+		List<EventBean> rv = new ArrayList<EventBean>();
+		while (r.next()){
+			String day = r.getString("day");
+			String nbid = r.getString("bid");
+			String eventtype = r.getString("eventtype");
+			rv.add( new EventBean(day, nbid, eventtype));
+		}
+		return rv;
+	}
+		
 }
