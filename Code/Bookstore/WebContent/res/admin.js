@@ -56,7 +56,7 @@ function login() {
 		}
 		}
 		// if admin account does not exist
-		else {
+		else if (request.status == 500){
 			error.style.display = "inline";
 			error.style.color = "red";
 			error.innerHTML = "Admin username does not exist";

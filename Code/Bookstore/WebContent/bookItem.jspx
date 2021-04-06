@@ -12,13 +12,18 @@
 	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/res/bookstore.css" />
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous" />
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/res/bookItem.js" defer='defer'>;</script>
 <title>Book</title>
 </head>
 <body>
-
+<header class="jumbotron bg-dark text-white text-center">
+		<h1><a href="/Bookstore/main">The 2021 Bookstore</a></h1>
+	</header>
+	<div class="container">
 	<div>
 	<div id="result"></div>
 	</div>
@@ -28,9 +33,9 @@
 		<FIELDSET>
 			<legend>Reviews</legend>
 			<div id="reviews">
-				<textarea rows="4" cols="50" id="reviewarea">Enter Review...</textarea>
-				<input id="ratingarea"></input>
-				<button action="submitReview'${book.bid}');">Submit</button>
+				<textarea class="form-control" rows="4" cols="50" id="reviewarea">Enter Review...</textarea>
+				<input placeholder="Enter Rating" class="form-control" id="ratingarea"></input>
+				<button class="btn btn-secondary float-right" action="submitReview'${book.bid}');">Submit</button>
 			</div>
 			<label>Previous Reviews Section</label>
 			<c:forEach items="${reviewList}" var="reviewList">
@@ -43,6 +48,7 @@
 			</c:forEach>
 		</FIELDSET>
 	</form>
+	</div>
 </body>
 	</html>
 </jsp:root>

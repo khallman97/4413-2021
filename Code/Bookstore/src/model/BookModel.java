@@ -24,6 +24,7 @@ import dao.EventDAO;
 import dao.OrderDAO;
 import dao.POItemDAO;
 import dao.ReviewDAO;
+import dao.TopDAO;
 import dao.UserDAO;
 
 public class BookModel {
@@ -49,7 +50,6 @@ public class BookModel {
 			instance.orderDao = new OrderDAO();
 			instance.poItemDAO = new POItemDAO();
 			instance.eventDAO = new EventDAO();
-			
 		}
 		return instance;
 
@@ -256,5 +256,9 @@ public class BookModel {
 	public int addAdmin(String username, String name, String addr, String pass) throws SQLException {
 		// TODO Auto-generated method stub
 		return userDao.addAdmin(username, name, addr, pass);
+	}
+	
+	public List<AnalyticsBean> getTopSold() throws SQLException {
+		return poItemDAO.getTopSold();
 	}
 }

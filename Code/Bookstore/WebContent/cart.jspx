@@ -11,11 +11,18 @@
 		omit-xml-declaration="true" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/res/bookstore.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/cart.js" >;</script>
-<title>Bookstore</title>
+<title>Cart</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous" />
 </head>
 <body>
+<header class="jumbotron bg-dark text-white text-center">
+		<h1><a href="/Bookstore/main">The 2021 Bookstore</a></h1>
+	</header>
+	<div class="container">
 <header><h1>Cart</h1></header>
 <c:forEach items="${cart}" var="cart">
 	<div class="card">
@@ -24,7 +31,7 @@
 				<h4><b>${cart.author}</b></h4>
 				<h4><b class="price">${cart.price}</b></h4>
 				<h4><b>${cart.category}</b></h4>
-				<Button onClick="removeFromCart('${cart.bid}');">Remove from cart</Button>
+				<Button class="btn btn-secondary float-right" onClick="removeFromCart('${cart.bid}');">Remove from cart</Button>
 			</div>
 	</div>
 </c:forEach>
@@ -32,6 +39,7 @@
 
 <Button onClick="window.location.href = '/Bookstore/login';">Purchase</Button>
 <div id="result"> </div>
+</div>
  </body>
 </html>
 </jsp:root>

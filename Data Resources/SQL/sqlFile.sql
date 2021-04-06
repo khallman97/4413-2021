@@ -15,35 +15,35 @@ CREATE TABLE BookStore2021.Book (
     PRIMARY KEY(bid)
 );
 
-INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('b001', 'A Promised Land', 29.99, 'Biography', 'Barack Obama', 'https://images-na.ssl-images-amazon.com/images/I/41L5qgUW2fL._SX327_BO1,204,203,200_.jpg');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b002','The Answer is... Reflections on My Life', 27.71, 'Biography');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b003','Building a Web Site For Dummies' ,28.22,'Textbook');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b004','A Game of Thrones: A Song of Ice and Fire' ,13.37,'Fantasy');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b005','The Hobbit' ,29.69,'Fantasy');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b006','Cosmos' ,24,'Science');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b007','Interstellar' ,10.49,'Science-Fiction');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b008','Enders Game' ,9.89,'Science-Fiction');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b009','Calculus: Early Transcendentals' ,210.15,'Textbook');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b010','The Bobs Burgers Burger Book: Real Recipes for Joke Burgers' ,24.74,'Cookbook');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b011','The Stand' ,11.99,'Horror');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b012','Harry Potter and the Philosophers Stone' ,10.99,'Fantasy');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b013','Star Wars The High Republic: Into The Dark' ,22.99,'Science-Fiction');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b014','The Midnight Library' ,30.54,'Science-Fiction');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b015','Ground Zero' ,10.99,'Children');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b016','Java: A Beginners Guide, Eighth Edition' ,44.84,'Textbook');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b017','Infinity Gauntlet' ,20.29,'Fantasy');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b018','LORE' ,19.80,'Fantasy');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b019','How To Avoid A Climate Disaster: The Solutions We Have And The Breakthroughs We Need' ,25,'Non-Fiction');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b020','The Evening And The Morning' ,33.6,'Historical-Fiction');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b021','Heart of Darkness' ,15,'Drama');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b022','Frankenstein' ,39.99,'Horror');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b023','THE ROSE CODE: A NOVEL' ,15,'Drama');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b024','CROSSROADS: MY STORY OF TRAGEDY' ,25,'Historical-Fiction');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b025','THE PUSH' ,15,'Historical-Fiction');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b026','A COURT OF SILVER FLAMES' ,26.6,'Fantasy');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b027','WE BEGIN AT THE END' ,15,'Biography');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b028','DOG MAN: MOTHERING HEIGHTS: FROM THE CREATOR OF CAPTAIN' ,12,'Children');
-INSERT INTO BookStore2021.Book (bid, title, price, category) VALUES ('b029','THE BEAUTY OF LIVING TWICE' ,25,'Biography');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9781524763169', 'A Promised Land', 29.99, 'Biography', 'Barack Obama', 'https://images-na.ssl-images-amazon.com/images/I/41L5qgUW2fL._SX327_BO1,204,203,200_.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780221076992','The Answer is... Reflections on My Life', 27.71, 'Biography', 'Alex Trebe', 'https://images-na.ssl-images-amazon.com/images/I/41agWXl9gBL._SX331_BO1,204,203,200_.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780470149287','Building a Web Site For Dummies' ,28.22,'Textbook', 'David A. Crowder','https://images-na.ssl-images-amazon.com/images/I/51Rj5uyFTIL._SX396_BO1,204,203,200_.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780006479888','A Game of Thrones: A Song of Ice and Fire' ,13.37,'Fantasy', 'George R. R. Martin', 'https://images-na.ssl-images-amazon.com/images/I/51aTnsl0MPL._SX303_BO1,204,203,200_.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780048232731','The Hobbit' ,29.69,'Fantasy', 'J. R. R. Tolkien','https://images-na.ssl-images-amazon.com/images/I/51n+ej8DlnL._SX378_BO1,204,203,200_.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780345331359','Cosmos' ,24,'Science', 'Carl Sagan', 'https://images-na.ssl-images-amazon.com/images/I/51dAmkybCEL._SX322_BO1,204,203,200_.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9781783293698','Interstellar' ,10.49,'Science-Fiction', 'Greg Keyes', 'https://images-na.ssl-images-amazon.com/images/I/51H4jXmToqL._SX300_BO1,204,203,200_.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780765317384','Enders Game' ,9.89,'Science-Fiction', 'Orson Scott Card', 'https://images-na.ssl-images-amazon.com/images/I/51sfTXF6eUL._SX302_BO1,204,203,200_.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780716769118','Calculus: Early Transcendentals' ,210.15,'Textbook', 'James Stewart', 'https://images-na.ssl-images-amazon.com/images/I/51xUmFAz+VL._SX423_BO1,204,203,200_.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780789331144','The Bobs Burgers Burger Book: Real Recipes for Joke Burgers' ,24.74,'Cookbook', 'Loren Bouchard', 'https://images-na.ssl-images-amazon.com/images/I/51joZSTuB5L._SX349_BO1,204,203,200_.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780307743688','The Stand' ,11.99,'Horror', 'Stephen King', 'https://m.media-amazon.com/images/I/41M5nekhDNL.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780439554930','Harry Potter and the Philosophers Stone' ,10.99,'Fantasy', 'J.K. Rowling', 'https://m.media-amazon.com/images/I/51UoqRAxwEL.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9781760508111','Star Wars The High Republic: Into The Dark' ,22.99,'Science-Fiction', 'Claudia Gray', 'https://dynamic.indigoimages.ca/books/1368057284.jpg?scaleup=true&width=614&maxheight=614&quality=85&lang=en');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9781786892706','The Midnight Library' ,30.54,'Science-Fiction', 'Matt Haig', 'https://images-na.ssl-images-amazon.com/images/I/419X9dVWmJL._SX353_BO1,204,203,200_.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9781338747690','Ground Zero' ,10.99,'Children', 'Alan Gratz', 'https://images-na.ssl-images-amazon.com/images/I/51OK5z7CCcL._SX329_BO1,204,203,200_.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9781260440218','Java: A Beginners Guide, Eighth Edition' ,44.84,'Textbook', 'Herbert Schildt', 'https://images-na.ssl-images-amazon.com/images/I/51KDndebj7L._SX403_BO1,204,203,200_.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780785123491','Infinity Gauntlet' ,20.29,'Fantasy', 'Jim Starlin (Contributor), George Perez (Illustrator), Ron Lim (Illustrator)', 'https://images-na.ssl-images-amazon.com/images/I/51UlKuVWViL._SX324_BO1,204,203,200_.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9781432885793','LORE' ,19.80,'Fantasy', 'Alexandra Bracken', 'https://images-na.ssl-images-amazon.com/images/I/51GzewxBJrL._SX329_BO1,204,203,200_.jpg');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780241448304','How To Avoid A Climate Disaster: The Solutions We Have And The Breakthroughs We Need' ,25,'Non-Fiction', 'Bill Gates', 'https://dynamic.indigoimages.ca/books/0735280444.jpg?scaleup=true&width=614&maxheight=614&quality=85&lang=en');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9783785727003','The Evening And The Morning' ,33.6,'Historical-Fiction','Ken Follett','https://dynamic.indigoimages.ca/books/0525954988.jpg?scaleup=true&width=614&maxheight=614&quality=85&lang=en');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780140180909','Heart of Darkness' ,15,'Drama','Joseph Conrad', 'https://dynamic.indigoimages.ca/books/184931103x.jpg?maxheight=200&width=200&quality=85&sale=74&lang=en');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780141393391','Frankenstein' ,39.99,'Horror','Mary Shelley','https://dynamic.indigoimages.ca/books/198214615x.jpg?maxheight=200&width=200&quality=85&sale=9&lang=en');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780063059412','THE ROSE CODE: A NOVEL' ,15,'Drama','Kate Quinn','https://dynamic.indigoimages.ca/books/0063060442.jpg?width=200&quality=85&maxheight=200&sale=39&lang=en');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9781443462877','CROSSROADS: MY STORY OF TRAGEDY' ,25,'Historical-Fiction','Kaleb Dahlgren','https://dynamic.indigoimages.ca/books/144346287x.jpg?width=200&quality=85&maxheight=200&sale=24&lang=en');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780241434567','THE PUSH' ,15,'Historical-Fiction','Ashley Audrain','https://dynamic.indigoimages.ca/books/0735239894.jpg?width=200&quality=85&maxheight=200&sale=39&lang=en');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9781681196282','A COURT OF SILVER FLAMES' ,26.6,'Fantasy','Sarah J. Maas','https://dynamic.indigoimages.ca/books/168119628x.jpg?width=200&quality=85&maxheight=200&sale=30&lang=en');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9781250759665','WE BEGIN AT THE END' ,15,'Biography','Chris Whitaker','https://dynamic.indigoimages.ca/books/1250793769.jpg?width=200&quality=85&maxheight=200&sale=39&lang=en');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780545935180','DOG MAN: MOTHERING HEIGHTS: FROM THE CREATOR OF CAPTAIN' ,12,'Children','Dav Pilkey','https://dynamic.indigoimages.ca/books/0525656766.jpg?width=200&quality=85&maxheight=200&sale=32&lang=en');
+INSERT INTO BookStore2021.Book (bid, title, price, category, author, picture_link) VALUES ('9780525656760','THE BEAUTY OF LIVING TWICE' ,25,'Biography', 'Sharon Stone','https://dynamic.indigoimages.ca/books/1338680455.jpg?width=200&quality=85&maxheight=200&sale=24&lang=en');
 
 
 create table BookStore2021.Review(
@@ -54,16 +54,16 @@ create table BookStore2021.Review(
     primary key(reviewID),
     foreign key(bid) references BookStore2021.Book(bid)
 );
-insert into BookStore2021.Review(bid, review, rating) values('b001', 'Hello World', 5); 
-insert into BookStore2021.Review(bid, review, rating) values('b002', 'Hello World', 5); 
-insert into BookStore2021.Review(bid, review, rating) values('b003', 'Hello World', 5); 
-insert into BookStore2021.Review(bid, review, rating) values('b004', 'Hello World', 5); 
-insert into BookStore2021.Review(bid, review, rating) values('b005', 'Hello World', 5); 
-insert into BookStore2021.Review(bid, review, rating) values('b001', 'bye World', 5); 
-insert into BookStore2021.Review(bid, review, rating) values('b001', 'hi World', 5); 
-insert into BookStore2021.Review(bid, review, rating) values('b001', 'hai World', 5); 
-insert into BookStore2021.Review(bid, review, rating) values('b005', 'help World', 5); 
-insert into BookStore2021.Review(bid, review, rating) values('b005', 'hi World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('9781524763169', 'Hello World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('9780221076992', 'Hello World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('9780470149287', 'Hello World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('9780006479888', 'Hello World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('9780048232731', 'Hello World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('9781524763169', 'bye World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('9781524763169', 'hi World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('9781524763169', 'hai World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('9780048232731', 'help World', 5); 
+insert into BookStore2021.Review(bid, review, rating) values('9780048232731', 'hi World', 5); 
 
 
 CREATE TABLE BookStore2021.Address (
@@ -99,7 +99,7 @@ eventtype varchar(20) NOT NULL,
 FOREIGN KEY(bid) REFERENCES BookStore2021.Book(bid)
 );
 
-INSERT INTO BookStore2021.Event (day, bid, eventtype) VALUES ('12202015', 'b001', 'VIEW');
+INSERT INTO BookStore2021.Event (day, bid, eventtype) VALUES ('12202015', '9781524763169', 'VIEW');
 
 CREATE TABLE BookStore2021.Orders (
 id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -127,5 +127,5 @@ FOREIGN KEY(orderId) REFERENCES Orders(id) ON DELETE CASCADE,
 INDEX (bid),FOREIGN KEY(bid) REFERENCES Book(bid) ON DELETE CASCADE
 );
 
-INSERT INTO BookStore2021.POItem (orderId, bid, price, quantity) VALUES (1,'b001',  '20', '1');
-INSERT INTO BookStore2021.POItem (orderId, bid, price, quantity) VALUES (1,'b002',  '20', '1');
+INSERT INTO BookStore2021.POItem (orderId, bid, price, quantity) VALUES (1,'9781524763169',  '20', '1');
+INSERT INTO BookStore2021.POItem (orderId, bid, price, quantity) VALUES (1,'9780221076992',  '20', '1');

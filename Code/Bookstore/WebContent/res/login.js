@@ -56,7 +56,7 @@ function login() {
 		}
 		} 
 		// if username does not exist in database
-		else {
+		else if (request.status == 500){
 			error.style.display = "inline";
 			error.style.color = "red";
 			error.innerHTML = "Username does not exist";

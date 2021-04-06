@@ -57,18 +57,18 @@ function handler(request){
 		var target = document.getElementById("result");
 		console.log(request.responseText);
 		var books = JSON.parse(request.responseText);
-		var html = "<div class=\"books\">";
+		var html = "<div class=\"books row\">";
 		
 		for (var i = 0; i < books.length; i++){
 			console.log(books[i]);
-			html+="<div class=\"card\">" +
-			"<img class=\"card-img-top\" src=\"" + books[i].picture_link + "\">" +
+			html+="<div class=\"card col-4\">" +
+			"<img class=\"card-img-top hover-shadow\" src=\"" + books[i].picture_link + "\">" +
 			"<span class=\"bid\" style=\"display:none;\">" + books[i].bid + "</span>" +
 			"<div class=\"card-body\">" +
 			"<h5 class=\"card-title\">" + books[i].title + "</h5>" +
-			"<h5 class\"card-text\">" + books[i].author + "</h5>" +
-			"<h5 class=\"price card-text\">" + books[i].price + "</h5>" +
-			"<h5 class=\"card-text\">" + books[i].category + "</h5>" +
+			"<h5 class\"card-text\">By: " + books[i].author + "</h5>" +
+			"<h5 class=\"price card-text\">Price: $" + books[i].price + "</h5>" +
+			"<h5 class=\"card-text\">Category: " + books[i].category + "</h5>" +
 			 "<button class=\"btn btn-primary addToCart\" type=\"button\">Add To Shopping Cart</button>" +
 			"</div>" + 
 			"</div>";
