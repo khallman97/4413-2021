@@ -35,7 +35,7 @@
 			<div id="reviews">
 				<textarea class="form-control" rows="4" cols="50" id="reviewarea">Enter Review...</textarea>
 				<input placeholder="Enter Rating" class="form-control" id="ratingarea"></input>
-				<button class="btn btn-secondary float-right" action="submitReview'${book.bid}');">Submit</button>
+				<button class="btn btn-secondary float-right" onclick="submitReview('${bookid}');">Submit</button>
 			</div>
 			<label>Previous Reviews Section</label>
 			<c:forEach items="${reviewList}" var="reviewList">

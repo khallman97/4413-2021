@@ -66,7 +66,7 @@ public class bookItem extends HttpServlet {
 		String newBID = request.getPathInfo().toString();
 		String refinedBID = "";
 		for (int i = 0; i <= newBID.length()-1; i++) {
-			if (newBID.charAt(i) == '/') {
+			if (newBID.charAt(i) == '/' || newBID.charAt(i) == '?') {
 				//
 			}
 			else {
@@ -85,6 +85,8 @@ public class bookItem extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		System.out.println(revList.size());
+		request.getSession().setAttribute("bookid", refinedBID);
 		request.getSession().setAttribute("reviewList", revList);
 //		Enumeration<String> inputs = request.getAttributeNames();
 		

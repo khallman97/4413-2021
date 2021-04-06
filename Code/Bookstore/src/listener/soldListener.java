@@ -48,7 +48,8 @@ public class soldListener implements ServletRequestListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-            request.getSession().setAttribute("topSold", top);
+            //request.getSession().setAttribute("topSold", top);
+            arg0.getServletContext().setAttribute("topSold", top);
         }
         
     }

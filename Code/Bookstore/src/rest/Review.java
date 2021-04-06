@@ -23,6 +23,7 @@ public class Review {
 	@Consumes("text/plain")
 	@Produces("text/plain")
 	public int addBook(@QueryParam("bid") String bid, @QueryParam("review") String review, @QueryParam("rating") int rating) throws Exception {
+		System.out.print("Review added bid is: " + bid);
 		return BookModel.getInstance().addReview(bid, review, rating);
 	}
 }

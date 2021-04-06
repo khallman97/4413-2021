@@ -1,12 +1,30 @@
 displayBook();
 
+
+function submitReview(bid) {
+	var request = new XMLHttpRequest();
+	console.log("Here");
+	var data ='';
+	var reviewareaData = document.getElementById("reviewarea").value;
+	var ratingareaData = document.getElementById("ratingarea").value;
+	
+	data += "bid=" +bid + "&review=" +reviewareaData + "&rating=" +ratingareaData;
+	request.open("GET", ("/Bookstore/rest/review/create" + "?" + data), true);
+		request.onreadystatechange = () => {
+			//handler(request);
+		};
+		request.send();
+}
+
 // GET the book from database
 function displayBook() {
 		var request = new XMLHttpRequest();
 		var data ='field=bid&';
 		// create the query string
-		data += "value=" + window.location.href.substring(window.location.href.lastIndexOf("/") + 1);
-		
+		var bid = window.location.href.substring(window.location.href.lastIndexOf("/") + 1);
+		bid = bid.replace(/\?/g,'');
+		data += "value=" + bid;
+		console.log(bid);
 	
 		request.open("GET", ("/Bookstore/rest/book/read" + "?" + data), true);
 		request.onreadystatechange = () => {
