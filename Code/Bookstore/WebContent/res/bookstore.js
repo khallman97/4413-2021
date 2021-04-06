@@ -102,7 +102,7 @@ function addClickEvent(){
 			//console.log(e.target.parentNode);
 			var bid = e.target.parentNode.querySelector('span').innerHTML;
 			console.log("clicked " + bid);
-			window.location.href = "/Bookstore/Book/" + bid;
+			window.location.href = "./Book/" + bid;
 		})
 	}
 }
