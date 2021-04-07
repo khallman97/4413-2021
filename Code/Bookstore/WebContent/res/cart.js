@@ -7,7 +7,7 @@ function removeFromCart(bid) {
 	
 	var request = new XMLHttpRequest();
 	var data ="bid=" + bid;
-	request.open("GET", ("rest/cart/remove" + "?" + data), true);
+	request.open("GET", ("/Bookstore/rest/cart/remove" + "?" + data), true);
 	request.onreadystatechange = () => {
 				console.log("Item Removed to Cart");
 				console.log(request.responseText);

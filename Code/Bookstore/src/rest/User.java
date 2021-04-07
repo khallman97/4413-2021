@@ -16,6 +16,15 @@ public class User {
 	public UserDAO usD = new UserDAO();
 	
 	@GET
+	@Path("/test/")
+	@Produces("text/plain")
+	public String test() throws Exception {
+		
+		return "Rest okay";
+		
+	}
+	
+	@GET
 	@Path("/login/")
 	@Produces("text/plain")
 	public int loginUser(@QueryParam("username") String username, @QueryParam("password") String pass) throws Exception {

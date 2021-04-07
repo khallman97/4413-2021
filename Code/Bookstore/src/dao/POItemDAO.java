@@ -10,6 +10,7 @@ import java.util.List;
 
 import bean.AnalyticsBean;
 import dao.DBConnection;
+import model.BookModel;
 
 public class POItemDAO {
 
@@ -20,14 +21,18 @@ public class POItemDAO {
 		this.con = dbc.returnCon();
 	}
 	
-	public int addPOItem(int orderId , String bid, int price, int quantity) throws SQLException {
+	public int addPOItem(int orderId , String bid, int price, int quantity) throws SQLException, ClassNotFoundException {
 		String preparedStatement ="insert into BookStore2021.POItem (orderId, bid, price, quantity) values(?,?,?,?)";
 		PreparedStatement stmt = con.prepareStatement(preparedStatement);
 		stmt.setInt(1,orderId);
 		stmt.setString(2, bid);
 		stmt.setInt(3, price);
 		stmt.setInt(4, quantity);
+		
+		BookModel.getInstance().addToEvent(bid, "PURCHASE");
+		
 		return stmt.executeUpdate();
+		
 	}
 	
 	// Return Top 10 Sold
