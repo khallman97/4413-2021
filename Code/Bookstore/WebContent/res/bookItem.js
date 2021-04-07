@@ -9,7 +9,7 @@ function submitReview(bid) {
 	var ratingareaData = document.getElementById("ratingarea").value;
 	
 	data += "bid=" +bid + "&review=" +reviewareaData + "&rating=" +ratingareaData;
-	request.open("GET", ("/Bookstore/rest/review/create" + "?" + data), true);
+	request.open("GET", ("rest/review/create" + "?" + data), true);
 		request.onreadystatechange = () => {
 			//handler(request);
 		};
@@ -26,7 +26,7 @@ function displayBook() {
 		data += "value=" + bid;
 		console.log(bid);
 	
-		request.open("GET", ("/Bookstore/rest/book/read" + "?" + data), true);
+		request.open("GET", ("rest/book/read" + "?" + data), true);
 		request.onreadystatechange = () => {
 			handler(request);
 		};

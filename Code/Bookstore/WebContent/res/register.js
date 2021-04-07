@@ -63,7 +63,7 @@ function register() {
 			"&country=" + country +
 			"&zip=" + zip;
 			
-	request.open("GET", ("/Bookstore/rest/user/add" + "?" + data), true);
+	request.open("GET", ("rest/user/add" + "?" + data), true);
 	request.onreadystatechange = () => {
 		if ((request.readyState == 4) && (request.status == 200)){
 			console.log("Account Created");

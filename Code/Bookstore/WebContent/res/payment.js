@@ -31,7 +31,7 @@ function confirmOrder(addr, username) {
 			"&status=" + "ORDERED" +
 			"&addr=" + addr;
 			console.log(data);
-			request.open("GET", ("/Bookstore/rest/purchase/addOrder" + "?" + data), true);
+			request.open("GET", ("rest/purchase/addOrder" + "?" + data), true);
 			request.onreadystatechange = () => {
 				if ((request.readyState == 4) && (request.status == 200)){
 					console.log("order comeplete");

@@ -38,7 +38,7 @@ function login() {
 	// create the query string
 	data += "username=" + username + "&password=" + password;
 	
-	request.open("GET", ("/Bookstore/rest/user/login" + "?" + data), true);
+	request.open("GET", ("rest/user/login" + "?" + data), true);
 	request.onreadystatechange = () => {
 		if ((request.readyState == 4) && (request.status == 200)){
 		console.log(request.responseText)
