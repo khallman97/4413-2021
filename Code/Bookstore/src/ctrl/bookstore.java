@@ -2,6 +2,7 @@ package ctrl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,12 +32,14 @@ public class bookstore extends HttpServlet {
     public bookstore() {
         super();
         // TODO Auto-generated constructor stub
+        
     }
+    List<String> cart;
 
     @Override
 	public void init(ServletConfig config) throws ServletException{
 		super.init(config);
-		
+		cart = new ArrayList<String>();
 		try {
 			getServletContext().setAttribute("BookModel", BookModel.getInstance());
 		} catch (ClassNotFoundException e) {
@@ -66,6 +69,7 @@ public class bookstore extends HttpServlet {
 //			//request.getSession().setAttribute("cartSize", cart.size());
 //		}
 		
+		
 		if (request.getParameter("addToCart") != null){
 			String bid = "";
 			if (request.getParameter("bid") != null) {
@@ -79,8 +83,15 @@ public class bookstore extends HttpServlet {
 //			cart.put(bid, ib);
 //			request.getSession().setAttribute("cart", cart);
 //			request.getSession().setAttribute("cartSize", cart.size());
-			
 		}
+		
+		if(request.getParameter("cart") != null) {
+			String bid = request.getParameter("cart");
+			System.out.println("cart bid" + bid);
+			cart.add(bid);
+			request.getSession().setAttribute("currentCart", cart);
+		}
+		
 			request.getRequestDispatcher(target).forward(request, response);
 		}
 		

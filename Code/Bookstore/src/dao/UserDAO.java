@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
+import bean.AddressBean;
 import bean.BookBean;
 import bean.UserBean;
 
@@ -43,6 +44,21 @@ public class UserDAO {
 		}
 		//return stmt.getGeneratedKeys().getInt(1);
 		
+		
+	}
+	
+	//Get adress
+	public AddressBean retrieveAddr(int id) throws SQLException {
+		String query = "select * from BookStore2021.Address where id=" +id;
+		Statement p = this.con.createStatement();
+		ResultSet r = p.executeQuery(query);
+		AddressBean addrB = null;
+		while (r.next()){
+			
+			addrB = new AddressBean(r.getInt("id"),r.getString("street"), r.getString("province"), r.getString("country"), r.getString("zip"),"" );
+		}
+		
+		return addrB;
 		
 	}
 	

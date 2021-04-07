@@ -15,7 +15,8 @@ public class Cart {
 	@Path("/add/")
 	@Produces("text/plain")
 	public String getProductInfo(@QueryParam("bid") String bid) throws Exception {
-		System.out.println("adding book to cart rest");
+		//System.out.println("adding book to cart rest");
+		
 		BookModel.getInstance().addToCart(bid);
 		return "added to cart " + bid;
 	}
@@ -33,7 +34,7 @@ public class Cart {
 	@Path("/remove/")
 	@Produces("text/plain")
 	public int removeCartItem(@QueryParam("bid") String bid) throws Exception {
-		System.out.println("removing bid from cart " + bid);
+		//System.out.println("removing bid from cart " + bid);
 		
 		return BookModel.getInstance().removeFromCart(bid);
 		 

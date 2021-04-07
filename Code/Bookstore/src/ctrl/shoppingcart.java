@@ -42,11 +42,36 @@ public class shoppingcart extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		List<String> attbCart = (List<String>) request.getSession().getAttribute("currentCart");
+		
+		
+		//Removes item from cart 
+		if(request.getParameter("remove") != null) {
+			
+			String removeBid = request.getParameter("remove");
+			//System.out.print("here: " + removeBid);
+			int removeIndex = -1;
+			for(int i=0; i< attbCart.size();i++) {
+				if(attbCart.get(i).equals(removeBid)) {
+					removeIndex = i;
+				}
+			
+			}
+			if(removeIndex > -1) {
+				attbCart.remove(removeIndex);
+			}
+		}
+		
+		
 		List<BookBean> fullCartInfo = new ArrayList<BookBean>();
 		
-		for(int i=0; i< currentCart.size();i++) {
+		
+		
+		//System.out.print(attbCart.get(0));
+		
+		for(int i=0; i< attbCart.size();i++) {
 			try {
-				BookBean currBook = BookModel.getInstance().retrieveBook(currentCart.get(i));
+				BookBean currBook = BookModel.getInstance().retrieveBook(attbCart.get(i));
 				fullCartInfo.add(currBook);
 				total = total + currBook.getPrice();
 			} catch (ClassNotFoundException e) {

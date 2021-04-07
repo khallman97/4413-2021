@@ -12,6 +12,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import javax.naming.NamingException;
 
+import bean.AddressBean;
 import bean.AdminBean;
 import bean.AnalyticsBean;
 import bean.BookBean;
@@ -144,12 +145,23 @@ public class BookModel {
 	public UserBean getUser(String username) throws SQLException {
 		return userDao.getUser(username);
 	}
-
-	// Creates order and adds po items to order
-	public int addToOrder(String username, String status, int addrId) throws SQLException {
-		List<String> cartList = this.returnCart();
+	
+	public int createAddr(String street, String province, String country, String zip  ) throws SQLException {
+		return userDao.createAddr(street, province, country, zip);
+	}
+	
+	public AddressBean getAddr(int id) throws SQLException {
+		return userDao.retrieveAddr(id);
+	}
+	
+	// Creates order and adds po items to order need to add string cart list
+	public int addToOrder(String username, String status, int addrId, List<String> cartList) throws SQLException {
+		//List<String> cartList = this.returnCart();
 		int cartCount = this.returnCartCount();
-
+		for (int i = 0; i < cartList.size(); i++) {
+			System.out.print(cartList.get(i));
+			
+		}
 		int cost = 0;
 		// int total = this.ret
 		for (int i = 0; i < cartList.size(); i++) {
@@ -164,9 +176,9 @@ public class BookModel {
 			}
 
 		}
-		int orderid = orderDao.addOrder(username, status, addrId, cartCount, cost);
+		int orderid = orderDao.addOrder(username, status, addrId, cartList.size(), cost);
 
-		for (int i = 0; i < cartCount; i++) {
+		for (int i = 0; i < cartList.size(); i++) {
 			BookBean b;
 
 			try {

@@ -31,16 +31,16 @@
 							<b>Name:</b> ${user.name}
 						</p>
 						<p>
-							<b>Address:</b> ${user.addr}
+							<b>Address:</b> ${addrB.streett}
 						</p>
 						<p>
-							<b>Province:</b> ${user.addr}
+							<b>Province:</b> ${addrB.province}
 						</p>
 						<p>
-							<b>Country:</b> ${user.addr}
+							<b>Country:</b> ${addrB.country}
 						</p>
 						<p>
-							<b>Zip/Postal Code:</b> ${user.addr}
+							<b>Zip/Postal Code:</b> ${addrB.zip}
 						</p>
 					</div>
 				</fieldset>
@@ -50,26 +50,38 @@
 					<legend>Shipping Info</legend>
 					<div>
 						<p>
-							<b>Name:</b> ${user.name}
+							<b><label for="sameAsBilling">Shipping Adress is same as Billing (Check if yes): </label> <input type="checkbox"  onclick="disableShipFields();" id="sameAsBil" name="sameAsBil" value="sameAsBil"/></b>
 						</p>
 						<p>
-							<b>Phone Number:</b> ${user.addr}
+							<b><label for="Name">Shipping Name: </label> <input type="text" name="shipName" id="shipName" /></b>
 						</p>
 						<p>
-							<b>Address:</b> ${user.addr}
+							<b><label for="phoneNumber">Phone Number: </label> <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"/></b>
 						</p>
 						<p>
-							<b>Province:</b> ${user.addr}
+							<b><label for="addr">Address: </label> <input type="text" id="shipAddr" name="shipAddr"/></b>
 						</p>
 						<p>
-							<b>Country:</b> ${user.addr}
+							<b><label for="province">Province: </label> <input type="text" id="province" name="province"/></b>
+							
 						</p>
 						<p>
-							<b>Zip/Postal Code:</b> ${user.addr}
+							<b><label for="Country">Country: </label> <input type="text" id="Country" name="Country"/></b>
+						</p>
+						<p>
+							<b><label for="Zip">Zip/Postal Code: </label> <input type="text" id="zipcode" name="zipcode"/></b>
 						</p>
 					</div>
 				</fieldset>
-
+				<fieldset>
+					<legend>Cart Info</legend>
+					<div>
+						<p>
+							<b>Total:</b> ${total}
+						</p>
+						
+					</div>
+				</fieldset>
 				<FIELDSET>
 					<legend>Billing Info</legend>
 					<form method="POST" class="billingForm">

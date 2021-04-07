@@ -117,14 +117,14 @@ function addToCart(){
 		addBtn[i].addEventListener("click", (e)=> {
 			var bid = e.target.parentNode.parentNode.querySelector("span").innerHTML;
 			var price = e.target.parentNode.getElementsByClassName("price")[0].innerHTML;
-			data ="bid=" + bid;
+			data = "cart=" +bid;
 			//need to refresh cart counter
-			request.open("GET", ("rest/cart/add" + "?" + data), true);
+			request.open("GET", ("./main" + "?" + data), true);
 			request.onreadystatechange = () => {
 				if ((request.readyState == 4) && (request.status == 200)){
 					console.log("added to cart");
 					counter.innerHTML = parseInt(counter.innerHTML) + 1;
-					console.log(request.responseText);
+					//console.log(request.responseText);
 				}
 			};
 			request.send();
