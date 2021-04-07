@@ -23,7 +23,7 @@ function displayBooks() {
 			data += "value=" + category;
 		}
 		
-		request.open("GET", ("rest/book/read" + "?" + data), true);
+		request.open("GET", ("/Bookstore/rest/book/read" + "?" + data), true);
 		request.onreadystatechange = () => {
 			handler(request);
 		};
@@ -43,7 +43,7 @@ function displaySearchResults() {
 			data += "value=" + search;
 		}
 	
-		request.open("GET", ("rest/book/read" + "?" + data), true);
+		request.open("GET", ("/Bookstore/rest/book/read" + "?" + data), true);
 		request.onreadystatechange = () => {
 			handler(request);
 		};
@@ -119,7 +119,7 @@ function addToCart(){
 			var price = e.target.parentNode.getElementsByClassName("price")[0].innerHTML;
 			data ="bid=" + bid;
 			//need to refresh cart counter
-			request.open("GET", ("rest/cart/add" + "?" + data), true);
+			request.open("GET", ("/Bookstore/rest/cart/add" + "?" + data), true);
 			request.onreadystatechange = () => {
 				if ((request.readyState == 4) && (request.status == 200)){
 					console.log("added to cart");
