@@ -33,9 +33,9 @@
 		<FIELDSET>
 			<legend>Reviews</legend>
 			<div id="reviews">
-				<textarea class="form-control" rows="4" cols="50" id="reviewarea" placeholder="Enter Review"></textarea>
+				<textarea placeholder="Enter Review" class="form-control" rows="4" cols="50" id="reviewarea"><!--  --></textarea>
 				<input placeholder="Enter Rating" class="form-control" id="ratingarea"></input>
-				<button class="btn btn-secondary float-right" onclick="submitReview('${bookid}');">Submit</button>
+				<button type="button" class="btn btn-secondary float-right" onclick="submitReview(${bookid});">Submit</button>
 			</div>
 			<label>Previous Reviews Section</label>
 			<c:forEach items="${reviewList}" var="reviewList">

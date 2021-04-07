@@ -11,6 +11,8 @@ function submitReview(bid) {
 	data += "bid=" +bid + "&review=" +reviewareaData + "&rating=" +ratingareaData;
 	request.open("GET", ("../rest/review/create" + "?" + data), true);
 		request.onreadystatechange = () => {
+			console.log(request);
+			location.reload(); 
 			//handler(request);
 		};
 		request.send();

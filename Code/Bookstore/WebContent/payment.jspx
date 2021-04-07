@@ -3,57 +3,91 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
-	<jsp:directive.page contentType="text/html; charset=ISO-8859-1" 
-		pageEncoding="ISO-8859-1" session="true"/>
+	<jsp:directive.page contentType="text/html; charset=ISO-8859-1"
+		pageEncoding="ISO-8859-1" session="true" />
 	<jsp:output doctype-root-element="html"
 		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
 		omit-xml-declaration="true" />
-<html xmlns="http://www.w3.org/1999/xhtml">
+	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/res/bookstore.css" />
+
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/res/payment.js" defer='defer'>
 	;
 </script>
-<title>Log in or Register</title>
+<title>Payment</title>
 </head>
 <body>
 	<main>
 		<div id="mainDisplay">
 			<section>
-				<h4>Billing Info</h4>
-				<p>Name: ${user.name}</p>
-				<p>Address: ${user.addr}</p>
-				<p>Province:  ${user.addr}</p>
-				<p>Country:  ${user.addr}</p>
-				<p>Zip/Postal Code:  ${user.addr}</p>
-
+				<fieldset>
+					<legend>Billing Info</legend>
+					<div>
+						<p>
+							<b>Name:</b> ${user.name}
+						</p>
+						<p>
+							<b>Address:</b> ${user.addr}
+						</p>
+						<p>
+							<b>Province:</b> ${user.addr}
+						</p>
+						<p>
+							<b>Country:</b> ${user.addr}
+						</p>
+						<p>
+							<b>Zip/Postal Code:</b> ${user.addr}
+						</p>
+					</div>
+				</fieldset>
 			</section>
 			<section>
-				<h4>Shipping Info</h4>
-				<p>Name: ${user.name}</p>
-				<p>Phone Number: ${user.addr} </p>
-				<p>Address: ${user.addr}</p>
-				<p>Province: ${user.addr}</p>
-				<p>Country: ${user.addr}</p>
-				<p>Zip/Postal Code: ${user.addr}</p>
+				<fieldset>
+					<legend>Shipping Info</legend>
+					<div>
+						<p>
+							<b>Name:</b> ${user.name}
+						</p>
+						<p>
+							<b>Phone Number:</b> ${user.addr}
+						</p>
+						<p>
+							<b>Address:</b> ${user.addr}
+						</p>
+						<p>
+							<b>Province:</b> ${user.addr}
+						</p>
+						<p>
+							<b>Country:</b> ${user.addr}
+						</p>
+						<p>
+							<b>Zip/Postal Code:</b> ${user.addr}
+						</p>
+					</div>
+				</fieldset>
 
-				<h4>Billing Info</h4>
-				<form method="POST">
-				<label for = "fname">First Name:</label>
-				<input type="text" name="fname" id="fname"/><br/>
-				<label for = "lname">Last Name:</label>
-				<input type="text" name="lname" id="lname"/><br/>
-				<label for = "cardNum">Card Number:</label>
-				<input type="text" name="cardNum" id="cardNum" maxlength = "16"></input><br />
-				<label for = "CVV">CVV:</label>
-				<input type="text" name="CVV" id="CVV" maxlength = "3"></input><br />
-				<label for = "expiration">Expiration Date:</label>
-				<input type="month" name="expiration" id="expiration"></input><br />
-				</form> 
+				<FIELDSET>
+					<legend>Billing Info</legend>
+					<form method="POST" class="billingForm">
+						<label for="fname">First Name:</label> <input type="text"
+							name="fname" id="fname" /><br /> <label for="lname">Last
+							Name:</label> <input type="text" name="lname" id="lname" /><br /> <label
+							for="cardNum">Card Number:</label> <input type="text"
+							name="cardNum" id="cardNum" maxlength="16"></input><br /> <label
+							for="CVV">CVV:</label> <input type="text" name="CVV" id="CVV"
+							maxlength="3"></input><br /> <label for="expiration">Expiration
+							Date:</label> <input type="month" name="expiration" id="expiration"></input><br />
+							<button type="button" onClick="confirmOrder('${user.addr}','${user.user_name}');">Confirm
+				Order</button>
+			<button type="button">Change Info</button>
+					</form>
+				</FIELDSET>
 			</section>
-			<button onClick="confirmOrder('${user.addr}','${user.user_name}');">Confirm Order</button>
-			<button>Change Info</button>
+			
 		</div>
 	</main>
 </body>

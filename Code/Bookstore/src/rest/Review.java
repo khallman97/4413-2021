@@ -20,7 +20,6 @@ public class Review {
 	
 	@GET
 	@Path("/create/")
-	@Consumes("text/plain")
 	@Produces("text/plain")
 	public int addBook(@QueryParam("bid") String bid, @QueryParam("review") String review, @QueryParam("rating") int rating) throws Exception {
 		System.out.print("Review added bid is: " + bid);
