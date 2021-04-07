@@ -14,9 +14,9 @@
 	<main>
 		<section>
 			<p>New to bookstore?</p>
-			<button onClick="window.location.href= '/Bookstore/register';">Register</button>
+			<button onClick="window.location.href= './register';">Register</button>
 			<p>Already a member?</p>		
-			<button onClick="window.location.href= '/Bookstore/login';">Log In</button>
+			<button onClick="window.location.href= './login';">Log In</button>
 
 		</section>
 	</main>

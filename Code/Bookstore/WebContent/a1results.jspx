@@ -36,7 +36,7 @@
 </FIELDSET>
 </div>
 
-<button onClick="window.location.href = '/Bookstore/admin'">Back</button>
+<button onClick="window.location.href = './admin'">Back</button>
  </body>
 </html>
 </jsp:root>

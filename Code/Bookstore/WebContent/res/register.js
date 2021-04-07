@@ -67,7 +67,7 @@ function register() {
 	request.onreadystatechange = () => {
 		if ((request.readyState == 4) && (request.status == 200)){
 			console.log("Account Created");
-			window.location.href = "/Bookstore/payment?username=" + username;
+			window.location.href = "./payment?username=" + username;
 		}
 		
 	};

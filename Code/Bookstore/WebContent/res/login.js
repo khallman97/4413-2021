@@ -45,7 +45,7 @@ function login() {
 		// if login information is correct
 		if (request.responseText == "1"){
 			console.log("login");
-			window.location.href = "/Bookstore/payment?username=" + username;
+			window.location.href = "./payment?username=" + username;
 		} 
 		// if password is incorrect
 		else {

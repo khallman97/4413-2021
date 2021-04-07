@@ -48,7 +48,7 @@
 				</tr>
 			</table>
 			<button
-				onclick="window.location.href = '/Bookstore/MonthlyPurchase?month=' + document.getElementById('monthlyList').value;">Generate</button>
+				onclick="window.location.href = './MonthlyPurchase?month=' + document.getElementById('monthlyList').value;">Generate</button>
 		</FIELDSET>
 	</div>
 	<br></br>
