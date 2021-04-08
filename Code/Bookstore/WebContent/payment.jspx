@@ -86,14 +86,14 @@
 					<legend>Billing Info</legend>
 					<form method="POST" class="billingForm">
 						<label for="fname">First Name:</label> <input type="text"
-							name="fname" id="fname" /><br /> <label for="lname">Last
-							Name:</label> <input type="text" name="lname" id="lname" /><br /> <label
+							name="fname" id="fname"/><br /> <label for="lname">Last
+							Name:</label> <input type="text" name="lname" id="lname"/><br /> <label
 							for="cardNum">Card Number:</label> <input type="text"
 							name="cardNum" id="cardNum" maxlength="16"></input><br /> <label
-							for="CVV">CVV:</label> <input type="text" name="CVV" id="CVV"
+							for="CVV" >CVV:</label> <input type="text" name="CVV" id="CVV"
 							maxlength="3"></input><br /> <label for="expiration">Expiration
 							Date:</label> <input type="month" name="expiration" id="expiration"></input><br />
-							<button type="button" onClick="confirmOrder('${user.addr}','${user.user_name}');">Confirm
+							<button type="button" onClick="confirmOrder('${user.addr}','${user.user_name}', ${rejectionCounter});">Confirm
 				Order</button>
 			<button type="button">Change Info</button>
 					</form>

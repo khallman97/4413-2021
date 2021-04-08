@@ -1,6 +1,4 @@
-var counter = 0;
-
-function confirmOrder(addr, username) {
+function confirmOrder(addr, username, counter) {
 	console.log(addr);
 	console.log(username);
 	var request2 = new XMLHttpRequest();

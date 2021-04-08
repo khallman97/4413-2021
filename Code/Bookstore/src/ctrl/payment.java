@@ -87,6 +87,14 @@ public class payment extends HttpServlet {
 				}
 			
 			}
+			int counter = 0;
+			Object counterObj = getServletContext().getAttribute("rejectionCounter");
+			if(counterObj != null) {
+				counter = Integer.parseInt(counterObj.toString());
+			}
+			counter = (counter + 1) % 3;
+			System.out.println("Counter is " + counter);
+			getServletContext().setAttribute("rejectionCounter", counter);
 			//Create order with all this info
 			
 			
