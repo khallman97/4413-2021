@@ -74,6 +74,7 @@ public class payment extends HttpServlet {
 						List<BookBean> fullCartInfo = new ArrayList<BookBean>();
 						request.getSession().setAttribute("cart", fullCartInfo);
 						request.getSession().setAttribute("total", 0);
+						
 					}
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block

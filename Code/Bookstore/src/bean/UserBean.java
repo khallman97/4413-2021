@@ -14,6 +14,7 @@ public class UserBean {
 		this.user_name = user_name;
 		this.addr = addr;
 		this.password = password;
+		this.type = type;
 	}
 	
 	public String getName() {

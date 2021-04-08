@@ -92,13 +92,13 @@ public class BookModel {
 		return this.revDao.retrieveReviews(bid);
 	}
 
-	public String bookAdd(String bid, String title, double price, String category, String author, String picture_link) {
-		return "hello";
+	public int bookAdd(String bid, String title, double price, String category, String author, String picture_link) throws SQLException, NamingException {
+		return this.book.insert(bid, title, price, category, author, picture_link);
 
 	}
 
-	public String bookDelete(String bid) {
-		return "hello";
+	public int bookDelete(String bid) throws SQLException, NamingException {
+		return this.book.delete(bid);
 	}
 
 	public void addToCart(String bid) {
@@ -184,7 +184,7 @@ public class BookModel {
 			try {
 				b = this.retrieveBook(cartList.get(i));
 				poItemDAO.addPOItem(orderid, b.getBid(), (int) b.getPrice(), 1);
-
+				this.addToEvent( b.getBid(), "PURCHASE");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

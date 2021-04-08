@@ -7,6 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import bean.UserBean;
 import dao.UserDAO;
 import model.BookModel;
 
@@ -54,9 +55,18 @@ public class User {
 	@Path("/createAdmin/")
 	@Consumes("text/plain")
 	@Produces("text/plain")
-	public int createAdmin(@QueryParam("username") String username, @QueryParam("name") String name, @QueryParam("addr") String addr, @QueryParam("password") String pass) throws Exception {
-
-		return BookModel.getInstance().addAdmin(username, name, addr,pass);
+	public String createAdmin(@QueryParam("username") String username, @QueryParam("name") String name, @QueryParam("addr") String addr, @QueryParam("password") String pass) throws Exception {
+		String res = "";
+		int login = BookModel.getInstance().loginUser(username, pass);
+		if(login == 1) {
+			UserBean user =  BookModel.getInstance().getUser(username);
+			if((user.getType().equals("admin"))) {
+				res = Integer.toString( BookModel.getInstance().addAdmin(username, name, addr, pass));
+			} else {
+				res = "You need to be partner in order to use this serivce";
+			}
+		}
+		return res;
 	}
 	
 	
