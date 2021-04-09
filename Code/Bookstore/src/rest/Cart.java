@@ -11,6 +11,7 @@ import model.BookModel;
 public class Cart {
 	
 	
+	// Add a book to the cart
 	@GET
 	@Path("/add/")
 	@Produces("text/plain")
@@ -21,6 +22,7 @@ public class Cart {
 		return "added to cart " + bid;
 	}
 	
+	// get all the books in the cart
 	@GET
 	@Path("/all/")
 	@Produces("text/plain")
@@ -30,6 +32,7 @@ public class Cart {
 		 
 	}
 	
+	// remove an item from the cart
 	@GET
 	@Path("/remove/")
 	@Produces("text/plain")

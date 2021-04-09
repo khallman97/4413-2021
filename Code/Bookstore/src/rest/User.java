@@ -25,6 +25,7 @@ public class User {
 		
 	}
 	
+	// authenticate the user if username and password is in system
 	@GET
 	@Path("/login/")
 	@Produces("text/plain")
@@ -42,6 +43,7 @@ public class User {
 //		return BookModel.getInstance().addUser(username, name, addr, pass);
 //	}
 	
+	// add a new user
 	@GET
 	@Path("/add/")
 	@Produces("text/plain")
@@ -51,6 +53,7 @@ public class User {
 	}
 	
 	//May need to limit this rest call
+	// add a new admin
 	@POST
 	@Path("/createAdmin/")
 	@Consumes("text/plain")

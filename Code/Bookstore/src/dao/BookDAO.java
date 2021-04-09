@@ -17,6 +17,7 @@ public class BookDAO {
 
 	Connection con;
 	
+	// Create connection to db
 	public BookDAO () {
 		DBConnection dbc = new DBConnection();
 		this.con = dbc.returnCon();

@@ -19,6 +19,7 @@ public class Book {
 //		return BookModel.getInstance().retrieveBook(bid).getInfo();
 //	}
 	
+	// Return a list of books in JSON format
 	@GET
 	@Path("/read/")
 	@Produces("text/plain")

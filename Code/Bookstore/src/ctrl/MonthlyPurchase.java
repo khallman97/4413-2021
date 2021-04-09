@@ -37,6 +37,8 @@ public class MonthlyPurchase extends HttpServlet {
 		String month = request.getParameter("month");
 //		String creditAcquired = request.getParameter("year");
 		
+		// Display results of Books sold at a given month and year
+		// Get the events of the specified month and year
 		List<EventBean> eventlist = null;
 		try {
 			eventlist = BookModel.getInstance().getEventsByDay(month, "2021");

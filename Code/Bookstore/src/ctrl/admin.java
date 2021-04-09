@@ -56,6 +56,7 @@ public class admin extends HttpServlet {
 		List<AdminBean> userAvgCost = null;
 		List<AdminBean> userAvgPurchaseCount = null;
 
+		// Get most reviewed books
 		try {
 			reviewList = BookModel.getInstance().getMostReviewed();
 		} catch (ClassNotFoundException e) {
@@ -66,6 +67,7 @@ public class admin extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		// get most visited books
 		try {
 			visitedList = BookModel.getInstance().get10MostVisited();
 		} catch (ClassNotFoundException | SQLException e) {
@@ -73,6 +75,7 @@ public class admin extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		// get user info
 		try {
 			userInfoList = BookModel.getInstance().getUserInfo();
 		} catch (ClassNotFoundException | SQLException e) {
@@ -83,7 +86,7 @@ public class admin extends HttpServlet {
 		double items = 0;
 		
 		
-		
+		// get overall statistics for avg spent
 		try {
 			avg = BookModel.getInstance().getAvgOverallSpent();
 			//System.out.print("avg: " +avg);

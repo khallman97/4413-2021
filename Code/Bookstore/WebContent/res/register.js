@@ -21,7 +21,7 @@ function validate() {
 	var country = document.getElementById("country").value;
 	var zip = document.getElementById("zip").value;
 
-	console.log(username);
+	//console.log(username);
 
 	if (username == "" || password == "" || name == "" || confirmPassword == "" || street == "" || province == "" || country == "" || zip == "") {
 		error.style.display = "inline";

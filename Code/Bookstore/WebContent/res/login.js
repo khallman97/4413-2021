@@ -41,7 +41,7 @@ function login() {
 	request.open("GET", ("rest/user/login" + "?" + data), true);
 	request.onreadystatechange = () => {
 		if ((request.readyState == 4) && (request.status == 200)){
-		console.log(request.responseText)
+		//console.log(request.responseText)
 		// if login information is correct
 		if (request.responseText == "1"){
 			console.log("login");

@@ -20,6 +20,7 @@ public class OrderDAO {
 		this.con = dbc.returnCon();
 	}
 	
+	// Add order
 	public int addOrder(String username, String status, int addrId, int POItems, int orderTotalCost) throws SQLException {
 		String preparedStatement ="insert into BookStore2021.Orders  (user_name, status, addressId, poItems, orderTotalCost) values(?,?,?,?,?)";
 		PreparedStatement stmt = con.prepareStatement(preparedStatement, Statement.RETURN_GENERATED_KEYS);
@@ -44,6 +45,7 @@ public class OrderDAO {
 		
 	}
 	
+	// Update an order
 	public int updateOrder(int id, String status) throws SQLException {
 		String preparedStatement ="UPDATE BookStore2021.Orders SET status = ? WHERE id = ?";
 		PreparedStatement stmt = con.prepareStatement(preparedStatement);
@@ -52,6 +54,7 @@ public class OrderDAO {
 		return stmt.executeUpdate();
 	}
 	
+	// get the order
 	public POBean getOrder(int id) throws SQLException {
 		String query = "select * from BookStore2021.Orders where id = "+id;
 		Statement p = this.con.createStatement();

@@ -14,7 +14,7 @@ import model.BookModel;
 @Path("event")
 public class Event {
 	
-	
+	// Add a event
 	@POST
 	@Path("/add/")
 	@Produces("text/plain")
@@ -22,6 +22,7 @@ public class Event {
 		return BookModel.getInstance().addToEvent(bid, eventType);
 	}
 	
+	// get a list of all events
 	@GET
 	@Path("/read/")
 	@Produces("text/plain")
@@ -29,6 +30,7 @@ public class Event {
 		return BookModel.getInstance().getEvent();
 	}
 	
+	// get a list of all events by bid
 	@GET
 	@Path("/readByBid/")
 	@Produces("text/plain")
@@ -36,6 +38,7 @@ public class Event {
 		return BookModel.getInstance().getEventsByBid(bid);
 	}
 	
+	// get a list of all events by month and year
 	@GET
 	@Path("/readByDay/")
 	@Produces("text/plain")

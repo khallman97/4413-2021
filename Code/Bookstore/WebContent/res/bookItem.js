@@ -1,6 +1,6 @@
 displayBook();
 
-
+// add a review for the book
 function submitReview(bid) {
 	var request = new XMLHttpRequest();
 	console.log("Here");
@@ -11,7 +11,7 @@ function submitReview(bid) {
 	data += "bid=" +bid + "&review=" +reviewareaData + "&rating=" +ratingareaData;
 	request.open("GET", ("../rest/review/create" + "?" + data), true);
 		request.onreadystatechange = () => {
-			console.log(request);
+			//console.log(request);
 			location.reload(); 
 			//handler(request);
 		};
@@ -40,12 +40,12 @@ function handler(request){
 	console.log(request);
 	if ((request.readyState == 4) && (request.status == 200)){
 		var target = document.getElementById("result");
-		console.log(request.responseText);
+		//console.log(request.responseText);
 		var books = JSON.parse(request.responseText);
 		var html = "<div class=\"books\">";
 		
 		for (var i = 0; i < books.length; i++){
-			console.log(books[i]);
+			//console.log(books[i]);
 			html+="<div class=\"card mb-3\">" +
 				"<div class=\"row no-gutters\">" + 
 				"<div class=\"col-md-4\">" +

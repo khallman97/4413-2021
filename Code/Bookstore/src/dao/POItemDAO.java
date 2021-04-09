@@ -21,6 +21,7 @@ public class POItemDAO {
 		this.con = dbc.returnCon();
 	}
 	
+	// Add a Purchase Order item
 	public int addPOItem(int orderId , String bid, int price, int quantity) throws SQLException, ClassNotFoundException {
 		String preparedStatement ="insert into BookStore2021.POItem (orderId, bid, price, quantity) values(?,?,?,?)";
 		PreparedStatement stmt = con.prepareStatement(preparedStatement);

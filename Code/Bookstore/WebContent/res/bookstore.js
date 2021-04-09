@@ -1,5 +1,5 @@
 var category = document.getElementsByName("category"); // get all radio buttons with the name category
-console.log(category.length);
+//console.log(category.length);
 
 // add an change event listener to each radio button
 for (var i = 0; i < category.length; i++) {
@@ -52,15 +52,15 @@ function displaySearchResults() {
 
 // Update the DOM to display the books
 function handler(request){
-	console.log(request);
+	//console.log(request);
 	if ((request.readyState == 4) && (request.status == 200)){
 		var target = document.getElementById("result");
-		console.log(request.responseText);
+		//console.log(request.responseText);
 		var books = JSON.parse(request.responseText);
 		var html = "<div class=\"books row\">";
 		
 		for (var i = 0; i < books.length; i++){
-			console.log(books[i]);
+			//console.log(books[i]);
 			html+="<div class=\"card col-4\">" +
 			"<img class=\"card-img-top hover-shadow\" src=\"" + books[i].picture_link + "\">" +
 			"<span class=\"bid\" style=\"display:none;\">" + books[i].bid + "</span>" +
@@ -101,7 +101,7 @@ function addClickEvent(){
 		books[i].addEventListener("click", (e)=> {
 			//console.log(e.target.parentNode);
 			var bid = e.target.parentNode.querySelector('span').innerHTML;
-			console.log("clicked " + bid);
+			//console.log("clicked " + bid);
 			window.location.href = "./Book/" + bid;
 		})
 	}

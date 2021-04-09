@@ -65,7 +65,9 @@
 				</tr>
 				<c:forEach items="${mostVisited}" var="topViewed">
 					<tr>
-						<td>${mostVisited}</td>
+						<td>${topViewed.bid}</td>
+						<td>${topViewed.title}</td>
+						<td>${topViewed.count}</td>
 					</tr>
 				</c:forEach>
 			</table>

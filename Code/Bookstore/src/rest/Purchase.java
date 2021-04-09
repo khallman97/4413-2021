@@ -18,6 +18,7 @@ public class Purchase {
 //		
 //	}
 	
+	// add a new address
 	@GET
 	@Path("/newAddr/")
 	@Produces("text/plain")

@@ -10,7 +10,7 @@ import javax.ws.rs.*;
 @Path("review")
 public class Review {
 
-	
+	// get a list of reviews by bid
 	@GET
 	@Path("/read/")
 	@Produces("text/plain")
@@ -18,6 +18,7 @@ public class Review {
 		return BookModel.getInstance().exportJSONRev(bid);
 	}
 	
+	// add a book review
 	@GET
 	@Path("/create/")
 	@Produces("text/plain")

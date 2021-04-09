@@ -35,12 +35,14 @@ public class soldListener implements ServletRequestListener {
      */
     public void requestDestroyed(ServletRequestEvent arg0)  { 
          // TODO Auto-generated method stub
+    	// Get the request
     	HttpServletRequest request = (HttpServletRequest) arg0.getServletRequest();
 //        System.out.println("Request destroyed " + request.getPathInfo());
 
+    	// Check when login request is finished
         if (request.getPathInfo() != null && request.getPathInfo().equals("/user/login")){
         	try {
-				top = BookModel.getInstance().getTopSold();
+				top = BookModel.getInstance().getTopSold();	// get the top sold book
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

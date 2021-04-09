@@ -27,6 +27,8 @@ public class register extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		//Display user register page
 		String target = "/register.jspx";
 
 		request.getRequestDispatcher(target).forward(request, response);

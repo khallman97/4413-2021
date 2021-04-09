@@ -55,6 +55,7 @@ public class bookItem extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 
+		// Display page of the book item
 		String target = "/bookItem.jspx";
 
 		
@@ -74,6 +75,7 @@ public class bookItem extends HttpServlet {
 			}
 		}
 		
+		// get the list of reviews for the book
 		List<ReviewBean> revList  = null;
 		try {
 			revList = BookModel.getInstance().exportReview(refinedBID);

@@ -59,6 +59,8 @@ public class bookstore extends HttpServlet {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		// Display main bookstore page
 		String target = "/main.jspx";
 		
 //		Map<String, POItemBean> cart = new HashMap<String, POItemBean>();
