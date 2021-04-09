@@ -29,3 +29,7 @@ Click submit
 If the text is added to the review section, but no alert is triggered on the page, the XSS failed, and the security worked.
 If an alert is triggered after adding the review or on reloading the page, the XSS attack worked.
 
+### SQL Injection Testing
+For SQL Injection testing we created a rest client to attempt to replicate an attacker trying to access the SQL tables using methods such as "1=1" is always true and batched sql statements. You can run the test case by running the java application on eclipse located at https://github.com/khallman97/4413-2021/tree/main/Code/TestCode/src/testClient. This will attempt to login into a account and delete all the books in the sql table using rest api.
+
+
