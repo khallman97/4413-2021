@@ -1,11 +1,22 @@
 package bean;
 
+/**
+ * Class for creating a new event bean
+ *
+ */
+
 public class EventBean {
 	
 	private String day;
 	private String bid;
 	private String eventType;
 	
+	/**
+	 * Constructor for a new event bean
+	 * @param day
+	 * @param bid
+	 * @param eventType
+	 */
 	public EventBean(String day, String bid, String eventType) {
 		super();
 		this.day = day;

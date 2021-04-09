@@ -3,6 +3,7 @@ package bean;
 import java.util.ArrayList;
 import java.util.List;
 
+//No longer used shopping cart is stored in attribute
 public class ShoppingCartBean {
 
 	private List<String> bid;

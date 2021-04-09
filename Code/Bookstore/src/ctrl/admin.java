@@ -103,7 +103,7 @@ public class admin extends HttpServlet {
 		
 		
 		
-		//System.out.print("reviewlist size" + reviewList.size());
+		
 		request.getSession().setAttribute("reviewed", reviewList);
 		request.getSession().setAttribute("mostVisited", visitedList);
 		request.getSession().setAttribute("userInfo", userInfoList);

@@ -63,13 +63,6 @@ public class bookstore extends HttpServlet {
 		// Display main bookstore page
 		String target = "/main.jspx";
 		
-//		Map<String, POItemBean> cart = new HashMap<String, POItemBean>();
-//		if (request.getSession().getAttribute("cart") != null){
-//			cart = (Map<String, POItemBean>) request.getSession().getAttribute("cart");
-//		} else {
-//			request.getSession().setAttribute("cart", cart);
-//			//request.getSession().setAttribute("cartSize", cart.size());
-//		}
 		
 		
 		if (request.getParameter("addToCart") != null){
@@ -81,15 +74,12 @@ public class bookstore extends HttpServlet {
 			if (request.getParameter("price") != null){
 				price = Double.parseDouble(request.getParameter("price").toString());
 			}
-//			POItemBean ib = new POItemBean(cart.size() + 1,bid,price);
-//			cart.put(bid, ib);
-//			request.getSession().setAttribute("cart", cart);
-//			request.getSession().setAttribute("cartSize", cart.size());
+
 		}
 		
 		if(request.getParameter("cart") != null) {
 			String bid = request.getParameter("cart");
-			System.out.println("cart bid" + bid);
+			
 			cart.add(bid);
 			request.getSession().setAttribute("currentCart", cart);
 		}

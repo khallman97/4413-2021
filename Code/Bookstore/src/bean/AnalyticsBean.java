@@ -1,12 +1,23 @@
 package bean;
 
+/**
+ * Class used to create a bean for some analytic functions
+ *
+ */
+
 public class AnalyticsBean {
 	private String eventType;
 	private int count;
 	private String bid;
 	private String title;
 	
-	
+	/**
+	 * Constructor for creating a new analytic bean
+	 * @param eventType
+	 * @param count
+	 * @param bid
+	 * @param title
+	 */
 	public AnalyticsBean(String eventType, int count, String bid, String title) {
 		super();
 		this.eventType = eventType;

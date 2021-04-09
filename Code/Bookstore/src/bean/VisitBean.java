@@ -1,10 +1,20 @@
 package bean;
 
+/**
+ * Class for creating a new visit bean
+ *
+ */
 public class VisitBean {
 	private String day;
 	private String bid;
 	private String eventType;
-
+	
+	/**
+	 * Constructor for creating a new visit bean
+	 * @param day
+	 * @param bid
+	 * @param eventType
+	 */
 	public VisitBean(String day, String bid, String eventType) {
 		super();
 		this.day = day;

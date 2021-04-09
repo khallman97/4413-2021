@@ -1,5 +1,9 @@
 package bean;
 
+/**
+ * Class used to create a new user bean
+ *
+ */
 public class UserBean {
 	
 	private String name;
@@ -8,6 +12,14 @@ public class UserBean {
 	private String password;
 	private String type;
 	
+	/**
+	 * Constructor for creating a new user bean
+	 * @param name
+	 * @param user_name
+	 * @param addr
+	 * @param type
+	 * @param password
+	 */
 	public UserBean(String name, String user_name, int addr, String type,String password) {
 		super();
 		this.name = name;

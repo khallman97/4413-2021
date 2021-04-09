@@ -36,10 +36,13 @@ public class payment extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
+			
+			//Get username
 			String username = request.getParameter("username");
 			UserBean user = null;
 			AddressBean addrB= null;
+			
+			//Create address and user beans from username
 			try {
 				user = BookModel.getInstance().getUser(username);
 				addrB = BookModel.getInstance().getAddr(user.getAddr());
@@ -50,6 +53,7 @@ public class payment extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			//Store them in the session
 			request.getSession().setAttribute("user", user);
 			request.getSession().setAttribute("addrB", addrB);
 			
@@ -57,17 +61,18 @@ public class payment extends HttpServlet {
 			String status = request.getParameter("status");
 			String addr = request.getParameter("addr");
 			
+			//Get the cart
 			@SuppressWarnings("unchecked")
 			List<String> attbCart = (List<String>) request.getSession().getAttribute("currentCart");
 			
-			//check for nulls
+			//check for nulls in creating new order
 			if(un != null && status != null && addr != null) {
 				try {
 					int adrId = Integer.parseInt(addr);
-					System.out.println("\n" +addr);
-					System.out.println(attbCart.get(0));
+					//Create new order
 					int worked = BookModel.getInstance().addToOrder(un, status, adrId, attbCart);
-					//System.out.println(worked);
+					
+					//if it worked reset cart and total in session
 					if(worked == 1) {
 						attbCart = new ArrayList<String>();
 						request.getSession().setAttribute("currentCart", attbCart);
@@ -88,13 +93,15 @@ public class payment extends HttpServlet {
 				}
 			
 			}
+			
+			/* area used below is for tracking a rejection every 3 orders */
 			int counter = 0;
 			Object counterObj = getServletContext().getAttribute("rejectionCounter");
 			if(counterObj != null) {
 				counter = Integer.parseInt(counterObj.toString());
 			}
 			counter = (counter + 1) % 3;
-			System.out.println("Counter is " + counter);
+			
 			getServletContext().setAttribute("rejectionCounter", counter);
 			//Create order with all this info
 			

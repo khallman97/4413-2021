@@ -1,11 +1,26 @@
 package bean;
 
+/*
+ * Class for creating a new review bean
+ */
 public class ReviewBean {
 	
 	private String bid;
 	private String review;
 	private int rating;
 	
+	/**
+	 * Class for creating a new review bean
+	 * @param bid
+	 * @param review
+	 * @param rating
+	 */
+	public ReviewBean(String bid, String review, int rating) {
+		super();
+		this.bid = bid;
+		this.review = review;
+		this.rating = rating;
+	}
 	
 	public String getBid() {
 		return bid;
@@ -37,12 +52,7 @@ public class ReviewBean {
 	}
 
 
-	public ReviewBean(String bid, String review, int rating) {
-		super();
-		this.bid = bid;
-		this.review = review;
-		this.rating = rating;
-	}
+	
 	
 
 }

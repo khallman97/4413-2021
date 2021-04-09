@@ -52,8 +52,7 @@ public class bookItem extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 
 		// Display page of the book item
 		String target = "/bookItem.jspx";
@@ -80,36 +79,16 @@ public class bookItem extends HttpServlet {
 		try {
 			revList = BookModel.getInstance().exportReview(refinedBID);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		getServletContext().setAttribute("lastVisited", refinedBID);
-		System.out.println(revList.size());
 		request.getSession().setAttribute("bookid", refinedBID);
 		request.getSession().setAttribute("reviewList", revList);
-//		Enumeration<String> inputs = request.getAttributeNames();
-		
-		
-		
-		
-//		BookModel model = (BookModel)getServletContext().getAttribute("BookModel");
-		
-//		try {
-//			response.setContentType("application/json");
-//			PrintWriter out = response.getWriter();
-//			out.printf(reviewAsHTML(BookModel.getInstance(),bid));
-//			out.flush();
-//		
-//		
-//	} catch (Exception e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-		
-		
-//	}
+
 		request.getRequestDispatcher(target).forward(request, response);
 
 	}

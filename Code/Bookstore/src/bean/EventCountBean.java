@@ -1,10 +1,20 @@
 package bean;
 
+/**
+ * Class for creating a new event count bean
+ *
+ */
 public class EventCountBean {
 	String title;
 	String bid;
 	String count;
-
+	
+	/**
+	 * Constructor for creating a new event count bean
+	 * @param title
+	 * @param bid
+	 * @param count
+	 */
 	public EventCountBean(String title, String bid, String count) {
 		super();
 		this.title = title;

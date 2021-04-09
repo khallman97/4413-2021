@@ -35,7 +35,7 @@ public class MonthlyPurchase extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String month = request.getParameter("month");
-//		String creditAcquired = request.getParameter("year");
+
 		
 		// Display results of Books sold at a given month and year
 		// Get the events of the specified month and year
@@ -50,7 +50,6 @@ public class MonthlyPurchase extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-//		System.out.println(eventlist.get(0).getDay());
 		
 		request.getSession().setAttribute("event", eventlist);
 		

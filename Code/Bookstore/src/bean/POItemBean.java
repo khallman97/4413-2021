@@ -1,11 +1,21 @@
 package bean;
 
+/**
+ * Class for creating a purchase order item bean
+ *
+ */
 public class POItemBean {
 	private int id;
 	private String bid;
 	private double price;
 	private int quantity;
-
+	
+	/**
+	 * Constructor for creating a new purchase order item
+	 * @param id
+	 * @param bid
+	 * @param price
+	 */
 	public POItemBean(int id, String bid, double price) {
 		super();
 		this.id = id;

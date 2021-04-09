@@ -25,8 +25,8 @@ public class ReviewDAO {
 
 	}
 
-	//select review by bid
-	
+
+	//Returns a map of reviews for a bid
 	public Map<String, ReviewBean> retrieveReviews(String bidSearch) throws SQLException{
 		System.out.println("Going to Info...");
 		String query = "select * from BookStore2021.Review where bid = '" +bidSearch+"'";
@@ -49,6 +49,7 @@ public class ReviewDAO {
 		return rv;
 	}
 	
+	//Returns a list of review beans for a bid
 	public List<ReviewBean> exportReviews(String bidSearch) throws SQLException{		
 		String query = "select * from BookStore2021.Review where bid = '" +bidSearch+"'";
 		PreparedStatement p = this.con.prepareStatement(query);
@@ -86,6 +87,7 @@ public class ReviewDAO {
 		 return stmt.executeUpdate();
 	}
 	
+	//Gets most reviewed books 
 	public List<AnalyticsBean> getMostReviewed() throws SQLException {
 		String query = "SELECT COUNT(BookStore2021.Review.bid) as NumberOfReviews, BookStore2021.Review.bid,  BookStore2021.Book.title\n" + 
 				"FROM BookStore2021.Review\n" + 

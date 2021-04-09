@@ -12,6 +12,10 @@ public class DBConnection {
 		
 	}
 	
+	/**
+	 * Creates a connection for the cloud database on AWS and returns it 
+	 * @return Connection
+	 */
 	@SuppressWarnings("finally")
 	public static Connection returnCon() {
 		String url="jdbc:mysql://bookstore-db-2021.cmzbrp6mecej.us-east-1.rds.amazonaws.com";

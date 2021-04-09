@@ -1,5 +1,10 @@
 package bean;
 
+/**
+ * Class for creating a new book bean
+ * 
+ */
+
 public class BookBean {
 	private String bid;
 	private String title;
@@ -8,6 +13,15 @@ public class BookBean {
 	private String author;
 	private String picture_link;
 
+	/**
+	 * Constructor for creating a new book bean
+	 * @param bid
+	 * @param title
+	 * @param price
+	 * @param category
+	 * @param author
+	 * @param picture_link
+	 */
 	public BookBean(String bid, String title, double price, String category, String author, String picture_link) {
 		super();
 		this.bid = bid;

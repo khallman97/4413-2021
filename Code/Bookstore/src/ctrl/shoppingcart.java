@@ -42,20 +42,18 @@ public class shoppingcart extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		//Get cart from session
 		List<String> attbCart = (List<String>) request.getSession().getAttribute("currentCart");
 		
 		
 		//Removes item from cart 
 		if(request.getParameter("remove") != null) {
-			
 			String removeBid = request.getParameter("remove");
-			//System.out.print("here: " + removeBid);
 			int removeIndex = -1;
 			for(int i=0; i< attbCart.size();i++) {
 				if(attbCart.get(i).equals(removeBid)) {
 					removeIndex = i;
 				}
-			
 			}
 			if(removeIndex > -1) {
 				attbCart.remove(removeIndex);
@@ -67,8 +65,8 @@ public class shoppingcart extends HttpServlet {
 		
 		
 		
-		//System.out.print(attbCart.get(0));
 		
+		//gety cart info and store as list of book beans
 		for(int i=0; i< attbCart.size();i++) {
 			try {
 				BookBean currBook = BookModel.getInstance().retrieveBook(attbCart.get(i));
@@ -82,12 +80,14 @@ public class shoppingcart extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		//Pass info to session
 		request.getSession().setAttribute("cart", fullCartInfo);
 		request.getSession().setAttribute("total", total);
 		String target = "/cart.jspx";
 		request.getRequestDispatcher(target).forward(request, response);
 		
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**

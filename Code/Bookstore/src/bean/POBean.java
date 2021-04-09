@@ -1,13 +1,26 @@
 package bean;
 
+/**
+ * Class for creating a new Purchase order bean
+ *
+ */
 public class POBean {
-
+	
+	
 	private int id;
 	private String lname;
 	private String fname;
 	private String status;
 	private int address;
-
+	
+	/**
+	 * Constructor for creating a new purchase order bean
+	 * @param id
+	 * @param lname
+	 * @param fname
+	 * @param status
+	 * @param address
+	 */
 	public POBean(int id, String lname, String fname, String status, int address) {
 		super();
 		this.id = id;

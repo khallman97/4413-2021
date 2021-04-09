@@ -1,5 +1,10 @@
 package bean;
 
+/**
+ * Class created for the adress bean, contains: id, street, province, country, zip and phone#
+ *
+ */
+
 public class AddressBean {
 	private int id;
 	private String streett;
@@ -7,7 +12,16 @@ public class AddressBean {
 	private String country;
 	private String zip;
 	private String phone;
-
+	
+	/**
+	 * Constructor for creating an address bean
+	 * @param id
+	 * @param streett
+	 * @param province
+	 * @param country
+	 * @param zip
+	 * @param phone
+	 */
 	public AddressBean(int id, String streett, String province, String country, String zip, String phone) {
 		super();
 		this.id = id;

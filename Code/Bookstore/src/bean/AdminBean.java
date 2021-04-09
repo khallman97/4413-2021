@@ -1,5 +1,9 @@
 package bean;
 
+/**
+ * Class for holding information used on the admin page
+ *
+ */
 
 public class AdminBean {
 	private String user;
@@ -7,7 +11,14 @@ public class AdminBean {
 	private String zip;
 	private int quantity;
 //	private int visited;
-
+	
+	/**
+	 * Constructor for creating a new admin bean
+	 * @param user
+	 * @param totalSpent
+	 * @param zip
+	 * @param quantity
+	 */
 	public AdminBean(String user, double totalSpent, String zip, int quantity) {
 		super();
 		this.user = user;
