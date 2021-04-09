@@ -21,3 +21,11 @@ From there, run our application inside eclipse which will then be available on y
 ### Load Testing
 For load testing we used jmeter. 
 Please ensure you have Jmeter installed in order to follow our load testing. Download the [TestPlan.jmx](https://github.com/khallman97/4413-2021/tree/main/Load%20Testing%20Setup%20and%20Results/JMeter%20Test%20File) and open it inside of jmeter. After this hit the run button to and check the summery results as well as full results to see load testing. To view results we got please refer to [the excel file](https://github.com/khallman97/4413-2021/tree/main/Load%20Testing%20Setup%20and%20Results/Excel%20file%20for%20all%20preformance%20reports) for our full performance results.
+
+### XSS Testing
+For XSS testing, select a book form the main page.
+In the review section, enter the following: <script>alert("Attack")</script>
+Click submit
+If the text is added to the review section, but no alert is triggered on the page, the XSS failed, and the security worked.
+If an alert is triggered after adding the review or on reloading the page, the XSS attack worked.
+
