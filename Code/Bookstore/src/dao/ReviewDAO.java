@@ -40,6 +40,8 @@ public class ReviewDAO {
 			rv.put(bid, new ReviewBean(bid, review, rating));
 
 		}
+		System.out.println("<script>A");
+
 		r.close();
 		p.close();
 		con.close();
@@ -66,10 +68,11 @@ public class ReviewDAO {
 	
 	//Insert review into db
 	public int insert(String bid, String review, int rating) throws SQLException, NamingException {
+		String newReview = review.replaceAll("<", "&lt;");
 		String preparedStatement ="insert into BookStore2021.Review(bid, review, rating) values(?,?,?)";
 		PreparedStatement stmt = con.prepareStatement(preparedStatement);
 		stmt.setString(1, bid);
-		stmt.setString(2, review);
+		stmt.setString(2, newReview);
 		stmt.setInt(3, rating);
 
 		return stmt.executeUpdate();

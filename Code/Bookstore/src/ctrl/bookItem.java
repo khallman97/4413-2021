@@ -62,7 +62,7 @@ public class bookItem extends HttpServlet {
 		if (request.getParameter("bid") != null && request.getParameter("bid") != "") {
 			bid = request.getParameter("bid");
 		}
-		
+
 		String newBID = request.getPathInfo().toString();
 		String refinedBID = "";
 		for (int i = 0; i <= newBID.length()-1; i++) {
@@ -84,7 +84,7 @@ public class bookItem extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		getServletContext().setAttribute("lastVisited", refinedBID);
 		System.out.println(revList.size());
 		request.getSession().setAttribute("bookid", refinedBID);
 		request.getSession().setAttribute("reviewList", revList);

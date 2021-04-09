@@ -30,10 +30,11 @@ public class UserDAO {
 	public int createAddr(String street, String province, String country, String zip ) throws SQLException {
 		String query = "insert into BookStore2021.Address (street, province, country, zip) values(?,?,?,?);";
 		PreparedStatement stmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		String newZip = zip.replaceAll("<", "&lt;");
 		stmt.setString(1, street);
 		stmt.setString(2, province);
 		stmt.setString(3, country);
-		stmt.setString(4, zip);
+		stmt.setString(4, newZip);
 		stmt.executeUpdate();
 		ResultSet result = stmt.getGeneratedKeys();
 		

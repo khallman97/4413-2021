@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.AdminBean;
 import bean.AnalyticsBean;
-import bean.EventBean;
+import bean.EventCountBean;
 import model.BookModel;
 
 /**
@@ -50,7 +50,7 @@ public class admin extends HttpServlet {
 		
 		// Display analytics page when admin login
 		List<AnalyticsBean> reviewList = null;
-		List<EventBean> visitedList = null;
+		List<EventCountBean> visitedList = null;
 		List<AdminBean> userInfoList = null;
 		List<AdminBean> userPurchases = null;
 		List<AdminBean> userAvgCost = null;

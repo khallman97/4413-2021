@@ -17,6 +17,7 @@ import bean.AdminBean;
 import bean.AnalyticsBean;
 import bean.BookBean;
 import bean.EventBean;
+import bean.EventCountBean;
 import bean.ReviewBean;
 import bean.ShoppingCartBean;
 import bean.UserBean;
@@ -264,7 +265,7 @@ public class BookModel {
 		return poItemDAO.getTopSold();
 	}
 
-	public List<EventBean> get10MostVisited() throws SQLException {
+	public List<EventCountBean> get10MostVisited() throws SQLException {
 		return eventDAO.getTop10EventsByType("VIEW");
 	}
 
