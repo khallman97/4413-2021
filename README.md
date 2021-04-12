@@ -16,6 +16,11 @@
 Import the [war ](https://github.com/khallman97/4413-2021/blob/main/War%20Files/Bookstore.war) file into eclipse enterprise 
 From there, run our application inside eclipse which will then be available on your local host
 
+### ADMIN ACCESS
+To login to http://bookstore2021-env-1.eba-h9nj3uua.us-east-1.elasticbeanstalk.com/admin 
+user name: admin 
+password: 123456
+
 ## Testing
 
 ### Load Testing
